@@ -1,0 +1,171 @@
+/* Estilos Generales */
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(to right, #1e90ff, #00ced1);
+  margin: 0;
+}
+
+/* Contenedor Principal */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background: linear-gradient(to right, #1e90ff, #00ced1);
+  height: 100vh;
+}
+
+/* Caja de Login */
+.login-box {
+  display: flex;
+  width: 950px;
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Sección Izquierda (Imagen) */
+.login-left {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to right, #007bff, #00aaff);
+  padding: 30px;
+  border-radius: 20px 0 0 20px;
+}
+
+.login-left img {
+  max-width: 80%;
+  border-radius: 15px;
+}
+
+/* Sección Derecha (Formulario) */
+.login-right {
+  width: 50%;
+  padding: 40px;
+  text-align: center;
+  background: linear-gradient(to right, #d9f2ff, #b3e0ff);
+  border-radius: 0 20px 20px 0;
+}
+
+/* Logo Encabezado */
+.logo-header img {
+  width: 50px;
+  margin-bottom: 10px;
+}
+
+/* Títulos */
+.login-right h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.login-right p {
+  color: gray;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+/* Inputs */
+.input-group {
+  text-align: left;
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+
+.input-group label {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+/* Contenedor de Contraseña */
+.password-container {
+  position: relative;
+  width: 100%;
+}
+
+.password-container input {
+  width: 100%;
+  padding-right: 10px;
+}
+
+.password-container label {
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: gray;
+}
+
+/* Opciones (Checkbox y Link) */
+.options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.options a {
+  color: blue;
+  text-decoration: none;
+}
+
+.options a:hover {
+  text-decoration: underline;
+}
+
+/* Botones */
+button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.email-login {
+  background: white;
+  border: 2px solid black;
+  color: black;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.google-login {
+  background: black;
+  color: white;
+  font-weight: bold;
+}

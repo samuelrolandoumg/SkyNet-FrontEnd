@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="login-box">
+    <!-- Sección Izquierda (Imagen) -->
+    <div class="login-left">
+      <img src="imagen/login.PNG" alt="Logo">
+    </div>
+
+    <!-- Sección Derecha (Formulario) -->
+    <div class="login-right">
+      <div class="logo-header">
+        <img src="imagen/encabezado.PNG" alt="Logo">
+      </div>
+      <h2>Welcome again!</h2>
+      <p>Please enter your details</p>
+
+      <form>
+        <div class="input-group">
+          <label for="user">User</label>
+          <input type="text" id="user" placeholder="Enter your email">
+      </div>
+      
+      <div class="input-group">
+          <label for="password">Password</label>
+          <div class="password-container">
+              <input type="password" id="password" placeholder="Enter your password">
+              <span class="toggle-password" onclick="togglePassword()">👁️</span>
+          </div>
+      </div>
+      
+
+        <div class="options">
+          <label><input type="checkbox"> No tienes cuenta</label>
+          <a href="#">Forgot Password?</a>
+        </div>
+
+        <button class="email-login">🌍 Log in with Email</button>
+        <button (click)="loginWithGoogle()" type="button" class="google-login">
+          Iniciar Sesión con Google
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

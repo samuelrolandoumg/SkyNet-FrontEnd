@@ -1,9 +1,5 @@
-import { importProvidersFrom } from '@angular/core';
-import { provideRouter, Routes } from '@angular/router';
-import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { provideHttpClient,withFetch } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms'; // IMPORTA FormsModule y ReactiveFormsModule
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
@@ -17,7 +13,7 @@ const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
     { path: 'dashboard', component: DashboardComponent }, 
-    { path: 'access-denied', component: AccessDeniedComponent },
+    { path: 'access-denied', component: AccessDeniedComponent }, 
     { path: 'productos', component: ListarProductosComponent },
     { path: 'crear-productos', component: CrearProductoComponent },
     { path: 'editar-productos', component: EditarProductoComponent },
@@ -25,10 +21,8 @@ const routes: Routes = [
     { path: 'crear-categoria', component: CrearCategoriaComponent },
 ];
 
-export const appConfig = {
-  providers: [
-    provideRouter(routes),               
-    provideHttpClient(withFetch()),                 
-    importProvidersFrom(FormsModule,ReactiveFormsModule),    
-  ],
-};
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
