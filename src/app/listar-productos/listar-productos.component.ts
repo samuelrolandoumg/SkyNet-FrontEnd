@@ -25,7 +25,7 @@ export class ListarProductosComponent implements OnInit {
         this.productos = response.productos;
       },
       (error) => {
-        console.error('🔥 Error al obtener productos:', error);
+        console.error('Error al obtener productos:', error);
       }
     );
   }
@@ -34,18 +34,16 @@ export class ListarProductosComponent implements OnInit {
     this.router.navigate(['/crear-productos']);
   }
 
-  // Redirigir a editar con queryParams
   editarProducto(id: number) {
     this.router.navigate(['/editar-productos'], { queryParams: { idProducto: id } });
   }
 
-  // **Eliminar producto**
   eliminarProducto(id: number) {
     if (confirm('¿Estás seguro de que quieres eliminar este producto?')) {
       this.productosService.eliminarProducto(id).subscribe(
         () => {
           console.log('Producto eliminado correctamente');
-          this.obtenerProductos(); // Refrescar la lista
+          this.obtenerProductos(); 
         },
         (error) => {
           console.error('Error al eliminar producto:', error);

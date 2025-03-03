@@ -1,4 +1,4 @@
-/* Fondo general */
+
 .access-denied-container {
     display: flex;
     justify-content: center;
@@ -8,7 +8,6 @@
     color: white;
 }
 
-/* Tarjeta de mensaje */
 .card {
     background: rgba(255, 255, 255, 0.9);
     padding: 30px;
@@ -19,21 +18,18 @@
     width: 90%;
 }
 
-/* Título */
 .card h1 {
     font-size: 24px;
     color: #ff4c4c;
     margin-bottom: 10px;
 }
 
-/* Mensaje */
 .card p {
     font-size: 16px;
     color: #333;
     margin-bottom: 20px;
 }
 
-/* Botón */
 .back-button {
     background: #ff4c4c;
     color: white;

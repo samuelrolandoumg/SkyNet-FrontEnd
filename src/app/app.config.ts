@@ -12,6 +12,7 @@ import { CrearProductoComponent } from './crear-producto/crear-producto.componen
 import { EditarProductoComponent } from './editar-producto/editar-producto.component';
 import { LogoutComponent } from './logout/logout.component';
 import { CrearCategoriaComponent } from './crear-categoria/crear-categoria.component';
+import { ListarCCComponent } from './listar-cc/listar-cc.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -23,6 +24,8 @@ const routes: Routes = [
     { path: 'editar-productos', component: EditarProductoComponent },
     { path: 'logout', component: LogoutComponent },
     { path: 'crear-categoria', component: CrearCategoriaComponent },
+    { path: 'productoscc', component: ListarCCComponent },
+
 ];
 
 export const appConfig = {

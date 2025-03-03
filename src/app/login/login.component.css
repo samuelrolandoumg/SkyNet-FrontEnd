@@ -1,4 +1,3 @@
-/* Estilos Generales */
 body {
   font-family: Arial, sans-serif;
   display: flex;
@@ -9,7 +8,6 @@ body {
   margin: 0;
 }
 
-/* Contenedor Principal */
 .container {
   display: flex;
   justify-content: center;
@@ -19,7 +17,6 @@ body {
   height: 100vh;
 }
 
-/* Caja de Login */
 .login-box {
   display: flex;
   width: 950px;
@@ -29,7 +26,6 @@ body {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
-/* Sección Izquierda (Imagen) */
 .login-left {
   width: 50%;
   display: flex;
@@ -45,7 +41,6 @@ body {
   border-radius: 15px;
 }
 
-/* Sección Derecha (Formulario) */
 .login-right {
   width: 50%;
   padding: 40px;
@@ -54,13 +49,11 @@ body {
   border-radius: 0 20px 20px 0;
 }
 
-/* Logo Encabezado */
 .logo-header img {
   width: 50px;
   margin-bottom: 10px;
 }
 
-/* Títulos */
 .login-right h2 {
   font-size: 28px;
   margin-bottom: 10px;
@@ -72,7 +65,6 @@ body {
   margin-bottom: 20px;
 }
 
-/* Inputs */
 .input-group {
   text-align: left;
   margin-bottom: 15px;
@@ -97,7 +89,6 @@ input {
   font-size: 16px;
 }
 
-/* Contenedor de Contraseña */
 .password-container {
   position: relative;
   width: 100%;
@@ -124,7 +115,6 @@ input {
   color: gray;
 }
 
-/* Opciones (Checkbox y Link) */
 .options {
   display: flex;
   justify-content: space-between;
@@ -142,7 +132,6 @@ input {
   text-decoration: underline;
 }
 
-/* Botones */
 button {
   width: 100%;
   padding: 12px;

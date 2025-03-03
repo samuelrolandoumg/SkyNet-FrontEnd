@@ -1,0 +1,21 @@
+<div class="productos-container">
+    <h2>Lista de Productos</h2>
+
+    <div class="busqueda">
+        <input type="text" [(ngModel)]="filtro" (input)="filtrarProductos()" placeholder="Buscar productos..." />
+    </div>
+    <div class="logout-icon" (click)="logout()">
+        <img src="imagen/logout.png" alt="Cerrar Sesión">
+      </div>
+
+    <div class="productos-grid">
+        <div class="producto-card" *ngFor="let producto of productosFiltrados">
+            <div class="oferta" *ngIf="producto.oferta">¡En Oferta!</div>
+            <img [src]="producto.imagen_url" alt="Producto" class="producto-img" />
+            <p class="nombre">{{ producto.nombre }}</p>
+            <p class="precio">Q. {{ producto.precio }}</p>
+            <p class="stock">Stock: {{ producto.stock }}</p>
+            <button class="btn-agregar">➕</button>
+        </div>
+    </div>
+</div>

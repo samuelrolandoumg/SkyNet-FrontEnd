@@ -19,13 +19,13 @@ export class CrearProductoComponent {
   precio: number = 0;
   stock: number = 0;
   categoria_id: number = 1;
-  categorias: any[] = []; // Lista de categorías
+  categorias: any[] = []; 
   imagen!: File;
 
   constructor(private productosService: ProductosService,private categoriasService: CategoriasService, private router: Router) {}
 
   ngOnInit() {
-    this.obtenerCategorias(); // Cargar categorías al iniciar el componente
+    this.obtenerCategorias(); 
   }
 
   obtenerCategorias() {
@@ -55,15 +55,15 @@ export class CrearProductoComponent {
     formData.append('categoria_id', this.categoria_id.toString());
 
     if (this.imagen) {
-      formData.append('file', this.imagen); // 👈 Cambié de 'imagen' a 'file'
+      formData.append('file', this.imagen);
     } else {
-      console.warn('⚠️ No se ha seleccionado ninguna imagen.');
+      console.warn('No se ha seleccionado ninguna imagen.');
     }
 
     this.productosService.crearProducto(formData).subscribe(
       (response) => {
         console.log('Producto creado correctamente:', response);
-        this.router.navigate(['/productos']); // Redirigir a la lista de productos tras creación
+        this.router.navigate(['/productos']); 
       },
       (error) => {
         console.error('Error al crear producto:', error);

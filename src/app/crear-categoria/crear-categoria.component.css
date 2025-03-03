@@ -1,4 +1,4 @@
-/* Centrar el formulario en la pantalla */
+
 .crear-categoria-container {
     display: flex;
     justify-content: center;
@@ -7,7 +7,6 @@
     background: linear-gradient(to right, #00aaff, #0066cc);
   }
   
-  /* Caja del formulario */
   .form-box {
     width: 500px; 
     padding: 40px;
@@ -17,19 +16,16 @@
     text-align: center;
   }
   
-  /* Título */
   h2 {
     margin-bottom: 20px;
     color: #1e1e2f;
   }
   
-  /* Contenedor de inputs */
   .input-group {
     margin-bottom: 15px;
     text-align: left;
   }
   
-  /* Labels */
   .input-group label {
     font-weight: bold;
     color: #9595da;
@@ -38,7 +34,6 @@
     font-size: 16px;
   }
   
-  /* Inputs, Textarea y Select */
   .input-group input,
   .input-group textarea,
   .input-group select {
@@ -51,7 +46,6 @@
     color: #000;
   }
   
-  /* Botón */
   .btn-crear {
     width: 100%;
     padding: 14px;
@@ -69,7 +63,6 @@
     background: #004080;
   }
   
-  /* Mensaje */
   p {
     margin-top: 10px;
     font-weight: bold;

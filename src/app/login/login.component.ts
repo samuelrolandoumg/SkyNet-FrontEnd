@@ -1,45 +1,22 @@
-// import { Component, OnInit } from '@angular/core';
-// import { Router, ActivatedRoute } from '@angular/router';
-
-// @Component({
-//   selector: 'app-login',
-//   templateUrl: './login.component.html',
-//   styleUrls: ['./login.component.css']
-// })
-// export class LoginComponent implements OnInit {
-//   constructor(private router: Router, private route: ActivatedRoute) {}
-
-//   ngOnInit() {
-//     this.route.queryParams.subscribe(params => {
-//       if (params['token']) {
-//         localStorage.setItem('authToken', params['token']);
-//         localStorage.setItem('nombreUsuario', params['nombre']);
-//         localStorage.setItem('rolUsuario', params['rol']);
-//         this.router.navigate(['/dashboard']);
-//       }
-
-//       if (params['error'] === '403') {
-//         this.router.navigate(['/access-denied']);
-//       }
-//     });
-//   }
-
-//   loginWithGoogle() {
-//     window.location.href = 'http://localhost:3000/auth/google';
-//   }
-// }
-
 
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { UsuarioService } from '../services/usuario.service';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  imports: [CommonModule, RouterModule, FormsModule],
 })
 export class LoginComponent implements OnInit {
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  email: string = '';
+  password: string = '';
+  errorMessage: string = '';
+  constructor(private usuarioService: UsuarioService,private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -48,7 +25,6 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('nombreUsuario', params['nombre']);
         localStorage.setItem('rolUsuario', params['rol']);
 
-        // Verificar el rol del usuario
         const rol = params['rol'];
         if (rol === 'admin') {
           this.router.navigate(['/dashboard']);
@@ -66,4 +42,39 @@ export class LoginComponent implements OnInit {
   loginWithGoogle() {
     window.location.href = 'http://localhost:3000/auth/google';
   }
+
+  iniciarSesion() {
+    if (!this.email || !this.password) {
+      this.errorMessage = 'Por favor, ingrese su email y contraseña.';
+      return;
+    }
+
+    this.usuarioService.login(this.email, this.password).subscribe(
+      (response) => {
+        localStorage.setItem('authToken', response.authToken);
+        localStorage.setItem('nombreUsuario', response.nombre);
+        localStorage.setItem('rolUsuario', response.rol);
+
+        if (response.rol === 'operadorCC') {
+          this.router.navigate(['/productoscc']);
+        } else {
+          this.errorMessage = 'No tienes permisos para acceder.';
+        }
+      },
+      (error) => {
+        this.errorMessage = error.error.message || 'Error en la autenticación.';
+      }
+    );
+  }
+
+  togglePassword() {
+    let passwordField = document.getElementById("password") as HTMLInputElement;
+    if (passwordField.type === "password") {
+      passwordField.type = "text";
+    } else {
+      passwordField.type = "password";
+    }
+  }
 }
+
+

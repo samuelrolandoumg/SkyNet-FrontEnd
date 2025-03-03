@@ -24,7 +24,7 @@ export class CrearCategoriaComponent {
     this.categoriasService.agregarCategoria(this.categoria).subscribe(
       (response) => {
         this.mensaje = 'Categoría creada con éxito';
-        this.categoria = { nombre: '', descripcion: '', estado: true }; // Reseteamos el formulario
+        this.categoria = { nombre: '', descripcion: '', estado: true }; 
       },
       (error) => {
         this.mensaje = 'Error al crear la categoría';
