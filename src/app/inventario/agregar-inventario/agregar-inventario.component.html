@@ -1,0 +1,40 @@
+<div class="crear-producto-container">
+    <div class="form-box">
+      <h2>Agregar Inventario</h2>
+  
+      <div *ngIf="mensaje" class="alerta" [ngClass]="tipoMensaje">
+        {{ mensaje }}
+      </div>
+  
+      <form (submit)="registrarInventario()">
+        <div class="input-group">
+          <label>Producto:</label>
+          <select [(ngModel)]="idProducto" name="idProducto" required>
+            <option *ngFor="let prod of productos" [value]="prod.id">{{ prod.nombre }}</option>
+          </select>
+        </div>
+  
+        <div class="input-group">
+          <label>Proveedor:</label>
+          <select [(ngModel)]="idProveedor" name="idProveedor" required>
+            <option *ngFor="let prov of proveedores" [value]="prov.idProveedor">{{ prov.nombre }}</option>
+          </select>
+        </div>
+  
+        <div class="input-group">
+          <label>Cantidad:</label>
+          <input type="number" [(ngModel)]="cantidad" name="cantidad" required min="1" />
+        </div>
+  
+        <div class="input-group">
+          <label>Precio Unitario:</label>
+          <input type="number" [(ngModel)]="precioUnitario" name="precioUnitario" required min="0" step="0.01" />
+        </div>
+  
+        <div class="btn-container">
+          <button type="submit" class="btn-crear">Registrar Inventario</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

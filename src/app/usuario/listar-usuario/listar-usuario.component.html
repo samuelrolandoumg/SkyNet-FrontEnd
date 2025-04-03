@@ -1,0 +1,47 @@
+<div class="usuarios-container">
+    <h2>Lista de Usuarios</h2>
+  
+    <div class="top-bar">
+      <button class="btn-add" (click)="irCrearUsuario()">➕ Registrar usuario</button>
+      <input type="text" class="search-input" placeholder="Buscar..." [(ngModel)]="busqueda" />
+    </div>
+  
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Email</th>
+          <th>Rol</th>
+          <th>Farmacia</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let usuario of usuariosFiltrados()">
+          <td>{{ usuario.id_usuario }}</td>
+          <td>{{ usuario.nombre }}</td>
+          <td>{{ usuario.email }}</td>
+          <td>{{ usuario.rol }}</td>
+          <td>{{ usuario.nombreFarmacia }}</td>
+          
+          <td>
+            <div class="dropdown-container">
+              <button class="modify-btn">
+                ✏️ Modificar ▼
+              </button>
+              <div class="dropdown-menu">
+                <button (click)="editarUsuario(usuario.id)">
+                  ✏️ Editar
+                </button>
+              </div>
+            </div>
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
+    
+  </div>
+
+  

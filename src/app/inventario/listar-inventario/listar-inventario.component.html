@@ -1,0 +1,51 @@
+  <div class="productos-container">
+    <h2>Inventario General</h2>
+  
+    <div class="top-bar">
+      <button class="btn-add" routerLink="/agregar-inventario">➕ Registrar inventario</button>
+      <input
+        type="text"
+        class="search-input"
+        placeholder="Buscar por producto..."
+        [(ngModel)]="busqueda"
+      />
+    </div>
+  
+    <table>
+      <thead>
+        <tr>
+          <th>ID Producto</th>
+          <th>Nombre Producto</th>
+          <th>Proveedor</th>
+          <th>Stock Total</th>
+          <th>Precio Promedio</th>
+          <th>Última Fecha Ingreso</th>
+          <th>Acciones</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of inventarioFiltrado()">
+          <td>{{ item.idProducto }}</td>
+          <td>{{ item.nombreProducto }}</td>
+          <td>{{ item.nombreProveedor }}</td>
+          <td>{{ item.stockTotal }}</td>
+          <td>${{ (+item.precioPromedio).toFixed(2) }}</td>
+          <td>{{ item.ultimaFechaIngreso | date: 'dd/MM/yyyy, h:mm a' }}</td>
+          <td>
+            <div class="dropdown-container">
+              <button class="modify-btn">
+                ✏️ Modificar ▼
+              </button>
+              <div class="dropdown-menu">
+                <button (click)="verHistorial(item.idProducto)">
+                    ✏️ Historial
+                </button>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

@@ -51,7 +51,43 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['/productos']);
   }
 
+  redirigircrearproductos() {
+    this.router.navigate(['/crear-productos']);
+  }
+
   redirigircategorias() {
+    this.router.navigate(['/categorias']);
+  }
+  redirigircrearcategorias() {
     this.router.navigate(['/crear-categoria']);
   }
+
+  redirigirusuarios() {
+    this.router.navigate(['/usuarios']);
+  }
+  redirigircrearusuario() {
+    this.router.navigate(['/crear-usuario']);
+  }
+
+  redirigircrearfarmacia() {
+    this.router.navigate(['/crear-farmacia']);
+  }
+
+  redirigirproveedores() {
+    this.router.navigate(['/proveedores']);
+  }
+
+  redirigircrearproveedor() {
+    this.router.navigate(['/crear-proveedor']);
+  }
+
+  redirigirInventario() {
+    this.router.navigate(['/inventario-general']);
+  }
+
+  redirigiragregarIventario() {
+    this.router.navigate(['/agregar-inventario']);
+  }
+  
 }
+

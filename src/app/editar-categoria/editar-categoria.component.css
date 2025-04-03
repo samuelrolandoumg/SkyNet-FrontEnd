@@ -1,0 +1,76 @@
+.editar-categoria-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(to right, #00aaff, #0066cc);
+  }
+  
+  .form-box {
+    width: 100%;
+    max-width: 520px;
+    padding: 40px;
+    background: #fefefe;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  h2 {
+    margin-bottom: 30px;
+    color: #1e1e2f;
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .input-group {
+    margin-bottom: 18px;
+    text-align: left;
+  }
+  
+  label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 6px;
+    color: #333;
+  }
+  
+  input, textarea, select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    background: #f9f9f9;
+    color: #000;
+    box-sizing: border-box;
+  }
+  
+  textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+  
+  .btn-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .btn-actualizar {
+    padding: 12px 24px;
+    background: linear-gradient(to right, #ff8c00, #ff4500);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0px 5px 15px rgba(255, 69, 0, 0.3);
+    transition: 0.3s ease-in-out;
+  }
+  
+  .btn-actualizar:hover {
+    background: linear-gradient(to right, #ff4500, #ff0000);
+  }
+  

@@ -1,3 +1,7 @@
+<!-- <img src="imagen/fondo1.avif" alt="Fondo" class="background-image" />
+ -->
+ <img src="imagen/fondo.jpg" alt="Fondo" class="background-image" />
+
 <div class="container">
   <div class="login-box">
     <div class="login-left">
@@ -8,34 +12,50 @@
       <div class="logo-header">
         <img src="imagen/encabezado.PNG" alt="Logo">
       </div>
-      <h2>Welcome again!</h2>
-      <p>Please enter your details</p>
+      <h2>¡Bienvenido nuevamente!</h2>
+      <p>Por favor, ingresa tus datos</p>
 
       <form (submit)="iniciarSesion(); $event.preventDefault()">
         <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
 
         <div class="input-group">
-          <label for="user">User</label>
-          <input type="text" id="user" placeholder="Enter your email" [(ngModel)]="email" name="email">
+          <label for="user">Correo electrónico</label>
+          <input type="text" id="user" placeholder="Ingresa tu correo" [(ngModel)]="email" name="email">
         </div>
 
         <div class="input-group">
-          <label for="password">Password</label>
+          <label for="password">Contraseña</label>
           <div class="password-container">
-            <input type="password" id="password" placeholder="Enter your password" [(ngModel)]="password" name="password">
-            <span class="toggle-password" (click)="togglePassword()">👁️</span>
+            <input
+              [type]="showPassword ? 'text' : 'password'"
+              id="password"
+              placeholder="Ingresa tu contraseña"
+              [(ngModel)]="password"
+              name="password"
+            />
+            <span class="toggle-password material-icons" (click)="togglePassword()">
+              {{ showPassword ? 'visibility' : 'visibility_off' }}
+            </span>
           </div>
         </div>
+        
 
         <div class="options">
-          <label><input type="checkbox"> No tienes cuenta</label>
-          <a href="#">Forgot Password?</a>
+          <a href="#">¿Olvidaste tu contraseña?</a>
         </div>
 
-        <button type="submit" class="email-login">🌍 Iniciar sesión</button>
-        <button type="button" (click)="loginWithGoogle()" class="google-login">
-          Iniciar Sesión con Google
+        <button type="submit" class="email-login">
+          Iniciar sesión
         </button>
+        
+        <div class="divider">o continúa con</div>
+        
+        <button type="button" (click)="loginWithGoogle()" class="google-login">
+          <img src="imagen/Google.png" alt="Logo">
+          Iniciar sesión con Google
+        </button>
+        
+
       </form>
     </div>
   </div>

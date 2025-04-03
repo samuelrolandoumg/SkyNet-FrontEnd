@@ -1,4 +1,4 @@
-<div class="editar-producto-container">
+<!-- <div class="editar-producto-container">
     <div class="form-box">
         <h2>Editar Producto</h2>
         <form (submit)="actualizarProducto()">
@@ -46,4 +46,56 @@
             <button type="submit" class="btn-actualizar">Actualizar Producto</button>
         </form>
     </div>
-</div>
+</div> -->
+
+<div class="editar-producto-container">
+    <div class="form-wrapper">
+      <div class="form-box">
+        <h2>Editar Producto</h2>
+        <form (submit)="actualizarProducto()">
+          <div class="input-group">
+            <label>Nombre:</label>
+            <input type="text" [(ngModel)]="nombre" name="nombre" required />
+          </div>
+  
+          <div class="input-group">
+            <label>Descripción:</label>
+            <textarea [(ngModel)]="descripcion" name="descripcion" required></textarea>
+          </div>
+  
+          <div class="input-row">
+            <div class="input-group">
+              <label>Precio:</label>
+              <input type="number" [(ngModel)]="precio" name="precio" required min="0" />
+            </div>
+            <div class="input-group">
+              <label>Stock:</label>
+              <input type="number" [(ngModel)]="stock" name="stock" required min="0" />
+            </div>
+          </div>
+  
+          <div class="input-group">
+            <label>Categoría:</label>
+            <select [(ngModel)]="categoria_id" name="categoria_id" required>
+              <option *ngFor="let categoria of categorias" [value]="categoria.id">
+                {{ categoria.nombre }}
+              </option>
+            </select>
+          </div>
+  
+          <div class="input-group">
+            <label>Subir Nueva Imagen:</label>
+            <input type="file" (change)="seleccionarImagen($event)" />
+          </div>
+  
+          <button type="submit" class="btn-actualizar">Actualizar Producto</button>
+        </form>
+      </div>
+  
+      <div class="image-preview">
+        <label>Imagen Actual:</label>
+        <img [src]="imagenUrl" alt="Imagen Actual" class="imagen-actual" />
+      </div>
+    </div>
+  </div>
+  

@@ -1,17 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { ProductosService } from '../services/productos.service';
 import { CommonModule } from '@angular/common';
+import { RouterModule, Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-listar-productos',
   templateUrl: './listar-productos.component.html',
   styleUrls: ['./listar-productos.component.css'],
   standalone: true, 
-  imports: [CommonModule], 
+  imports: [CommonModule, RouterModule, FormsModule],
 })
 export class ListarProductosComponent implements OnInit {
   productos: any[] = [];
+  busqueda: string = '';
 
   constructor(private router: Router, private productosService: ProductosService) {}
 
@@ -51,4 +53,16 @@ export class ListarProductosComponent implements OnInit {
       );
     }
   }
+
+  productosFiltrados() {
+    if (!this.busqueda.trim()) return this.productos;
+  
+    const filtro = this.busqueda.toLowerCase();
+    return this.productos.filter(p =>
+      p.nombre.toLowerCase().includes(filtro) ||
+      p.descripcion?.toLowerCase().includes(filtro) ||
+      String(p.id).includes(filtro)
+    );
+  }
+  
 }

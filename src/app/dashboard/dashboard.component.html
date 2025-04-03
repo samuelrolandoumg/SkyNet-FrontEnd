@@ -1,14 +1,91 @@
-<div class="dashboard-container">
+ <!-- <div class="dashboard-container">
   <div class="dashboard-header">
     <div class="logo">MEDICARE EX</div>
     <nav class="menu">
-      <a href="#">Pedidos</a>
-      <a href="#">Ventas</a>
-      <a href="#">Inventario</a>
-      <a href="#">Farmacias</a>
+      <button class="btn btn-secondary" (click)="redirigirproductos()">Pedidos</button>
+      <button class="btn btn-secondary" (click)="redirigirproductos()">Ventas</button>
+      <button class="btn btn-secondary" (click)="redirigirproductos()">Inventario</button>
+      <button class="btn btn-secondary" (click)="redirigirproductos()">Farmacias</button>
       <button class="btn btn-secondary" (click)="redirigirproductos()">Productos</button>
       <button class="btn btn-secondary" (click)="redirigircategorias()">Categorias de productos</button>
     </nav>
+    <div class="logout-icon" (click)="logout()">
+      <img src="imagen/logout.png" alt="Cerrar Sesión">
+    </div>
+  </div>
+
+  <div class="dashboard-content">
+    <div class="left-section">
+      <h1>Hi {{ usuario.nombre }}</h1>
+      <p>Hola <strong>{{ usuario.rol }}</strong></p>
+      <button class="report-button">⚫ REPORTE DE VENTAS</button>
+    </div>  
+    <div class="right-section">
+      <img src="imagen/dashboard.jpg" alt="Farmacia">
+    </div>
+  </div>
+</div>  -->
+
+<div class="dashboard-container">
+  <div class="dashboard-header">
+    <div class="logo">MEDICARE EX</div>
+    
+    <nav class="menu">
+      <button class="nav-button">Pedidos</button>
+      <button class="nav-button">Ventas</button>
+
+      <div class="dropdown">
+        <button class="nav-button">Inventario</button>
+        <div class="dropdown-content">
+          <a (click)="redirigirInventario()">Lista de Inventario</a>
+          <a (click)="redirigiragregarIventario()">Agregar inventario</a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <button class="nav-button">Proveedores</button>
+        <div class="dropdown-content">
+          <a (click)="redirigirproveedores()">Lista de proveedores</a>
+          <a (click)="redirigircrearproveedor()">Crear proveedor</a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <button class="nav-button">Farmacias</button>
+        <div class="dropdown-content">
+          <a (click)="redirigirusuarios()">Lista de farmacias</a>
+          <a (click)="redirigircrearfarmacia()">Crear Farmacia</a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <button class="nav-button">Usuarios</button>
+        <div class="dropdown-content">
+          <a (click)="redirigirusuarios()">Lista usuarios</a>
+          <a (click)="redirigircrearusuario()">Crear usuarios</a>
+        </div>
+      </div>
+      
+      <div class="dropdown">
+        <button class="nav-button">Productos</button>
+        <div class="dropdown-content">
+          <a (click)="redirigirproductos()">Lista productos</a>
+          <a (click)="redirigircrearproductos()">Crear Productos</a>
+          <a (click)="redirigirproductos()">Eliminar producto</a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <button class="nav-button">Categorías de productos</button>
+        <div class="dropdown-content">
+          <a (click)="redirigircategorias()">Lista categoria</a>
+          <a (click)="redirigircrearcategorias()">Crear categoria</a>
+          <a (click)="redirigircategorias()">Eliminar categoria</a>
+        </div>
+      </div>
+      
+    </nav>
+
     <div class="logout-icon" (click)="logout()">
       <img src="imagen/logout.png" alt="Cerrar Sesión">
     </div>

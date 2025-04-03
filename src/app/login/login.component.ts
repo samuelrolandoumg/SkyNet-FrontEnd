@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   email: string = '';
   password: string = '';
   errorMessage: string = '';
+  showPassword: boolean = false;
   constructor(private usuarioService: UsuarioService,private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
@@ -68,12 +69,7 @@ export class LoginComponent implements OnInit {
   }
 
   togglePassword() {
-    let passwordField = document.getElementById("password") as HTMLInputElement;
-    if (passwordField.type === "password") {
-      passwordField.type = "text";
-    } else {
-      passwordField.type = "password";
-    }
+    this.showPassword = !this.showPassword; 
   }
 }
 

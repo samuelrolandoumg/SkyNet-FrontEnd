@@ -1,10 +1,22 @@
+.background-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+  opacity: 0.70; 
+  pointer-events: none; 
+}
+
 body {
   font-family: Arial, sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: linear-gradient(to right, #1e90ff, #00ced1);
+  background: linear-gradient(to right, #285786, #00ced1);
   margin: 0;
 }
 
@@ -13,7 +25,6 @@ body {
   justify-content: center;
   align-items: center;
   width: 100%;
-  background: linear-gradient(to right, #1e90ff, #00ced1);
   height: 100vh;
 }
 
@@ -21,7 +32,7 @@ body {
   display: flex;
   width: 950px;
   background: white;
-  border-radius: 20px;
+  border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
@@ -31,7 +42,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(to right, #007bff, #00aaff);
+  background: linear-gradient(to right, #ffffff, #ffffff);
   padding: 30px;
   border-radius: 20px 0 0 20px;
 }
@@ -45,8 +56,8 @@ body {
   width: 50%;
   padding: 40px;
   text-align: center;
-  background: linear-gradient(to right, #d9f2ff, #b3e0ff);
-  border-radius: 0 20px 20px 0;
+  background: linear-gradient(to right, #daf6fc, #8dbfd3);
+  border-radius: 0 10px 10px 0;
 }
 
 .logo-header img {
@@ -55,8 +66,8 @@ body {
 }
 
 .login-right h2 {
-  font-size: 28px;
-  margin-bottom: 10px;
+  font-size: 22px;
+  margin-bottom: 5px;
 }
 
 .login-right p {
@@ -76,7 +87,6 @@ body {
 
 .input-group label {
   font-size: 14px;
-  font-weight: bold;
   margin-bottom: 5px;
   display: block;
 }
@@ -124,7 +134,7 @@ input {
 }
 
 .options a {
-  color: blue;
+  color: rgb(30, 30, 46);
   text-decoration: none;
 }
 
@@ -157,4 +167,74 @@ button {
   background: black;
   color: white;
   font-weight: bold;
+}
+
+
+.email-login {
+  background: #9da6aa;
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 12px;
+  width: 100%;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s ease;
+}
+
+.email-login:hover {
+  background: #4e4a81;
+}
+
+.divider {
+  text-align: center;
+  margin: 15px 0;
+  font-size: 14px;
+  color: gray;
+  position: relative;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 40%;
+  height: 1px;
+  background: #ccc;
+}
+
+.divider::before {
+  left: 0;
+}
+
+.divider::after {
+  right: 0;
+}
+
+.google-login {
+  background: #f5f5f5;
+  border: 1px solid #ccc;
+  color: #333;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px;
+  width: 100%;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.google-login:hover {
+  background: #e0e0e0;
+}
+
+.google-login img {
+  width: 20px;
+  height: 20px;
 }

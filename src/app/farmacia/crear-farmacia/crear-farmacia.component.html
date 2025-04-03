@@ -1,0 +1,29 @@
+<div class="crear-farmacia-container">
+    <div class="form-box">
+      <h2>Crear Farmacia</h2>
+  
+      <div *ngIf="mensaje" class="alerta" [ngClass]="tipoMensaje">{{ mensaje }}</div>
+  
+      <form (ngSubmit)="crearFarmacia()">
+        <div class="input-group">
+          <label>Nombre:</label>
+          <input type="text" [(ngModel)]="nombre" name="nombre" required />
+        </div>
+  
+        <div class="input-group">
+          <label>Dirección:</label>
+          <input type="text" [(ngModel)]="direccion" name="direccion" required />
+        </div>
+  
+        <div class="input-group">
+          <label>Teléfono:</label>
+          <input type="text" [(ngModel)]="telefono" name="telefono" required />
+        </div>
+  
+        <div class="btn-container">
+          <button type="submit" class="btn-crear">Crear Farmacia</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
