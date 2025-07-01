@@ -14,16 +14,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'farmacia-app' title`, () => {
+  it(`should have the 'SkyNet_desa_f' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('farmacia-app');
+    expect(app.title).toEqual('SkyNet_desa_f');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, farmacia-app');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, SkyNet_desa_f');
   });
 });
