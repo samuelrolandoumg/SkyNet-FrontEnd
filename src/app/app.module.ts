@@ -7,13 +7,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
 import { ToastrModule } from 'ngx-toastr';
+import { IniciarSesionComponent } from './login/iniciar-sesion/iniciar-sesion.component';
+import { CerrarSesionComponent } from './login/cerrar-sesion/cerrar-sesion.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    IniciarSesionComponent,
+    CerrarSesionComponent
   ],
   imports: [
     BrowserModule,
