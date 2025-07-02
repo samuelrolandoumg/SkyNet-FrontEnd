@@ -1,3 +1,6 @@
-<div class="dashboard-container">
-  <p>hola</p>
+<app-sidebar></app-sidebar>
+<div class="dashboard-content">
+  <h1>Hola, {{ usuario?.nombre }}</h1>
+  <p>Tu rol es: <strong>{{ usuario?.rol }}</strong></p>
+  <button (click)="cerrarSesion()">Cerrar sesión</button>
 </div>

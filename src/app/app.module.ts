@@ -10,12 +10,14 @@ import { AppComponent } from './app.component';
 import { ToastrModule } from 'ngx-toastr';
 import { IniciarSesionComponent } from './login/iniciar-sesion/iniciar-sesion.component';
 import { CerrarSesionComponent } from './login/cerrar-sesion/cerrar-sesion.component';
+import { SidebarComponent } from './layout/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     IniciarSesionComponent,
-    CerrarSesionComponent
+    CerrarSesionComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
@@ -25,6 +27,7 @@ import { CerrarSesionComponent } from './login/cerrar-sesion/cerrar-sesion.compo
     CommonModule,
     FormsModule, 
     ToastrModule.forRoot(), 
+    RouterModule.forRoot([]),
   ],
   providers: [],
   bootstrap: [AppComponent]

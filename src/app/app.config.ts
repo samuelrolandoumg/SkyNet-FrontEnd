@@ -7,16 +7,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideHttpClient,withFetch } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms'; 
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { AccessDeniedComponent } from './access-denied/access-denied.component';
 import { IniciarSesionComponent } from './login/iniciar-sesion/iniciar-sesion.component';
+import { SidebarComponent } from './layout/sidebar/sidebar.component';
+import { authGuard } from './guards/auth.guard';
 
 
 const routes: Routes = [
-    { path: '', redirectTo: '/login', pathMatch: 'full' },
-    { path: 'dashboard', component: DashboardComponent }, 
-    { path: 'access-denied', component: AccessDeniedComponent },
-    { path: 'login', component: IniciarSesionComponent   }, 
-
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'login', component: IniciarSesionComponent },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [authGuard] 
+  },
+  { path: '**', redirectTo: '/login' } 
 ];
 
 export const appConfig = {

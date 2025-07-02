@@ -1,25 +1,28 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, RouterOutlet } from '@angular/router';
+import { SidebarComponent } from '../layout/sidebar/sidebar.component';
+import { Usuario } from '../interfaces/usuario.interface';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
+  imports: [SidebarComponent], 
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  usuario: any = { nombre: '', rol: '' };
+  usuario: Usuario | null = null;
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.usuario = this.authService.obtenerUsuario();
   }
 
-  logout() {
+  cerrarSesion(): void {
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 
-  // redirigiragregarIventario() {
-  //   this.router.navigate(['/agregar-inventario']);
-  // }
-  
 }
 
