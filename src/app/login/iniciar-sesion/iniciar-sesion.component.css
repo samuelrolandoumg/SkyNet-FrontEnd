@@ -1,32 +1,448 @@
+body {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .login-container {
-  width: 300px;
-  margin: 80px auto;
-  background: #1e1e1e;
-  color: white;
-  padding: 30px;
-  border-radius: 8px;
+  background: #fff;
+  padding: 40px 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 380px;
   text-align: center;
 }
 
-.login-container input {
-  width: 100%;
-  margin: 10px 0;
-  padding: 10px;
-  border: none;
-  border-radius: 4px;
+.login-container h2 {
+  margin-bottom: 25px;
+  color: #333;
 }
 
-.login-container button {
+.login-container form input {
   width: 100%;
-  padding: 10px;
-  background: #e60023;
-  color: white;
+  padding: 12px 15px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.login-container form button {
+  width: 100%;
+  padding: 12px;
+  background-color: #28a745;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
+  color: white;
+  font-size: 16px;
   cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.3s;
+}
+
+.login-container form button:hover {
+  background-color: #218838;
+}
+
+.error {
+  color: #dc3545;
+  font-size: 14px;
+  margin-top: 15px;
+}
+
+.login-wrapper {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.login-card {
+  display: flex;
+  width: 800px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.left-side {
+  flex: 1;
+  background-color: #f3f4f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.left-side img {
+  width: 150px;
+}
+
+.right-side {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.right-side h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 24px;
+  color: #333;
+}
+
+.right-side input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.right-side button {
+  background-color: #28a745;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.right-side button:hover {
+  background-color: #218838;
 }
 
 .error {
   color: red;
+  text-align: center;
   margin-top: 10px;
+}
+
+.forgot,
+.register {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  color: #666;
+  font-size: 13px;
+  text-decoration: none;
+}
+
+/*  */
+.icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* Se asegura que se centre verticalmente */
+}
+
+.icon-container i {
+  font-size: 80px; /* Tamaño grande del ícono */
+  color: #2c3e50;
+}
+
+/* Fondo gradiente */
+.login-wrapper {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Card principal */
+.login-card {
+  background: #ffffff;
+  width: 800px;
+  height: 400px;
+  display: flex;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Sección del ícono */
+.login-icon-section {
+  background-color: #f5f6fa;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-icon-section .icon {
+  font-size: 100px;
+  color: #34495e;
+}
+
+/* Sección del formulario */
+.login-form-section {
+  width: 50%;
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.login-form-section h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #2c3e50;
+  text-align: center;
+}
+
+/* Inputs */
+.login-form-section input {
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  width: 100%;
+  font-size: 14px;
+}
+
+/* Botón */
+.login-form-section button {
+  padding: 12px;
+  background-color: #28a745;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.login-form-section button:hover {
+  background-color: #218838;
+}
+
+/* Links extra */
+.extra-options {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.extra-options a {
+  display: block;
+  color: #555;
+  font-size: 13px;
+  text-decoration: none;
+  margin: 5px 0;
+}
+
+.extra-options a:hover {
+  text-decoration: underline;
+}
+
+.login-wrapper {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.login-card {
+  background: #ffffff;
+  width: 800px;
+  height: 420px;
+  display: flex;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Ambos cuadros: 50% exacto */
+.login-icon-section,
+.login-form-section {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Icono centrado y grande */
+.login-icon-section {
+  background-color: #f5f6fa;
+}
+
+.login-icon-section .icon {
+  font-size: 110px;
+  color: #34495e;
+}
+
+/* Contenedor del formulario con padding interno */
+.login-form-section .form-wrapper {
+  width: 100%;
+  max-width: 85%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Título centrado */
+.login-form-section h2 {
+  margin-bottom: 10px;
+  font-size: 24px;
+  color: #2c3e50;
+  text-align: center;
+}
+
+/* Inputs uniformes */
+.login-form-section input {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  width: 100%;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+/* Botón */
+.login-form-section button {
+  padding: 12px;
+  background-color: #28a745;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  width: 100%;
+}
+
+.login-form-section button:hover {
+  background-color: #218838;
+}
+
+/* Opciones extra */
+.extra-options {
+  margin-top: 5px;
+  text-align: center;
+  font-size: 13px;
+}
+
+.extra-options a {
+  color: #555;
+  text-decoration: none;
+  display: block;
+  margin-top: 6px;
+}
+
+.extra-options a:hover {
+  text-decoration: underline;
+}
+
+.login-wrapper {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.login-card {
+  background: #ffffff;
+  width: 800px;
+  height: 420px;
+  display: flex;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Ambos cuadros: 50% exacto */
+.login-icon-section,
+.login-form-section {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Icono centrado y grande */
+.login-icon-section {
+  background-color: #f5f6fa;
+}
+
+.login-icon-section .icon {
+  font-size: 110px;
+  color: #34495e;
+}
+
+/* Contenedor del formulario con padding interno */
+.login-form-section .form-wrapper {
+  width: 100%;
+  max-width: 85%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Título centrado */
+.login-form-section h2 {
+  margin-bottom: 10px;
+  font-size: 24px;
+  color: #2c3e50;
+  text-align: center;
+}
+
+/* Inputs uniformes */
+.login-form-section input {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  width: 100%;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+/* Botón */
+.login-form-section button {
+  padding: 12px;
+  background-color: #28a745;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  width: 100%;
+}
+
+.login-form-section button:hover {
+  background-color: #218838;
+}
+
+/* Opciones extra */
+.extra-options {
+  margin-top: 5px;
+  text-align: center;
+  font-size: 13px;
+}
+
+.extra-options a {
+  color: #555;
+  text-decoration: none;
+  display: block;
+  margin-top: 6px;
+}
+
+.extra-options a:hover {
+  text-decoration: underline;
 }

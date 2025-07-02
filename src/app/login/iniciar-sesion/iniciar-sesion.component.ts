@@ -4,6 +4,7 @@ import { Router, RouterModule } from '@angular/router';
 import { LoginRequest } from '../../interfaces/login-request.interface';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-iniciar-sesion',
@@ -26,14 +27,29 @@ export class IniciarSesionComponent {
           this.authService.guardarUsuario(usuario);
           this.router.navigate(['/dashboard']);
         } else {
-          this.error = 'Respuesta inválida del servidor.';
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Respuesta inválida del servidor.'
+          });
         }
       },
       error: (err) => {
         console.error('Error capturado:', err);
-        this.error = 'Correo o contraseña incorrectos.';
+
+        // Validación si viene mensaje específico del backend
+        const mensaje = err?.error?.mensaje || 'Correo o contraseña incorrectos.';
+
+        Swal.fire({
+          icon: 'error',
+          title: 'Credenciales inválidas',
+          text: 'Credenciales de usuario inválidas.',
+          backdrop: false
+        });
+
       }
     });
   }
+
 
 }
