@@ -3,7 +3,9 @@ const path = require('path');
 const app = express();
 
 const PORT = process.env.PORT || 3000;
-const DIST_FOLDER = path.join(__dirname, 'dist/SkyNet_desa_f');
+
+
+const DIST_FOLDER = path.join(__dirname, 'dist/SkyNet_desa_f/browser');
 
 app.use(express.static(DIST_FOLDER));
 
