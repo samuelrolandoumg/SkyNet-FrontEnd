@@ -10,20 +10,28 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { IniciarSesionComponent } from './login/iniciar-sesion/iniciar-sesion.component';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { authGuard } from './guards/auth.guard';
-import { AgregarUbicacionComponent } from './api-maps/agregar-ubicacion/agregar-ubicacion.component';
+import { AgregarClienteComponent } from './api-maps/agregar-cliente/agregar-cliente.component';
 import { VerUbicacionClienteComponent } from './api-maps/ver-ubicacion-cliente/ver-ubicacion-cliente.component';
+import { LayoutComponent } from './layout/layout.component';
+import { ConsultarClientesComponent } from './api-maps/consultar-clientes/consultar-clientes.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: IniciarSesionComponent },
-  { path: 'agregar-ubicacion', component: AgregarUbicacionComponent },
-  { path: 'ver-ubicacion-cliente', component: VerUbicacionClienteComponent },
 
   {
-    path: 'dashboard',
-    component: DashboardComponent,
-    canActivate: [authGuard]
+    path: '',
+    component: LayoutComponent,
+    canActivate: [authGuard],
+    children: [
+      { path: 'dashboard', component: DashboardComponent },
+      { path: 'agregar-cliente', component: AgregarClienteComponent },
+      { path: 'ver-ubicacion-cliente', component: VerUbicacionClienteComponent },
+      { path: 'consultar-clientes', component: ConsultarClientesComponent}
+    ]
   },
+
   { path: '**', redirectTo: '/login' }
 ];
 

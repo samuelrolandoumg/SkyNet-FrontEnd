@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-iniciar-sesion',
-  standalone: true,
+  //standalone: true,
   imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './iniciar-sesion.component.html',
   styleUrl: './iniciar-sesion.component.css'

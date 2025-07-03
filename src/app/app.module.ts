@@ -11,13 +11,17 @@ import { ToastrModule } from 'ngx-toastr';
 import { IniciarSesionComponent } from './login/iniciar-sesion/iniciar-sesion.component';
 import { CerrarSesionComponent } from './login/cerrar-sesion/cerrar-sesion.component';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
+import { GoogleMapsModule } from '@angular/google-maps';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
     IniciarSesionComponent,
     CerrarSesionComponent,
-    SidebarComponent
+    SidebarComponent,
+    GoogleMapsModule
   ],
   imports: [
     BrowserModule,
@@ -25,11 +29,13 @@ import { SidebarComponent } from './layout/sidebar/sidebar.component';
     MatButtonModule,
     HttpClientModule,
     CommonModule,
-    FormsModule, 
-    ToastrModule.forRoot(), 
+    FormsModule,
+    ToastrModule.forRoot(),
     RouterModule.forRoot([]),
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

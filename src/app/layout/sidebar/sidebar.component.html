@@ -4,9 +4,33 @@
   </div>
 
   <ul class="menu">
-    <li *ngFor="let modulo of modulosVisibles" [routerLink]="modulo.path" routerLinkActive="active">
-      <i class="fa-solid" [ngClass]="modulo.icon"></i>
-      <span *ngIf="!isCollapsed">{{ modulo.label }}</span>
+    <li routerLink="/dashboard" routerLinkActive="active">
+      <i class="fa-solid fa-chart-line"></i>
+      <span *ngIf="!isCollapsed">Dashboard</span>
+    </li>
+
+    <li (click)="toggleClientes()">
+      <i class="fa-solid fa-users"></i>
+      <span *ngIf="!isCollapsed">Clientes</span>
+      <i class="fa-solid" *ngIf="!isCollapsed" [ngClass]="clienteExpanded ? 'fa-chevron-up' : 'fa-chevron-down'"
+        style="margin-left:auto;"></i>
+    </li>
+
+    <ul class="submenu" *ngIf="clienteExpanded && !isCollapsed">
+      <li *ngIf="puedeAgregarEditar" routerLink="/agregar-cliente" routerLinkActive="active">Agregar Cliente</li>
+      <li *ngIf="puedeAgregarEditar" routerLink="/clientes/editar" routerLinkActive="active">Editar Cliente</li>
+      <li *ngIf="puedeConsultar" routerLink="/consultar-clientes" routerLinkActive="active">Consultar Cliente</li>
+    </ul>
+
+
+    <li routerLink="/reportes" routerLinkActive="active">
+      <i class="fa-solid fa-file-lines"></i>
+      <span *ngIf="!isCollapsed">Reportes</span>
+    </li>
+
+    <li routerLink="/configuracion" routerLinkActive="active">
+      <i class="fa-solid fa-gear"></i>
+      <span *ngIf="!isCollapsed">Configuración</span>
     </li>
   </ul>
 </div>

@@ -1,0 +1,7 @@
+<div [class.sidebar-collapsed]="isSidebarCollapsed">
+  <app-sidebar (colapsado)="actualizarSidebar($event)"></app-sidebar>
+
+  <div class="contenido">
+    <router-outlet></router-outlet>
+  </div>
+</div>

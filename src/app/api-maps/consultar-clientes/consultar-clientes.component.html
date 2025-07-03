@@ -1,0 +1,17 @@
+<h2>Clientes del Supervisor</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Nombre Cliente</th>
+      <th>Negocio</th>
+      <th>Acción</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let c of clientes">
+      <td>{{ c.nombreCliente }}</td>
+      <td>{{ c.nombreNegocio }}</td>
+      <td><button (click)="verUbicacion(c)">Ver ubicación</button></td>
+    </tr>
+  </tbody>
+</table>

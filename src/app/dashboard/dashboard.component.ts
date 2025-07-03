@@ -7,13 +7,12 @@ import { AuthService } from '../services/auth.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  imports: [SidebarComponent], 
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
   usuario: Usuario | null = null;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.usuario = this.authService.obtenerUsuario();
@@ -24,5 +23,8 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
+  redirigirAgregarUbicacion() {
+    this.router.navigate(['/agregar-ubicacion']);
+  }
 }
 

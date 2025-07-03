@@ -1,0 +1,14 @@
+.contenido {
+  margin-left: 220px;
+  padding: 30px;
+}
+.sidebar-collapsed .contenido {
+  margin-left: 60px !important;
+  transition: margin-left 0.3s ease;
+}
+
+.contenido {
+  margin-left: 220px;
+  padding: 30px;
+  transition: margin-left 0.3s ease;
+}
