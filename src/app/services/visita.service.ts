@@ -11,10 +11,12 @@ export class VisitaService {
 
   constructor(private http: HttpClient) { }
 
+
   crearVisita(data: CrearVisitaDto): Observable<string> {
     return this.http.post(`${this.visitaUrl}/crear`, data, { responseType: 'text' });
   }
 
+  //traer clientes
   obtenerVisitasPorTecnico(idTecnico: number): Observable<VisitaDto[]> {
     return this.http.get<VisitaDto[]>(`${this.visitaUrl}/visitas-tecnico?idTecnico=${idTecnico}`);
   }
