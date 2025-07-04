@@ -66,6 +66,8 @@ import { Output, EventEmitter } from '@angular/core';
 export class SidebarComponent implements OnInit {
   isCollapsed = false;
   clienteExpanded = false;
+  visitasExpanded: boolean = false;
+
   usuario: Usuario | null = null;
   @Output() colapsado = new EventEmitter<boolean>();
 
@@ -95,4 +97,8 @@ export class SidebarComponent implements OnInit {
   toggleClientes() {
     this.clienteExpanded = !this.clienteExpanded;
   }
+
+  toggleVisitas(): void {
+  this.visitasExpanded = !this.visitasExpanded;
+}
 }

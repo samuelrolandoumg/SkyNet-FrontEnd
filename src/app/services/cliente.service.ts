@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CrearClienteDto, Supervisor, UbicacionDto } from '../interfaces/cliente.interface';
+import { ClienteTecnico, CrearClienteDto, Supervisor, UbicacionDto } from '../interfaces/cliente.interface';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -21,8 +21,8 @@ export class ClienteService {
   }
 
   obtenerUbicacionClientePorId(idCliente: number): Observable<UbicacionDto> {
-  return this.http.get<UbicacionDto>(`${this.apiUrl}/coordenadas-cliente?idCliente=${idCliente}`);
-}
+    return this.http.get<UbicacionDto>(`${this.apiUrl}/coordenadas-cliente?idCliente=${idCliente}`);
+  }
 
   obtenerUsuarioDesdeToken(): Observable<any> {
     const token = localStorage.getItem('token');
@@ -32,8 +32,14 @@ export class ClienteService {
     return this.http.get<any>('https://skynet-backend-production.up.railway.app/usuario/detector', { headers });
   }
 
-
   obtenerSupervisores(): Observable<Supervisor[]> {
     return this.http.get<Supervisor[]>(`${this.usuarioUrl}/usuarios-rol?rol=SUPERVISOR`);
+  }
+
+  obtenerClientesPorTecnico(idTecnico: number): Observable<ClienteTecnico[]> {
+    return this.http.get<ClienteTecnico[]>(`${this.apiUrl}/clientes-tecnico?idTecnico=${idTecnico}`);
+  }
+  obtenerTecnicosPorSupervisor(idSupervisor: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.usuarioUrl}/tecnicos-supervisor?idSupervisor=${idSupervisor}`);
   }
 }

@@ -14,7 +14,8 @@ import { AgregarClienteComponent } from './api-maps/agregar-cliente/agregar-clie
 import { VerUbicacionClienteComponent } from './api-maps/ver-ubicacion-cliente/ver-ubicacion-cliente.component';
 import { LayoutComponent } from './layout/layout.component';
 import { ConsultarClientesComponent } from './api-maps/consultar-clientes/consultar-clientes.component';
-
+import { RegistrarVisitaComponent } from './visita/registrar-visita/registrar-visita.component';
+import { ConsultarVisitasComponent } from './visita/consultar-visitas/consultar-visitas.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -28,7 +29,9 @@ const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'agregar-cliente', component: AgregarClienteComponent },
       { path: 'ver-ubicacion-cliente', component: VerUbicacionClienteComponent },
-      { path: 'consultar-clientes', component: ConsultarClientesComponent}
+      { path: 'consultar-clientes', component: ConsultarClientesComponent },
+      { path: 'registrar-visita', component: RegistrarVisitaComponent },
+      { path: 'consultar-visitas', component: ConsultarVisitasComponent }
     ]
   },
 

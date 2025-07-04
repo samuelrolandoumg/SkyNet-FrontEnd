@@ -28,6 +28,8 @@ export class AgregarClienteComponent implements OnInit, AfterViewInit {
   latitud: number | null = null;
   longitud: number | null = null;
   supervisores: any[] = [];
+  tecnicos: any[] = [];
+
   idSupervisorSeleccionado: number | null = null;
   idSupervisor: number | null = null;
   nombreCliente: string = '';
@@ -36,6 +38,7 @@ export class AgregarClienteComponent implements OnInit, AfterViewInit {
   telefono: string = '';
   correo: string = '';
   estado: boolean = true;
+  idTecnicoSeleccionado: number | null = null;
 
   @ViewChild('searchInput') searchInput!: ElementRef<HTMLInputElement>;
 
@@ -111,46 +114,41 @@ export class AgregarClienteComponent implements OnInit, AfterViewInit {
       }
     });
   }
+
+  obtenerTecnicos(): void {
+    if (this.idSupervisorSeleccionado !== null) {
+      this.clienteSrv.obtenerTecnicosPorSupervisor(this.idSupervisorSeleccionado).subscribe({
+        next: (data) => this.tecnicos = data,
+        error: () => console.error('Error cargando técnicos')
+      });
+    }
+  }
   guardar(): void {
     if (
       this.latitud && this.longitud &&
-      this.nombreCliente.trim() &&
-      this.nombreNegocio.trim() &&
-      this.nit.trim() &&
-      this.telefono.trim() &&
-      this.correo.trim() &&
-      this.idSupervisorSeleccionado !== null
+      this.nombreCliente.trim() && this.nombreNegocio.trim() &&
+      this.nit.trim() && this.telefono.trim() && this.correo.trim() &&
+      this.idTecnicoSeleccionado !== null
     ) {
       const cliente: CrearClienteDto = {
         nombreCliente: this.nombreCliente,
         nombreNegocio: this.nombreNegocio,
         latitud: this.latitud.toString(),
         longitud: this.longitud.toString(),
-        idRol: 6,
-        idSupervisor: this.idSupervisorSeleccionado,
         nit: this.nit,
         telefono: this.telefono,
         correo: this.correo,
-        estado: this.estado
+        estado: this.estado,
+        idRol: 4,
+        idTecnico: this.idTecnicoSeleccionado
       };
 
       this.clienteSrv.crearCliente(cliente).subscribe({
         next: () => {
-          Swal.fire({
-            icon: 'success',
-            title: 'Cliente guardado correctamente',
-            confirmButtonText: 'Aceptar',
-            backdrop: false
-          }).then(() => this.limpiarCampos());
+          Swal.fire('Éxito', 'Cliente guardado correctamente', 'success');
+          this.limpiarCampos();
         },
-        error: () => {
-          Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'Ocurrió un error al guardar el cliente',
-            backdrop: false
-          });
-        }
+        error: () => Swal.fire('Error', 'No se pudo guardar el cliente', 'error')
       });
     }
   }

@@ -4,7 +4,7 @@ export interface CrearClienteDto {
   latitud: string;
   longitud: string;
   idRol: number;
-  idSupervisor: number;
+  idTecnico: number;
   nit: string;
   telefono: string;
   correo: string;
@@ -12,6 +12,12 @@ export interface CrearClienteDto {
 }
 
 export interface Supervisor {
+  idUsuario: number;
+  usuario: string;
+}
+
+
+export interface ClienteTecnico {
   idUsuario: number;
   usuario: string;
 }

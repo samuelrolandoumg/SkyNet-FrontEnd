@@ -1,0 +1,28 @@
+<div class="container-form">
+  <h2 class="title">VISITAS DE HOY</h2>
+
+  <div *ngIf="visitas.length === 0">
+    <p>No hay visitas programadas para hoy.</p>
+  </div>
+
+  <div *ngIf="visitas.length > 0">
+    <table class="tabla-visitas">
+      <thead>
+        <tr>
+          <th>Cliente</th>
+          <th>Negocio</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let visita of visitas">
+          <td>{{ visita.nombreCliente }}</td>
+          <td>{{ visita.nombreNegocio }}</td>
+          <td>
+            <button (click)="verRuta(visita)">Ver Ruta</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
