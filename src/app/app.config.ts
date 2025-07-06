@@ -16,6 +16,8 @@ import { LayoutComponent } from './layout/layout.component';
 import { ConsultarClientesComponent } from './api-maps/consultar-clientes/consultar-clientes.component';
 import { RegistrarVisitaComponent } from './visita/registrar-visita/registrar-visita.component';
 import { ConsultarVisitasComponent } from './visita/consultar-visitas/consultar-visitas.component';
+import { DetallesVisitaComponent } from './visita-tecnico/detalles-visita/detalles-visita.component';
+import { RegistroDetalleVisitaComponent } from './visita-tecnico/registro-detalle-visita/registro-detalle-visita.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -31,7 +33,11 @@ const routes: Routes = [
       { path: 'ver-ubicacion-cliente', component: VerUbicacionClienteComponent },
       { path: 'consultar-clientes', component: ConsultarClientesComponent },
       { path: 'registrar-visita', component: RegistrarVisitaComponent },
-      { path: 'consultar-visitas', component: ConsultarVisitasComponent }
+      { path: 'consultar-visitas', component: ConsultarVisitasComponent },
+      { path: 'detalle-visita', component: DetallesVisitaComponent },
+      { path: 'registro-detalle-visita', component: RegistroDetalleVisitaComponent },
+
+
     ]
   },
 

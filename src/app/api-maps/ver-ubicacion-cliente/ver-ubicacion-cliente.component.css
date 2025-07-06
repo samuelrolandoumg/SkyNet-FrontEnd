@@ -1,0 +1,50 @@
+.contenedor-principal {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 95%;
+  margin: auto;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.encabezado {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.encabezado h2 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+  color: #333;
+}
+
+.boton-accion {
+  background-color: #1dd1a1;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.boton-accion:hover {
+  background-color: #10ac84;
+}
+
+.boton-accion:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.mapa-estilizado {
+  height: 500px;
+  width: 100%;
+  border-radius: 10px;
+  margin-top: 15px;
+  overflow: hidden;
+}

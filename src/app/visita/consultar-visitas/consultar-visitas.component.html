@@ -11,6 +11,7 @@
         <tr>
           <th>Cliente</th>
           <th>Negocio</th>
+          <th>Estado</th>
           <th>Acción</th>
         </tr>
       </thead>
@@ -18,9 +19,12 @@
         <tr *ngFor="let visita of visitas">
           <td>{{ visita.nombreCliente }}</td>
           <td>{{ visita.nombreNegocio }}</td>
+          <td>{{ visita.estado }}</td>
           <td>
             <button (click)="verRuta(visita)">Ver Ruta</button>
+            <button (click)="verDetalles(visita)">Detalles</button>
           </td>
+
         </tr>
       </tbody>
     </table>

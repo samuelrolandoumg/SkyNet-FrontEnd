@@ -21,7 +21,7 @@ export class ConsultarVisitasComponent implements OnInit {
     private visitaSrv: VisitaService,
     private clienteSrv: ClienteService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.clienteSrv.obtenerUsuarioDesdeToken().subscribe(usuario => {
@@ -32,8 +32,7 @@ export class ConsultarVisitasComponent implements OnInit {
 
   obtenerVisitas(): void {
     this.visitaSrv.obtenerVisitasPorTecnico(this.idTecnico).subscribe(data => {
-      const hoy = new Date().toISOString().split('T')[0];
-      this.visitas = data.filter(v => v.fechaVisita === hoy);
+      this.visitas = data;
     });
   }
 
@@ -42,4 +41,11 @@ export class ConsultarVisitasComponent implements OnInit {
       state: { cliente: cliente }
     });
   }
+
+  verDetalles(visita: VisitaDto): void {
+    this.router.navigate(['/detalle-visita'], {
+      state: { idVisita: visita.idVisita }
+    });
+  }
+
 }

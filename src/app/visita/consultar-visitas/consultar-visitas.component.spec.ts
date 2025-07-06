@@ -20,4 +20,4 @@ describe('ConsultarVisitasComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-});
+}); 

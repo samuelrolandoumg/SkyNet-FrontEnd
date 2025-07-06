@@ -11,4 +11,13 @@ export interface VisitaDto {
   longitud: string;
   nombreCliente: string;
   idCliente: number;
+  idVisita:number;
+  estado: string;
+}
+
+export interface IniciarServicioDto {
+  idVisita: number;
+  latitud: string;
+  longitud: string;
+  estado: string;
 }

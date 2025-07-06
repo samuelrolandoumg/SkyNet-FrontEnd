@@ -1,2 +1,11 @@
-<p>ver-ubicacion-cliente works!</p>
-<div id="map" style="height: 500px; width: 100%;"></div>
+<div class="contenedor-principal">
+  <div class="encabezado">
+    <h2>Ruta hacia el cliente</h2>
+    <button class="boton-accion" (click)="abrirEnGoogleMaps()">Ir con Google Maps</button>
+  </div>
+
+  <p><strong>Distancia estimada:</strong> {{ distancia }}</p>
+  <p><strong>Duración estimada:</strong> {{ duracion }}</p>
+
+  <div id="map" class="mapa-estilizado"></div>
+</div>

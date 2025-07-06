@@ -1,0 +1,13 @@
+<div class="contenedor">
+    <h2>Detalle de la visita</h2>
+
+    <p><strong>ID de visita:</strong> {{ idVisita }}</p>
+
+    <button class="btn-iniciar" [disabled]="loading" (click)="iniciarServicio()">
+        {{ 'Iniciar servicio' }}
+    </button>
+
+    <button class="btn-iniciar" [disabled]="loading" (click)="finalizarServicio()"> Finalizar servicio</button>
+
+    <p *ngIf="mensaje">{{ mensaje }}</p>
+</div>
