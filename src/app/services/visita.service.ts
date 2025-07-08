@@ -19,9 +19,15 @@ export class VisitaService {
   obtenerVisitasPorTecnico(idTecnico: number): Observable<VisitaDto[]> {
     return this.http.get<VisitaDto[]>(`${this.visitaUrl}/visitas-tecnico?idTecnico=${idTecnico}`);
   }
-
+  
   iniciarServicio(data: IniciarServicioDto): Observable<void> {
-    return this.http.post<void>(`${this.visitaUrl}/iniciar-servicio`, data);
+    return this.http.post<void>(`${this.visitaUrl}/iniciar-servicio`, data, {
+      headers: { 'Content-Type': 'application/json' }
+    });
+  }
+
+  consultarEstadoVisita(idVisita: number) {
+    return this.http.get(`${this.visitaUrl}/estado?idVisita=${idVisita}`, {});
   }
 
   finalizarServicio(data: IniciarServicioDto): Observable<void> {

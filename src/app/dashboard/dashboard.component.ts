@@ -3,11 +3,14 @@ import { Router, ActivatedRoute, RouterOutlet } from '@angular/router';
 import { SidebarComponent } from '../layout/sidebar/sidebar.component';
 import { Usuario } from '../interfaces/usuario.interface';
 import { AuthService } from '../services/auth.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.css'],
+  standalone: true,
+  imports: [CommonModule],
 })
 export class DashboardComponent implements OnInit {
   usuario: Usuario | null = null;

@@ -1,5 +1,9 @@
-<div class="dashboard-content">
-  <h1>Hola, {{ usuario?.nombre }}</h1>
-  <p>Tu rol es: <strong>{{ usuario?.rol }}</strong></p>
-  <button (click)="cerrarSesion()">Cerrar sesión</button>
+<div class="contenedor-dashboard-final">
+  <div class="header-dashboard">
+    <button class="btn-cerrar" (click)="cerrarSesion()">Cerrar sesión</button>
+  </div>
+
+  <h1 class="titulo-saludo">Hola, {{ usuario?.nombre }}</h1>
+  <p class="subtitulo">Tu rol es:</p>
+  <p class="rol">{{ usuario?.rol }}</p>
 </div>

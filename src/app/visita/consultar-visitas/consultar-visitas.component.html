@@ -1,11 +1,13 @@
-<div class="container-form">
-  <h2 class="title">VISITAS DE HOY</h2>
+<div class="contenedor-principal">
+  <div class="encabezado">
+    <h2 class="titulo">🗓️ Visitas de Hoy</h2>
+  </div>
 
-  <div *ngIf="visitas.length === 0">
+  <div *ngIf="visitas.length === 0" class="sin-visitas">
     <p>No hay visitas programadas para hoy.</p>
   </div>
 
-  <div *ngIf="visitas.length > 0">
+  <div *ngIf="visitas.length > 0" class="tabla-contenedor">
     <table class="tabla-visitas">
       <thead>
         <tr>
@@ -19,12 +21,15 @@
         <tr *ngFor="let visita of visitas">
           <td>{{ visita.nombreCliente }}</td>
           <td>{{ visita.nombreNegocio }}</td>
-          <td>{{ visita.estado }}</td>
           <td>
-            <button (click)="verRuta(visita)">Ver Ruta</button>
-            <button (click)="verDetalles(visita)">Detalles</button>
+            <span class="badge" [ngClass]="{ 'badge-iniciado': visita.estado === 'SERVICIO INICIADO', 'badge-pendiente': visita.estado !== 'SERVICIO INICIADO' }">
+              {{ visita.estado }}
+            </span>
           </td>
-
+          <td>
+            <button class="boton boton-ver" (click)="verRuta(visita)">Ver Ruta</button>
+            <button class="boton boton-detalle" (click)="verDetalles(visita)">Detalles</button>
+          </td>
         </tr>
       </tbody>
     </table>

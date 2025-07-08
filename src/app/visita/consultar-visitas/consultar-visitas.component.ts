@@ -44,8 +44,12 @@ export class ConsultarVisitasComponent implements OnInit {
 
   verDetalles(visita: VisitaDto): void {
     this.router.navigate(['/detalle-visita'], {
-      state: { idVisita: visita.idVisita }
+      state: {
+        idVisita: visita.idVisita,
+        estado: visita.estado,
+        nombreCliente: visita.nombreCliente,
+        nombreNegocio: visita.nombreNegocio
+      }
     });
   }
-
 }

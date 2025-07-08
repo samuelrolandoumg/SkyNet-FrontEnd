@@ -1,36 +1,36 @@
-<div class="form-container">
-    <h2 class="form-title">Registrar Detalle de Visita</h2>
+<div class="contenedor-principal">
+  <div class="encabezado">
+    <h2>Registrar Detalle de Visita</h2>
+  </div>
 
-    <form (ngSubmit)="enviar()">
-        <label class="form-label">Resultado de Visita *</label>
-        <select [(ngModel)]="resultadoVisita" name="resultadoVisita" required class="form-input">
-            <option value="" disabled>Seleccione una opción</option>
-            <option value="exitoso">Exitoso</option>
-            <option value="incidencia">Incidencia</option>
-        </select>
+  <form (ngSubmit)="enviar()">
+    <label class="form-label">Resultado de Visita *</label>
+    <select [(ngModel)]="resultadoVisita" name="resultadoVisita" required class="form-input">
+      <option value="" disabled>Seleccione una opción</option>
+      <option value="exitoso">Exitoso</option>
+      <option value="incidencia">Incidencia</option>
+    </select>
 
-        <label class="form-label">Observaciones</label>
-        <textarea [(ngModel)]="observaciones" name="observaciones" class="form-input"></textarea>
+    <label class="form-label">Observaciones</label>
+    <textarea [(ngModel)]="observaciones" name="observaciones" class="form-input" rows="3"></textarea>
 
-        <label class="form-label">Comentario Adicional</label>
-        <textarea [(ngModel)]="comentarioAdicional" name="comentarioAdicional" class="form-input"></textarea>
+    <label class="form-label">Comentario Adicional</label>
+    <textarea [(ngModel)]="comentarioAdicional" name="comentarioAdicional" class="form-input" rows="3"></textarea>
 
-        <label class="form-label">Fotos *</label>
-        <input type="file" multiple (change)="onFileChange($event)" required class="form-input mb-6">
+    <label class="form-label">Fotos *</label>
+    <input type="file" multiple (change)="onFileChange($event)" required class="form-input" />
 
-        <div class="preview-container" *ngIf="fotos.length > 0">
-            <div *ngFor="let foto of fotos; let i = index" class="preview-item">
-                <span>{{ foto.name }}</span>
-                <button type="button" class="remove-btn" (click)="quitarFoto(i)">❌</button>
-            </div>
-        </div>
+    <div class="preview-container" *ngIf="fotos.length > 0">
+      <div *ngFor="let foto of fotos; let i = index" class="preview-item">
+        <span>{{ foto.name }}</span>
+        <button type="button" class="remove-btn" (click)="quitarFoto(i)">❌</button>
+      </div>
+    </div>
 
-        <div class="boton-container">
-            <button type="submit" class="btn-guardar" [disabled]="!resultadoVisita || fotos.length === 0">
-                Guardar Detalle
-            </button>
-        </div>
-
-
-    </form>
+    <div class="boton-container">
+      <button type="submit" class="btn-guardar" [disabled]="!resultadoVisita || fotos.length === 0">
+        Guardar Detalle
+      </button>
+    </div>
+  </form>
 </div>

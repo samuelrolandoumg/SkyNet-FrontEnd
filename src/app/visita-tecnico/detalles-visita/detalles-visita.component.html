@@ -1,13 +1,22 @@
-<div class="contenedor">
-    <h2>Detalle de la visita</h2>
+<div class="contenedor-principal">
+    <div class="encabezado">
+        <h2 class="titulo">🗓️ Detalle de la visita</h2>
+    </div>
 
     <p><strong>ID de visita:</strong> {{ idVisita }}</p>
+    <p><strong>Estado:</strong> {{ estado || '---' }}</p>
+    <p><strong>Cliente:</strong> {{ nombreCliente || '---' }}</p>
+    <p><strong>Negocio:</strong> {{ nombreNegocio || '---' }}</p>
 
-    <button class="btn-iniciar" [disabled]="loading" (click)="iniciarServicio()">
-        {{ 'Iniciar servicio' }}
-    </button>
+    <div class="btns-container">
+        <button class="boton-accion" [disabled]="loading || estado === 'SERVICIO INICIADO'" (click)="iniciarServicio()">
+            Iniciar servicio
+        </button>
 
-    <button class="btn-iniciar" [disabled]="loading" (click)="finalizarServicio()"> Finalizar servicio</button>
+        <button class="boton-accion" [disabled]="loading" (click)="finalizarServicio()">
+            Finalizar servicio
+        </button>
+    </div>
 
-    <p *ngIf="mensaje">{{ mensaje }}</p>
+    <p *ngIf="mensaje" class="loader">{{ mensaje }}</p>
 </div>
