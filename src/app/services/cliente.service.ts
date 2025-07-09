@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ClienteTecnico, CrearClienteDto, Supervisor, UbicacionDto } from '../interfaces/cliente.interface';
+import { ClienteDto, ClienteTecnico, ClienteUpdateDto, CrearClienteDto, Supervisor, TecnicoDto, UbicacionDto } from '../interfaces/cliente.interface';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -9,6 +9,9 @@ import { Observable } from 'rxjs';
 export class ClienteService {
   private apiUrl = 'https://skynet-backend-production.up.railway.app/cliente';
   private usuarioUrl = 'https://skynet-backend-production.up.railway.app/usuario';
+
+  //private apiUrl = 'http://localhost:8080/cliente';
+  //private usuarioUrl = 'http://localhost:8080/usuario';
 
   constructor(private http: HttpClient) { }
 
@@ -42,4 +45,29 @@ export class ClienteService {
   obtenerTecnicosPorSupervisor(idSupervisor: number): Observable<any[]> {
     return this.http.get<any[]>(`${this.usuarioUrl}/tecnicos-supervisor?idSupervisor=${idSupervisor}`);
   }
+
+  listarClientes(): Observable<any[]> {
+    const token = localStorage.getItem('token');
+    const headers = {
+      Authorization: `Bearer ${token}`
+    };
+    return this.http.get<any[]>(`${this.apiUrl}/listar`, { headers });
+  }
+
+  obtenerClientePorId(idCliente: number): Observable<ClienteDto> {
+    return this.http.get<ClienteDto>(`${this.apiUrl}/obtener/${idCliente}`);
+  }
+
+  obtenerTecnicosPorRol(): Observable<TecnicoDto[]> {
+    const token = localStorage.getItem('token');
+    const headers = {
+      Authorization: `Bearer ${token}`
+    };
+    return this.http.get<TecnicoDto[]>(`${this.apiUrl}/tecnicos-by-rol`, { headers });
+  }
+
+  actualizarCliente(cliente: ClienteUpdateDto): Observable<any> {
+    return this.http.put(`${this.apiUrl}/actualizar`, cliente);
+  }
+
 }

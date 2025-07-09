@@ -14,6 +14,8 @@ import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { ReactiveFormsModule } from '@angular/forms';
+import { EditarClienteComponent } from './clientes/editar-cliente/editar-cliente.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     IniciarSesionComponent,
     CerrarSesionComponent,
     SidebarComponent,
-    GoogleMapsModule
+    EditarClienteComponent
   ],
   imports: [
     BrowserModule,
@@ -30,6 +32,8 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     HttpClientModule,
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
+    GoogleMapsModule,
     ToastrModule.forRoot(),
     RouterModule.forRoot([]),
   ],

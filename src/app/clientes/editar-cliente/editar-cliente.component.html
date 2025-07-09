@@ -1,0 +1,48 @@
+<div class="editar-cliente-container">
+    <h2 class="titulo">Editar Cliente</h2>
+
+    <div *ngIf="cargando" class="mensaje-cargando">Cargando datos del cliente...</div>
+
+    <form *ngIf="!cargando" [formGroup]="clienteForm" (ngSubmit)="guardarCambios()">
+
+        <label>Nombre del Cliente</label>
+        <input formControlName="nombreCliente" type="text" />
+
+        <label>Nombre del Negocio</label>
+        <input formControlName="nombreNegocio" type="text" />
+
+        <label>Teléfono</label>
+        <input formControlName="telefono" type="text" />
+
+        <label>Correo</label>
+        <input formControlName="correo" type="email" />
+
+        <label>NIT</label>
+        <input formControlName="nit" type="text" />
+
+        <label>Estado</label>
+        <select formControlName="estado">
+            <option [value]="true">Activo</option>
+            <option [value]="false">Inactivo</option>
+        </select>
+
+        <label>ID Rol</label>
+        <input formControlName="idRol" type="number" />
+
+        <label>Nombre Técnico</label>
+        <select formControlName="idTecnico" (change)="onTecnicoSeleccionado()">
+            <option *ngFor="let tecnico of tecnicos" [value]="tecnico.idUsuario">
+                {{ tecnico.nombreTecnico }}
+            </option>
+        </select>
+
+        <!-- Campo oculto para mantener nombreTecnico actualizado -->
+        <input type="hidden" formControlName="nombreTecnico" />
+
+        <button type="submit" class="btn-guardar">
+            Guardar Cambios
+        </button>
+
+
+    </form>
+</div>

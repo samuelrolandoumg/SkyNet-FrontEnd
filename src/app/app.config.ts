@@ -18,6 +18,8 @@ import { RegistrarVisitaComponent } from './visita/registrar-visita/registrar-vi
 import { ConsultarVisitasComponent } from './visita/consultar-visitas/consultar-visitas.component';
 import { DetallesVisitaComponent } from './visita-tecnico/detalles-visita/detalles-visita.component';
 import { RegistroDetalleVisitaComponent } from './visita-tecnico/registro-detalle-visita/registro-detalle-visita.component';
+import { ListarClientesComponent } from './clientes/listar-clientes/listar-clientes.component';
+import { EditarClienteComponent } from './clientes/editar-cliente/editar-cliente.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -36,8 +38,8 @@ const routes: Routes = [
       { path: 'consultar-visitas', component: ConsultarVisitasComponent },
       { path: 'detalle-visita', component: DetallesVisitaComponent },
       { path: 'registro-detalle-visita', component: RegistroDetalleVisitaComponent },
-
-
+      { path: 'listar-clientes', component: ListarClientesComponent },
+      { path: 'editar-cliente', component: EditarClienteComponent },
     ]
   },
 
