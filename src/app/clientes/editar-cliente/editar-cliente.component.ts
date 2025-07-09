@@ -14,7 +14,6 @@ import { Router } from '@angular/router';
   imports: [CommonModule, ReactiveFormsModule, FormsModule]
 })
 export class EditarClienteComponent implements OnInit {
-
   clienteForm!: FormGroup;
   clienteId!: number;
   cargando = true;
@@ -27,7 +26,7 @@ export class EditarClienteComponent implements OnInit {
     private clienteService: ClienteService,
     private fb: FormBuilder,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
@@ -35,15 +34,10 @@ export class EditarClienteComponent implements OnInit {
       if (this.clienteId > 0) {
         this.inicializarFormulario();
         this.cargarCliente();
-      } else {
-        console.error('ID de cliente inválido:', params);
       }
     });
-    this.cargarTecnicos();
-    this.clienteForm.valueChanges.subscribe(() => {
-      this.formEditado = true;
-    });
 
+    this.cargarTecnicos();
   }
 
   inicializarFormulario(): void {
@@ -56,7 +50,24 @@ export class EditarClienteComponent implements OnInit {
       estado: [true, Validators.required],
       idRol: [null, Validators.required],
       idTecnico: [null, Validators.required],
-      nombreTecnico: ['', Validators.required]
+      nombreTecnico: ['']
+    });
+
+    this.clienteForm.valueChanges.subscribe(() => {
+      if (!this.clienteOriginal) return;
+
+      const actual = this.clienteForm.getRawValue();
+
+      // Compara campo por campo con el original
+      this.formEditado =
+        actual.nombreCliente !== this.clienteOriginal.nombreCliente ||
+        actual.nombreNegocio !== this.clienteOriginal.nombreNegocio ||
+        actual.telefono !== this.clienteOriginal.telefono ||
+        actual.correo !== this.clienteOriginal.correo ||
+        actual.nit !== this.clienteOriginal.nit ||
+        actual.estado !== this.clienteOriginal.estado ||
+        actual.idRol !== this.clienteOriginal.idRol ||
+        actual.idTecnico !== this.clienteOriginal.idTecnico;
     });
   }
 
@@ -77,7 +88,7 @@ export class EditarClienteComponent implements OnInit {
         });
         this.cargando = false;
       },
-      error: (err) => {
+      error: err => {
         console.error('Error al cargar cliente:', err);
         this.cargando = false;
       }
@@ -113,10 +124,9 @@ export class EditarClienteComponent implements OnInit {
             this.router.navigate(['/listar-clientes']);
           }
         });
-
         this.formEditado = false;
       },
-      error: (err) => {
+      error: err => {
         console.error('❌ Error al actualizar cliente:', err);
         Swal.fire({
           icon: 'error',
@@ -149,5 +159,4 @@ export class EditarClienteComponent implements OnInit {
       });
     }
   }
-
 }

@@ -1,38 +1,42 @@
-<div class="p-6">
-  <h1 class="text-2xl font-bold mb-4">Clientes registrados</h1>
+<div class="contenedor-principal">
+  <div class="encabezado">
+    <h2 class="titulo">📋 Clientes registrados</h2>
+  </div>
 
-  <div *ngIf="cargando" class="text-gray-500">Cargando clientes...</div>
+  <div *ngIf="cargando" class="sin-visitas">
+    Cargando clientes...
+  </div>
 
-  <table *ngIf="!cargando && clientes.length > 0" class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
-    <thead class="bg-blue-100 text-left">
-      <tr>
-        <th class="py-3 px-4">#</th>
-        <th class="py-3 px-4">Cliente</th>
-        <th class="py-3 px-4">Negocio</th>
-        <th class="py-3 px-4">Correo</th>
-        <th class="py-3 px-4">Teléfono</th>
-        <th class="py-3 px-4">Acciones</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let cliente of clientes; let i = index" class="border-t hover:bg-gray-50">
-        <td class="py-2 px-4">{{ i + 1 }}</td>
-        <td class="py-2 px-4">{{ cliente.nombreCliente }}</td>
-        <td class="py-2 px-4">{{ cliente.nombreNegocio }}</td>
-        <td class="py-2 px-4">{{ cliente.correo }}</td>
-        <td class="py-2 px-4">{{ cliente.telefono }}</td>
-        <td class="py-2 px-4">
-          <button
-            class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
-            (click)="editarCliente(cliente.idCliente)">
-            Editar
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-
-  <div *ngIf="!cargando && clientes.length === 0" class="text-gray-500">
+  <div *ngIf="!cargando && clientes.length === 0" class="sin-visitas">
     No se encontraron clientes.
+  </div>
+
+  <div *ngIf="!cargando && clientes.length > 0" class="tabla-contenedor">
+    <table class="tabla-visitas">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Cliente</th>
+          <th>Negocio</th>
+          <th>Correo</th>
+          <th>Teléfono</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cliente of clientes; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ cliente.nombreCliente }}</td>
+          <td>{{ cliente.nombreNegocio }}</td>
+          <td>{{ cliente.correo }}</td>
+          <td>{{ cliente.telefono }}</td>
+          <td>
+            <button class="btn btn-editar" (click)="editarCliente(cliente.idCliente)">
+              Editar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>

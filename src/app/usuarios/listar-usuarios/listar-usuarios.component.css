@@ -1,0 +1,55 @@
+.contenedor-listado {
+  max-width: 700px;
+  margin: 40px auto;
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.titulo {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 25px;
+}
+
+.icono-user {
+  margin-right: 8px;
+}
+
+.card-supervisor {
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  background: #f9f9f9;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.3s;
+}
+
+.card-supervisor:hover {
+  background-color: #e6f7ff;
+}
+
+.contenedor-tecnicos {
+  margin-left: 20px;
+  padding: 8px 12px;
+  border-left: 3px solid #0ea5e9;
+  margin-bottom: 15px;
+}
+
+.tecnico {
+  padding: 5px 0;
+}
+
+.rol {
+  color: #555;
+  font-size: 13px;
+}
+
+.sin-tecnicos {
+  font-style: italic;
+  color: #888;
+  padding: 8px;
+}

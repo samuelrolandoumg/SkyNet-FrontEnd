@@ -1,10 +1,13 @@
-<div class="editar-cliente-container">
-    <h2 class="titulo">Editar Cliente</h2>
+<div class="contenedor-principal">
+    <div class="encabezado">
+        <h2 class="titulo">✏️ Editar Cliente</h2>
+    </div>
 
-    <div *ngIf="cargando" class="mensaje-cargando">Cargando datos del cliente...</div>
+    <div *ngIf="cargando" class="sin-visitas">
+        Cargando datos del cliente...
+    </div>
 
-    <form *ngIf="!cargando" [formGroup]="clienteForm" (ngSubmit)="guardarCambios()">
-
+    <form *ngIf="!cargando" [formGroup]="clienteForm" (ngSubmit)="guardarCambios()" class="formulario-cliente">
         <label>Nombre del Cliente</label>
         <input formControlName="nombreCliente" type="text" />
 
@@ -39,10 +42,9 @@
         <!-- Campo oculto para mantener nombreTecnico actualizado -->
         <input type="hidden" formControlName="nombreTecnico" />
 
-        <button type="submit" class="btn-guardar">
+        <button type="submit" [disabled]="clienteForm.invalid || !formEditado" class="btn-guardar">
             Guardar Cambios
         </button>
-
 
     </form>
 </div>

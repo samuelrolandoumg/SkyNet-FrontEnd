@@ -1,0 +1,51 @@
+<div class="contenedor-formulario">
+    <h2 class="titulo"><span class="icono">🧑‍💼</span> Crear Usuario</h2>
+
+    <form [formGroup]="usuarioForm" (ngSubmit)="crearUsuario()">
+
+        <label>Nombre</label>
+        <input type="text" formControlName="nombre" />
+
+        <label>Apellido</label>
+        <input type="text" formControlName="apellido" />
+
+        <label>Correo</label>
+        <input type="email" formControlName="correo" />
+
+        <label>Usuario</label>
+        <input type="text" formControlName="usuario" />
+
+        <label>Contraseña</label>
+        <input type="password" formControlName="contrasena" />
+
+        <label>Rol</label>
+        <select formControlName="idRol">
+            <option [value]="null">Seleccione un rol</option>
+            <option *ngFor="let rol of roles" [value]="rol.id">{{ rol.nombre }}</option>
+        </select>
+
+        <div *ngIf="mostrarSupervisores">
+            <label>Supervisor Asignado</label>
+            <select formControlName="idSupervisor">
+                <option [value]="null">Seleccione un supervisor</option>
+                <option *ngFor="let sup of supervisores" [value]="sup.idUsuario">
+                    {{ sup.usuario }}
+                </option>
+            </select>
+        </div>
+
+        <label>DPI</label>
+        <input type="text" formControlName="dpi" />
+
+        <label>NIT</label>
+        <input type="text" formControlName="nit" />
+
+        <label>Dirección</label>
+        <input type="text" formControlName="direccion" />
+
+        <button type="submit" class="boton-guardar" [disabled]="usuarioForm.invalid">
+            Crear Usuario
+        </button>
+
+    </form>
+</div>

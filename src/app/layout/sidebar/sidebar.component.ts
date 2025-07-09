@@ -66,6 +66,7 @@ import { Output, EventEmitter } from '@angular/core';
 export class SidebarComponent implements OnInit {
   isCollapsed = false;
   clienteExpanded = false;
+  usuarioExpanded = false;
   visitasExpanded: boolean = false;
 
   usuario: Usuario | null = null;
@@ -75,7 +76,7 @@ export class SidebarComponent implements OnInit {
   puedeAgregarEditar = false;
   puedeConsultar = false;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
     this.usuario = this.authService.obtenerUsuario();
@@ -98,7 +99,11 @@ export class SidebarComponent implements OnInit {
     this.clienteExpanded = !this.clienteExpanded;
   }
 
+  toggleUsuarios() {
+    this.usuarioExpanded = !this.usuarioExpanded;
+  }
+
   toggleVisitas(): void {
-  this.visitasExpanded = !this.visitasExpanded;
-}
+    this.visitasExpanded = !this.visitasExpanded;
+  }
 }

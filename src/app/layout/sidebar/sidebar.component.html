@@ -12,7 +12,8 @@
     <li (click)="toggleClientes()">
       <i class="fa-solid fa-users"></i>
       <span *ngIf="!isCollapsed">Clientes</span>
-      <i class="fa-solid" *ngIf="!isCollapsed" [ngClass]="clienteExpanded ? 'fa-chevron-up' : 'fa-chevron-down'" style="margin-left:auto;"></i>
+      <i class="fa-solid" *ngIf="!isCollapsed" [ngClass]="clienteExpanded ? 'fa-chevron-up' : 'fa-chevron-down'"
+        style="margin-left:auto;"></i>
     </li>
 
     <ul class="submenu" *ngIf="clienteExpanded && !isCollapsed">
@@ -21,11 +22,26 @@
       <li *ngIf="puedeConsultar" routerLink="/listar-clientes" routerLinkActive="active">Consultar Clientes</li>
     </ul>
 
+    <!-- USUAIRO -->
+
+    <li (click)="toggleUsuarios()">
+      <i class="fa-solid fa-users"></i>
+      <span *ngIf="!isCollapsed">Usuarios</span>
+      <i class="fa-solid" *ngIf="!isCollapsed" [ngClass]="usuarioExpanded ? 'fa-chevron-up' : 'fa-chevron-down'"
+        style="margin-left:auto;"></i>
+    </li>
+
+    <ul class="submenu" *ngIf="usuarioExpanded && !isCollapsed">
+      <li *ngIf="puedeAgregarEditar" routerLink="/crear-usuario" routerLinkActive="active">Agregar Usuario</li>
+      <li *ngIf="puedeConsultar" routerLink="/listar-usuario" routerLinkActive="active">Consultar Clientes</li>
+    </ul>
+
     <!-- NUEVO MENÚ VISITAS -->
     <li (click)="toggleVisitas()">
       <i class="fa-solid fa-calendar-check"></i>
       <span *ngIf="!isCollapsed">Visitas</span>
-      <i class="fa-solid" *ngIf="!isCollapsed" [ngClass]="visitasExpanded ? 'fa-chevron-up' : 'fa-chevron-down'" style="margin-left:auto;"></i>
+      <i class="fa-solid" *ngIf="!isCollapsed" [ngClass]="visitasExpanded ? 'fa-chevron-up' : 'fa-chevron-down'"
+        style="margin-left:auto;"></i>
     </li>
 
     <ul class="submenu" *ngIf="visitasExpanded && !isCollapsed">

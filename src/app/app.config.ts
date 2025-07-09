@@ -20,6 +20,8 @@ import { DetallesVisitaComponent } from './visita-tecnico/detalles-visita/detall
 import { RegistroDetalleVisitaComponent } from './visita-tecnico/registro-detalle-visita/registro-detalle-visita.component';
 import { ListarClientesComponent } from './clientes/listar-clientes/listar-clientes.component';
 import { EditarClienteComponent } from './clientes/editar-cliente/editar-cliente.component';
+import { CrearUsuarioComponent } from './usuarios/crear-usuario/crear-usuario.component';
+import { ListarUsuariosComponent } from './usuarios/listar-usuarios/listar-usuarios.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -40,6 +42,9 @@ const routes: Routes = [
       { path: 'registro-detalle-visita', component: RegistroDetalleVisitaComponent },
       { path: 'listar-clientes', component: ListarClientesComponent },
       { path: 'editar-cliente', component: EditarClienteComponent },
+
+      { path: 'crear-usuario', component: CrearUsuarioComponent },
+      { path: 'listar-usuario', component: ListarUsuariosComponent },
     ]
   },
 

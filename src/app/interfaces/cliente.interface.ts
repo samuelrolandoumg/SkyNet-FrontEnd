@@ -14,6 +14,7 @@ export interface CrearClienteDto {
 export interface Supervisor {
   idUsuario: number;
   usuario: string;
+  rol: string;
 }
 
 
