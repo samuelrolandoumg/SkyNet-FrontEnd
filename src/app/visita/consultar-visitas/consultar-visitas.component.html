@@ -14,6 +14,7 @@
           <th>Cliente</th>
           <th>Negocio</th>
           <th>Estado</th>
+          <th>Fecha visita</th>
           <th>Acción</th>
         </tr>
       </thead>
@@ -26,6 +27,7 @@
               {{ visita.estado }}
             </span>
           </td>
+          <td>{{ visita.fechaVisita }}</td>
           <td>
             <button class="boton boton-ver" (click)="verRuta(visita)">Ver Ruta</button>
             <button class="boton boton-detalle" (click)="verDetalles(visita)">Detalles</button>
