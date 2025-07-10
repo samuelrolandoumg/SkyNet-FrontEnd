@@ -53,3 +53,29 @@
   color: #888;
   padding: 8px;
 }
+
+.btn-editar {
+  margin-left: auto;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s;
+  float: right;
+}
+
+.btn-editar:hover {
+  background-color: #2563eb;
+}
+
+.btn-editar-chico {
+  margin-left: 10px;
+  background-color: transparent;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  vertical-align: middle;
+}

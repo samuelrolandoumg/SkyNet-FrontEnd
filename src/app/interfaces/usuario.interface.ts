@@ -19,6 +19,22 @@ export interface UsuarioDto {
   dpi: string;
   nit: string;
   direccion: string;
+  rol: string;
+}
+
+export interface UsuarioUpdateDto {
+  id: number;
+  nombre: string;
+  apellido: string;
+  correo: string;
+  usuario: string;
+  idRol: number;
+  idSupervisor?: number;
+  estado: boolean;
+  dpi: string;
+  nit: string;
+  direccion: string;
+  rol: string;
 }
 
 export interface UsuarioListarProjection {

@@ -1,0 +1,46 @@
+<div class="contenedor-principal">
+    <div class="encabezado">
+        <h2 class="titulo">✏️ Editar Usuario</h2>
+    </div>
+
+    <form *ngIf="usuarioForm" [formGroup]="usuarioForm" (ngSubmit)="actualizarUsuario()" class="formulario-cliente">
+        <label>Nombre</label>
+        <input formControlName="nombre" type="text" />
+
+        <label>Apellido</label>
+        <input formControlName="apellido" type="text" />
+
+        <label>Correo</label>
+        <input formControlName="correo" type="email" />
+
+        <label>Usuario</label>
+        <input formControlName="usuario" type="text" />
+
+        <label>Rol</label>
+        <input type="text" [value]="usuarioForm.get('rol')?.value" disabled />
+
+        <label>DPI</label>
+        <input formControlName="dpi" type="text" />
+
+        <label>NIT</label>
+        <input formControlName="nit" type="text" />
+
+        <label>Dirección</label>
+        <input formControlName="direccion" type="text" />
+
+        <!-- Mostrar el combo de supervisores SOLO si el usuario a editar es TECNICO y el logueado es ADMIN -->
+        <div *ngIf="usuarioForm?.get('rol')?.value === 'TECNICO' && rolUsuarioLogueado === 'ADMIN'">
+            <label>Supervisor</label>
+            <select formControlName="idSupervisor">
+                <option *ngFor="let supervisor of listaSupervisores" [value]="supervisor.idUsuario">
+                    {{ supervisor.usuario }}
+                </option>
+            </select>
+        </div>
+
+
+        <button type="submit" [disabled]="usuarioForm.invalid || !formEditado" class="btn-guardar">
+            Guardar Cambios
+        </button>
+    </form>
+</div>

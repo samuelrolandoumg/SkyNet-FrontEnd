@@ -43,7 +43,7 @@ export class ClienteService {
     return this.http.get<ClienteTecnico[]>(`${this.apiUrl}/clientes-tecnico?idTecnico=${idTecnico}`);
   }
   obtenerTecnicosPorSupervisor(idSupervisor: number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.usuarioUrl}/tecnicos-supervisor?idSupervisor=${idSupervisor}`);
+    return this.http.get<any[]>(`${this.usuarioUrl}/tecnicos-por-supervisor?idSupervisor=${idSupervisor}`);
   }
 
   listarClientes(): Observable<any[]> {

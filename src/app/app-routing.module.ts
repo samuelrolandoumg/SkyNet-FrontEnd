@@ -15,6 +15,7 @@ import { ListarClientesComponent } from './clientes/listar-clientes/listar-clien
 import { EditarClienteComponent } from './clientes/editar-cliente/editar-cliente.component';
 import { CrearUsuarioComponent } from './usuarios/crear-usuario/crear-usuario.component';
 import { ListarUsuariosComponent } from './usuarios/listar-usuarios/listar-usuarios.component';
+import { EditarUsuarioComponent } from './usuarios/editar-usuario/editar-usuario.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -38,6 +39,8 @@ const routes: Routes = [
 
       { path: 'crear-usuario', component: CrearUsuarioComponent },
       { path: 'listar-usuario', component: ListarUsuariosComponent },
+      { path: 'editar-usuario', component: EditarUsuarioComponent },
+
     ]
   },
 

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Supervisor } from '../interfaces/cliente.interface';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { UsuarioDto, UsuarioListarProjection } from '../interfaces/usuario.interface';
+import { UsuarioDto, UsuarioListarProjection, UsuarioUpdateDto } from '../interfaces/usuario.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -25,4 +25,18 @@ export class UsuarioService {
       `${this.usuarioUrl}/tecnicos-por-supervisor?idSupervisor=${idSupervisor}`
     );
   }
+
+  obtenerUsuarioPorId(id: number): Observable<UsuarioDto> {
+    return this.http.get<UsuarioDto>(`${this.usuarioUrl}/obtener/${id}`);
+  }
+
+  actualizarUsuario(usuario: UsuarioUpdateDto): Observable<any> {
+    return this.http.put(`${this.usuarioUrl}/actualizar`, usuario);
+  }
+
+  // usuario.service.ts
+  obtenerSupervisorPorId(id: number): Observable<{ idUsuario: number; usuario: string }> {
+    return this.http.get<{ idUsuario: number; usuario: string }>(`${this.usuarioUrl}/obtener-usuario/${id}`);
+  }
+
 }

@@ -7,6 +7,7 @@ import { Supervisor } from '../../interfaces/cliente.interface';
 import { UsuarioListarProjection } from '../../interfaces/usuario.interface';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listar-usuarios',
@@ -33,7 +34,8 @@ export class ListarUsuariosComponent implements OnInit {
 
   constructor(
     private usuarioService: UsuarioService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -54,7 +56,7 @@ export class ListarUsuariosComponent implements OnInit {
       } = {
         idUsuario: this.usuario.id,
         usuario: this.usuario.usuario,
-        rol: this.usuario.rol, // 👈 AÑADE ESTO
+        rol: this.usuario.rol,
         mostrar: true,
         tecnicos: []
       };
@@ -82,5 +84,10 @@ export class ListarUsuariosComponent implements OnInit {
         error: (err) => console.error('Error cargando técnicos:', err)
       });
     }
+  }
+
+  editarUsuario(id: number, event: MouseEvent): void {
+    event.stopPropagation(); 
+    this.router.navigate(['/editar-usuario'], { queryParams: { id } });
   }
 }

@@ -9,8 +9,9 @@
         <select id="tecnico" name="tecnico" [(ngModel)]="idTecnicoSeleccionado" (change)="cargarClientes()">
           <option value="" disabled selected>Seleccione un técnico</option>
           <option *ngFor="let tecnico of tecnicos" [value]="tecnico.idUsuario">
-            {{ tecnico.usuario }}
+            {{ tecnico.nombreTecnico }}
           </option>
+
         </select>
       </div>
 
@@ -30,9 +31,8 @@
       </div>
     </div>
 
-    <button class="submit-btn"
-            (click)="registrarVisita()"
-            [disabled]="!idTecnicoSeleccionado || !idClienteSeleccionado || !fechaVisita">
+    <button class="submit-btn" (click)="registrarVisita()"
+      [disabled]="!idTecnicoSeleccionado || !idClienteSeleccionado || !fechaVisita">
       Registrar Visita
     </button>
   </form>
