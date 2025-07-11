@@ -16,6 +16,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EditarClienteComponent } from './clientes/editar-cliente/editar-cliente.component';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [

@@ -1,13 +1,13 @@
 <div class="contenedor-principal">
   <div class="encabezado">
     <h2 class="titulo">🗓️ Visitas de Hoy</h2>
+    <div class="filtro-fecha">
+      <label for="fechaFiltro">Filtrar por fecha:</label>
+      <input type="date" id="fechaFiltro" [(ngModel)]="fechaSeleccionada" (change)="obtenerVisitas()" />
+    </div>
   </div>
 
-  <div *ngIf="visitas.length === 0" class="sin-visitas">
-    <p>No hay visitas programadas para hoy.</p>
-  </div>
-
-  <div *ngIf="visitas.length > 0" class="tabla-contenedor">
+  <div class="tabla-contenedor" *ngIf="visitas.length > 0">
     <table class="tabla-visitas">
       <thead>
         <tr>
@@ -23,7 +23,10 @@
           <td>{{ visita.nombreCliente }}</td>
           <td>{{ visita.nombreNegocio }}</td>
           <td>
-            <span class="badge" [ngClass]="{ 'badge-iniciado': visita.estado === 'SERVICIO INICIADO', 'badge-pendiente': visita.estado !== 'SERVICIO INICIADO' }">
+            <span class="badge" [ngClass]="{
+              'badge-iniciado': visita.estado === 'SERVICIO INICIADO',
+              'badge-pendiente': visita.estado !== 'SERVICIO INICIADO'
+            }">
               {{ visita.estado }}
             </span>
           </td>
@@ -35,5 +38,9 @@
         </tr>
       </tbody>
     </table>
+  </div>
+
+  <div *ngIf="visitas.length === 0" class="sin-visitas">
+    <p>No hay visitas programadas para esta fecha.</p>
   </div>
 </div>

@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ResumenEstado, VisitaPorEstado } from '../interfaces/dashboard.interface';
 
 @Injectable({ providedIn: 'root' })
 export class DetalleVisitaService {
@@ -26,8 +27,19 @@ export class DetalleVisitaService {
 
         return this.http.post(`${this.baseUrl}/crear`, formData, {
             params,
-            responseType: 'text' as const 
+            responseType: 'text' as const
         });
     }
+
+    obtenerResumenEstados(idTecnico: number): Observable<ResumenEstado[]> {
+        return this.http.get<ResumenEstado[]>(`${this.baseUrl}/resumen-estados?idTecnico=${idTecnico}`);
+    }
+
+    obtenerVisitasPorEstadoYTecnico(idTecnico: number, estado: string): Observable<VisitaPorEstado[]> {
+        return this.http.get<VisitaPorEstado[]>(
+            `${this.baseUrl}/visitas-estado-tecnico?idTecnico=${idTecnico}&estado=${estado}`
+        );
+    }
+
 
 }

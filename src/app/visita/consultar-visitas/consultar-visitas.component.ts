@@ -5,6 +5,7 @@ import { VisitaDto } from '../../interfaces/visita.interface';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-consultar-visitas',
@@ -16,6 +17,7 @@ import { FormsModule } from '@angular/forms';
 export class ConsultarVisitasComponent implements OnInit {
   visitas: VisitaDto[] = [];
   idTecnico: number = 0;
+  fechaSeleccionada: string = new Date().toISOString().substring(0, 10);
 
   constructor(
     private visitaSrv: VisitaService,
@@ -24,16 +26,22 @@ export class ConsultarVisitasComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    const hoy = new Date();
+    this.fechaSeleccionada = formatDate(hoy, 'yyyy-MM-dd', 'en-US');
+
     this.clienteSrv.obtenerUsuarioDesdeToken().subscribe(usuario => {
       this.idTecnico = usuario.id;
       this.obtenerVisitas();
     });
   }
 
+
   obtenerVisitas(): void {
-    this.visitaSrv.obtenerVisitasPorTecnico(this.idTecnico).subscribe(data => {
-      this.visitas = data;
-    });
+    this.visitaSrv
+      .obtenerVisitasPorTecnico(this.idTecnico)
+      .subscribe(data => {
+        this.visitas = data.filter(v => v.fechaVisita === this.fechaSeleccionada);
+      });
   }
 
   verRuta(cliente: VisitaDto): void {
@@ -52,4 +60,5 @@ export class ConsultarVisitasComponent implements OnInit {
       }
     });
   }
+
 }

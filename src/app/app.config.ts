@@ -23,6 +23,7 @@ import { EditarClienteComponent } from './clientes/editar-cliente/editar-cliente
 import { CrearUsuarioComponent } from './usuarios/crear-usuario/crear-usuario.component';
 import { ListarUsuariosComponent } from './usuarios/listar-usuarios/listar-usuarios.component';
 import { EditarUsuarioComponent } from './usuarios/editar-usuario/editar-usuario.component';
+import { DashboardTecnicoComponent } from './dashboard/dashboard-tecnico/dashboard-tecnico.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -47,6 +48,8 @@ const routes: Routes = [
       { path: 'crear-usuario', component: CrearUsuarioComponent },
       { path: 'listar-usuario', component: ListarUsuariosComponent },
       { path: 'editar-usuario', component: EditarUsuarioComponent },
+
+      { path: 'dashboard-tecnico', component: DashboardTecnicoComponent },
     ]
   },
 
