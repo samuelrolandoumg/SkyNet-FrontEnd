@@ -55,4 +55,18 @@ export class SidebarComponent implements OnInit {
   toggleVisitas(): void {
     this.visitasExpanded = !this.visitasExpanded;
   }
+
+  rutaDashboard(): string {
+    if (this.usuario?.rol === 'TECNICO') return '/dashboard-tecnico';
+    if (this.usuario?.rol === 'SUPERVISOR') return '/dashboard-supervisor';
+    return '/dashboard-admin';
+  }
+
+  rutaConsultarVisitas(): string {
+    if (this.usuario?.rol === 'SUPERVISOR') {
+      return '/consultar-visitas-supervisor';
+    }
+    return '/consultar-visitas';
+  }
+
 }

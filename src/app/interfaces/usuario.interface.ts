@@ -42,3 +42,16 @@ export interface UsuarioListarProjection {
   nombreTecnico: string;
   rol: string;
 }
+
+///detalles
+export interface ConsultaVisitaSupervisor {
+  idCliente: number;
+  nombreCliente: string;
+  nombreTecnico: string;
+  idVisita: number;
+  idTecnico: number;
+  fechaVisita: string;
+  estado: string;
+  enTiempo: string;
+  tiempoRetraso: string | null;
+}

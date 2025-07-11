@@ -1,0 +1,44 @@
+<div class="card">
+    <h2><i class="fa-solid fa-calendar-day"></i> Visitas de Hoy</h2>
+
+    <div class="filtro-fecha">
+        <label for="fecha">Filtrar por fecha:</label>
+        <input type="date" id="fecha" [(ngModel)]="fechaFiltro" (change)="filtrarPorFecha()" />
+    </div>
+
+    <table class="tabla">
+        <thead>
+            <tr>
+                <th>Cliente</th>
+                <th>Negocio</th>
+                <th>Estado</th>
+                <th>Fecha visita</th>
+                <th>¿En tiempo?</th>
+                <th>Tiempo retraso</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let visita of visitasFiltradas">
+                <td>{{ visita.nombreCliente }}</td>
+                <td>{{ visita.nombreTecnico }}</td>
+                <td>
+                    <span class="badge" [ngClass]="{
+              'badge-creado': visita.estado === 'CREADO',
+              'badge-iniciado': visita.estado === 'INICIADO',
+              'badge-finalizado': visita.estado === 'FINALIZADO',
+              'badge-incidencia': visita.estado === 'FINALIZADO CON INCIDENCIA'
+            }">
+                        {{ visita.estado }}
+                    </span>
+                </td>
+                <td>{{ visita.fechaVisita }}</td>
+                <td>{{ visita.enTiempo }}</td>
+                <td>{{ visita.tiempoRetraso }}</td>
+                <td>
+                    <button class="boton boton-ver">Alertar retraso a tecnico</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

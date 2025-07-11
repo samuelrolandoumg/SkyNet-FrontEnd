@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ResumenEstado, VisitaPorEstado } from '../interfaces/dashboard.interface';
+import { ConsultaVisitaSupervisor } from '../interfaces/usuario.interface';
 
 @Injectable({ providedIn: 'root' })
 export class DetalleVisitaService {
@@ -41,5 +42,8 @@ export class DetalleVisitaService {
         );
     }
 
+    obtenerVisitasPorSupervisor(idSupervisor: number) {
+        return this.http.get<ConsultaVisitaSupervisor[]>(`${this.baseUrl}/consulta-visitas-supervisor?idSupervisor=${idSupervisor}`);
+    }
 
 }

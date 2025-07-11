@@ -17,6 +17,7 @@ import { CrearUsuarioComponent } from './usuarios/crear-usuario/crear-usuario.co
 import { ListarUsuariosComponent } from './usuarios/listar-usuarios/listar-usuarios.component';
 import { EditarUsuarioComponent } from './usuarios/editar-usuario/editar-usuario.component';
 import { DashboardTecnicoComponent } from './dashboard/dashboard-tecnico/dashboard-tecnico.component';
+import { ConsultarVisitasSupervisorComponent } from './visita/consultar-visitas-supervisor/consultar-visitas-supervisor.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -28,15 +29,19 @@ const routes: Routes = [
     canActivate: [authGuard],
     children: [
       { path: 'dashboard', component: DashboardComponent },
-      { path: 'agregar-cliente', component: AgregarClienteComponent },
-      { path: 'ver-ubicacion-cliente', component: VerUbicacionClienteComponent },
-      { path: 'consultar-clientes', component: ConsultarClientesComponent },
+
       { path: 'registrar-visita', component: RegistrarVisitaComponent },
       { path: 'consultar-visitas', component: ConsultarVisitasComponent },
       { path: 'detalle-visita', component: DetallesVisitaComponent },
       { path: 'registro-detalle-visita', component: RegistroDetalleVisitaComponent },
+      { path: 'consultar-visitas-supervisor', component: ConsultarVisitasSupervisorComponent },
+
+
       { path: 'listar-clientes', component: ListarClientesComponent },
       { path: 'editar-cliente', component: EditarClienteComponent },
+      { path: 'agregar-cliente', component: AgregarClienteComponent },
+      { path: 'ver-ubicacion-cliente', component: VerUbicacionClienteComponent },
+      { path: 'consultar-clientes', component: ConsultarClientesComponent },
 
       { path: 'crear-usuario', component: CrearUsuarioComponent },
       { path: 'listar-usuario', component: ListarUsuariosComponent },

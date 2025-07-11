@@ -9,6 +9,7 @@
       <span *ngIf="!isCollapsed">Dashboard</span>
     </li>
 
+    <!-- clientes -->
     <li *ngIf="usuario?.rol === 'ADMIN' || usuario?.rol === 'SUPERVISOR'" (click)="toggleClientes()">
       <i class="fa-solid fa-users"></i>
       <span *ngIf="!isCollapsed">Clientes</span>
@@ -39,7 +40,6 @@
 
 
     <!-- NUEVO MENÚ VISITAS -->
-    <!-- VISITAS: visible para todos -->
     <li (click)="toggleVisitas()">
       <i class="fa-solid fa-calendar-check"></i>
       <span *ngIf="!isCollapsed">Visitas</span>
@@ -51,14 +51,13 @@
     <ul class="submenu" *ngIf="visitasExpanded && !isCollapsed">
       <li *ngIf="usuario?.rol !== 'TECNICO'" routerLink="/registrar-visita" routerLinkActive="active">Registrar Visita
       </li>
-      <li routerLink="/consultar-visitas" routerLinkActive="active">Consultar Visitas</li>
-      <li *ngIf="usuario?.rol !== 'TECNICO'" routerLink="/visitas/modificar" routerLinkActive="active">Modificar Visitas
-      </li>
+      <li [routerLink]="rutaConsultarVisitas()" routerLinkActive="active">Consultar Visitas</li>
     </ul>
+
 
     <!-- FIN MENÚ VISITAS -->
 
-    <li routerLink="/reportes" routerLinkActive="active">
+    <li [routerLink]="rutaDashboard()" routerLinkActive="active">
       <i class="fa-solid fa-file-lines"></i>
       <span *ngIf="!isCollapsed">Reportes</span>
     </li>
