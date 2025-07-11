@@ -6,7 +6,7 @@ import { ConsultaVisitaSupervisor } from '../interfaces/usuario.interface';
 
 @Injectable({ providedIn: 'root' })
 export class DetalleVisitaService {
-    private baseUrl = 'http://localhost:8080/DetalleVisita';
+    private baseUrl = 'https://skynet-backend-production.up.railway.app/DetalleVisita';
 
     constructor(private http: HttpClient) { }
 
