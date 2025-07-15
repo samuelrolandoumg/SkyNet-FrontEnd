@@ -36,7 +36,7 @@
                 <td>{{ visita.enTiempo }}</td>
                 <td>{{ visita.tiempoRetraso }}</td>
                 <td>
-                    <button class="boton boton-ver">Alertar retraso a tecnico</button>
+                    <button class="boton boton-ver" (click)="alertarRetraso(visita.idVisita)">Alertar retraso a tecnico</button>
                 </td>
             </tr>
         </tbody>

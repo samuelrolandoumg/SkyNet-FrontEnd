@@ -4,6 +4,8 @@ import { DetalleVisitaService } from '../../services/detalle-visita.service';
 import { AuthService } from '../../services/auth.service';
 import { FormsModule } from '@angular/forms';
 import { ConsultaVisitaSupervisor } from '../../interfaces/usuario.interface';
+import { AlertasService } from '../../services/alertas.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-consultar-visitas-supervisor',
@@ -20,8 +22,9 @@ export class ConsultarVisitasSupervisorComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private visitaService: DetalleVisitaService
-  ) {}
+    private visitaService: DetalleVisitaService,
+    private alertaService: AlertasService
+  ) { }
 
   ngOnInit(): void {
     this.usuario = this.authService.obtenerUsuario();
@@ -47,4 +50,24 @@ export class ConsultarVisitasSupervisorComponent implements OnInit {
       this.visitasFiltradas = this.visitas;
     }
   }
+
+  alertarRetraso(visitaId: number): void {
+    this.alertaService.alertarRetrasoTecnico(visitaId).subscribe({
+      next: () => {
+        Swal.fire({
+          title: 'Alerta enviada',
+          text: 'Se ha generado la alerta de retraso al técnico.',
+          icon: 'success',
+          confirmButtonText: 'OK'
+        }).then(() => {
+          window.location.reload(); 
+        });
+      },
+      error: (err) => {
+        console.error(err);
+        Swal.fire('Error', 'No se pudo generar la alerta.', 'error');
+      }
+    });
+  }
+
 }

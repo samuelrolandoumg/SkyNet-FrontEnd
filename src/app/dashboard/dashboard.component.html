@@ -6,4 +6,16 @@
   <h1 class="titulo-saludo">Hola, {{ usuario?.nombre }}</h1>
   <p class="subtitulo">Tu rol es:</p>
   <p class="rol">{{ usuario?.rol }}</p>
+
+  <!-- 🔔 ALERTAS SOLO PARA TECNICOS -->
+  <div *ngIf="usuario?.rol === 'TECNICO' && alertas.length > 0" class="alertas-box">
+    <h3 class="alertas-title">📢 Alertas recientes</h3>
+    <ul class="alertas-list">
+      <li *ngFor="let alerta of alertas">
+        <i class="fa-solid fa-triangle-exclamation icono-alerta"></i>
+        {{ alerta.mensaje }}
+        <span class="fecha-alerta">({{ alerta.fechaAlerta | date:'short' }})</span>
+      </li>
+    </ul>
+  </div>
 </div>

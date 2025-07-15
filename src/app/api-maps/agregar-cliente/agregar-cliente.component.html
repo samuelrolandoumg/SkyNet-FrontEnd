@@ -43,8 +43,9 @@
         <label for="tecnico">Seleccionar Técnico:</label>
         <select id="tecnico" name="tecnico" [(ngModel)]="idTecnicoSeleccionado">
           <option *ngFor="let tecnico of tecnicos" [value]="tecnico.idUsuario">
-            {{ tecnico.usuario }}
+            {{ tecnico.nombreTecnico }}
           </option>
+
         </select>
       </div>
       <br>

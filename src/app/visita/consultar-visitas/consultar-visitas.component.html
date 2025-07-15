@@ -3,7 +3,8 @@
     <h2 class="titulo">🗓️ Visitas de Hoy</h2>
     <div class="filtro-fecha">
       <label for="fechaFiltro">Filtrar por fecha:</label>
-      <input type="date" id="fechaFiltro" [(ngModel)]="fechaSeleccionada" (change)="obtenerVisitas()" />
+      <input type="date" id="fechaFiltro" [(ngModel)]="fechaSeleccionada" (change)="obtenerVisitas()"
+        placeholder="dd/mm/aaaa" />
     </div>
   </div>
 

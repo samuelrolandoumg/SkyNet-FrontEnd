@@ -37,12 +37,17 @@ export class ConsultarVisitasComponent implements OnInit {
 
 
   obtenerVisitas(): void {
-    this.visitaSrv
-      .obtenerVisitasPorTecnico(this.idTecnico)
-      .subscribe(data => {
+    this.visitaSrv.obtenerVisitasPorTecnico(this.idTecnico).subscribe(data => {
+      if (!this.fechaSeleccionada) {
+        // Si se borró la fecha, mostrar todas las visitas del técnico
+        this.visitas = data;
+      } else {
+        // Si hay fecha seleccionada, filtrar por esa fecha
         this.visitas = data.filter(v => v.fechaVisita === this.fechaSeleccionada);
-      });
+      }
+    });
   }
+
 
   verRuta(cliente: VisitaDto): void {
     this.router.navigate(['/ver-ubicacion-cliente'], {
