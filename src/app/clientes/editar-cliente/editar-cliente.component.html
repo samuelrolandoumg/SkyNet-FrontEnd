@@ -23,14 +23,14 @@
         <label>NIT</label>
         <input formControlName="nit" type="text" />
 
-        <label>Estado</label>
+        <!-- <label>Estado</label>
         <select formControlName="estado">
             <option [value]="true">Activo</option>
             <option [value]="false">Inactivo</option>
-        </select>
+        </select> -->
 
-        <label>ID Rol</label>
-        <input formControlName="idRol" type="number" />
+        <!-- <label>ID Rol</label>
+        <input formControlName="idRol" type="number" /> -->
 
         <label>Nombre Técnico</label>
         <select formControlName="idTecnico" (change)="onTecnicoSeleccionado()">
@@ -41,6 +41,15 @@
 
         <!-- Campo oculto para mantener nombreTecnico actualizado -->
         <input type="hidden" formControlName="nombreTecnico" />
+
+        <label for="searchInput">Buscar dirección</label>
+        <div class="search-container">
+            <input #searchInput id="searchInput" type="text" placeholder="Buscar dirección..." />
+            <button *ngIf="searchInput.value" class="clear-btn" (click)="searchInput.value = ''">×</button>
+        </div>
+        <div #mapElement id="map" style="height: 300px; width: 100%; margin-top: 20px;"></div>
+
+
 
         <button type="submit" [disabled]="clienteForm.invalid || !formEditado" class="btn-guardar">
             Guardar Cambios

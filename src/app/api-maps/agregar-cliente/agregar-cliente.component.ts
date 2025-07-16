@@ -40,6 +40,7 @@ export class AgregarClienteComponent implements OnInit, AfterViewInit {
   estado: boolean = true;
   idTecnicoSeleccionado: number | null = null;
 
+  @ViewChild('mapElement') mapElement!: ElementRef;
   @ViewChild('searchInput') searchInput!: ElementRef<HTMLInputElement>;
 
   map: any;
@@ -70,7 +71,7 @@ export class AgregarClienteComponent implements OnInit, AfterViewInit {
 
     const autocomplete = new google.maps.places.Autocomplete(input, {
       fields: ['geometry', 'name', 'formatted_address'],
-      types: ['establishment'], // 🔥 permite negocios y lugares específicos
+      types: ['establishment'], 
     });
     autocomplete.addListener('place_changed', () => {
       this.zone.run(() => {

@@ -72,3 +72,15 @@
 .btn-editar:hover {
   background-color: #2563eb;
 }
+
+.btn-danger {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.btn-danger:hover {
+  background-color: #c82333;
+}

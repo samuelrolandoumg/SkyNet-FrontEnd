@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, NgZone} from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ClienteService } from '../../services/cliente.service';
 import { ClienteDto, ClienteUpdateDto, TecnicoDto } from '../../interfaces/cliente.interface';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
-import { Router } from '@angular/router';
+
+declare var google: any;
 
 @Component({
   selector: 'app-editar-cliente',
@@ -13,7 +14,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./editar-cliente.component.css'],
   imports: [CommonModule, ReactiveFormsModule, FormsModule]
 })
-export class EditarClienteComponent implements OnInit {
+export class EditarClienteComponent implements OnInit, AfterViewInit {
   clienteForm!: FormGroup;
   clienteId!: number;
   cargando = true;
@@ -21,12 +22,21 @@ export class EditarClienteComponent implements OnInit {
   tecnicos: TecnicoDto[] = [];
   formEditado = false;
 
+  latitud!: number;
+  longitud!: number;
+  map: any;
+  marker: any;
+
+  @ViewChild('mapElement') mapElement!: ElementRef;
+  @ViewChild('searchInput') searchInput!: ElementRef<HTMLInputElement>;
+
   constructor(
     private route: ActivatedRoute,
     private clienteService: ClienteService,
     private fb: FormBuilder,
-    private router: Router
-  ) {}
+    private router: Router,
+    private zone: NgZone
+  ) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
@@ -38,6 +48,10 @@ export class EditarClienteComponent implements OnInit {
     });
 
     this.cargarTecnicos();
+  }
+
+  ngAfterViewInit(): void {
+    // Mapa se inicializa después de cargar datos del cliente
   }
 
   inicializarFormulario(): void {
@@ -58,7 +72,6 @@ export class EditarClienteComponent implements OnInit {
 
       const actual = this.clienteForm.getRawValue();
 
-      // Compara campo por campo con el original
       this.formEditado =
         actual.nombreCliente !== this.clienteOriginal.nombreCliente ||
         actual.nombreNegocio !== this.clienteOriginal.nombreNegocio ||
@@ -67,14 +80,20 @@ export class EditarClienteComponent implements OnInit {
         actual.nit !== this.clienteOriginal.nit ||
         actual.estado !== this.clienteOriginal.estado ||
         actual.idRol !== this.clienteOriginal.idRol ||
-        actual.idTecnico !== this.clienteOriginal.idTecnico;
+        actual.idTecnico !== this.clienteOriginal.idTecnico ||
+        this.coordenadasCambiaron(); // 🔥 se evalúan también
     });
+
   }
 
   cargarCliente(): void {
     this.clienteService.obtenerClientePorId(this.clienteId).subscribe({
       next: (cliente: ClienteDto) => {
         this.clienteOriginal = cliente;
+
+        this.latitud = parseFloat(cliente.latitud);
+        this.longitud = parseFloat(cliente.longitud);
+
         this.clienteForm.patchValue({
           nombreCliente: cliente.nombreCliente,
           nombreNegocio: cliente.nombreNegocio,
@@ -86,12 +105,67 @@ export class EditarClienteComponent implements OnInit {
           idTecnico: cliente.idTecnico,
           nombreTecnico: cliente.nombreTecnico
         });
+
         this.cargando = false;
+
+        // Inicializar mapa después de que la vista esté lista
+        setTimeout(() => this.initMap(), 0);
       },
       error: err => {
         console.error('Error al cargar cliente:', err);
         this.cargando = false;
       }
+    });
+  }
+
+  initMap(): void {
+    if (!this.latitud || !this.longitud) return;
+
+    const center = { lat: this.latitud, lng: this.longitud };
+
+    this.map = new google.maps.Map(this.mapElement.nativeElement, {
+      center,
+      zoom: 15
+    });
+
+    this.marker = new google.maps.Marker({
+      position: center,
+      map: this.map,
+      draggable: true
+    });
+
+    this.marker.addListener('dragend', (event: any) => {
+      const lat = event.latLng.lat();
+      const lng = event.latLng.lng();
+
+      this.latitud = lat;
+      this.longitud = lng;
+
+      if (this.coordenadasCambiaron()) {
+        this.formEditado = true;
+      }
+    });
+
+    const autocomplete = new google.maps.places.Autocomplete(this.searchInput.nativeElement, {
+      fields: ['geometry'],
+      types: ['establishment']
+    });
+
+    autocomplete.addListener('place_changed', () => {
+      this.zone.run(() => {
+        const place = autocomplete.getPlace();
+        if (!place.geometry || !place.geometry.location) return;
+
+        const lat = place.geometry.location.lat();
+        const lng = place.geometry.location.lng();
+
+        this.latitud = lat;
+        this.longitud = lng;
+
+        const newPosition = { lat, lng };
+        this.map.setCenter(newPosition);
+        this.marker.setPosition(newPosition);
+      });
     });
   }
 
@@ -107,8 +181,8 @@ export class EditarClienteComponent implements OnInit {
       nit: form.nit,
       estado: form.estado,
       idRol: form.idRol,
-      latitud: this.clienteOriginal.latitud || '',
-      longitud: this.clienteOriginal.longitud || '',
+      latitud: this.latitud.toString(),
+      longitud: this.longitud.toString(),
       idTecnico: form.idTecnico || this.clienteOriginal.idTecnico
     };
 
@@ -140,10 +214,10 @@ export class EditarClienteComponent implements OnInit {
 
   cargarTecnicos(): void {
     this.clienteService.obtenerTecnicosPorRol().subscribe({
-      next: (data) => {
+      next: data => {
         this.tecnicos = data;
       },
-      error: (err) => {
+      error: err => {
         console.error('Error al cargar técnicos:', err);
       }
     });
@@ -151,7 +225,9 @@ export class EditarClienteComponent implements OnInit {
 
   onTecnicoSeleccionado(): void {
     const idSeleccionado = this.clienteForm.get('idTecnico')?.value;
-    const tecnicoSeleccionado = this.tecnicos.find(t => t.idUsuario === idSeleccionado);
+    const tecnicoSeleccionado = this.tecnicos.find(
+      t => t.idUsuario === idSeleccionado
+    );
 
     if (tecnicoSeleccionado) {
       this.clienteForm.patchValue({
@@ -159,4 +235,12 @@ export class EditarClienteComponent implements OnInit {
       });
     }
   }
+
+  private coordenadasCambiaron(): boolean {
+    return (
+      parseFloat(this.clienteOriginal.latitud) !== this.latitud ||
+      parseFloat(this.clienteOriginal.longitud) !== this.longitud
+    );
+  }
+
 }

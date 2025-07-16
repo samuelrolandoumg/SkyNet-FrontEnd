@@ -13,9 +13,10 @@
             Iniciar servicio
         </button>
 
-        <button class="boton-accion" [disabled]="loading" (click)="finalizarServicio()">
-            Finalizar servicio
+        <button class="boton-accion" [disabled]="loading || estado === 'CREADO'" (click)="finalizarServicio()">
+            Finalizar servicio     
         </button>
+
     </div>
 
     <p *ngIf="mensaje" class="loader">{{ mensaje }}</p>

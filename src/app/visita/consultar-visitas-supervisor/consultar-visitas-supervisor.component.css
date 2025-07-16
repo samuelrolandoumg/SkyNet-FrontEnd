@@ -67,3 +67,9 @@
 .boton-detalle:hover {
   background-color: #0891b2;
 }
+
+.texto-leido {
+  font-size: 0.9em;
+  color: gray;
+  font-style: italic;
+}

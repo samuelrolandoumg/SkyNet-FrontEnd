@@ -70,4 +70,15 @@ export class ClienteService {
     return this.http.put(`${this.apiUrl}/actualizar`, cliente);
   }
 
+  eliminarCliente(idCliente: number) {
+    return this.http.put(`${this.apiUrl}/eliminar-cliente`, null, {
+      params: { idCliente: idCliente.toString() }
+    });
+  }
+
+  verificarVisitasPendientes(idCliente: number) {
+    return this.http.get<number>(`${this.apiUrl}/visitas-cliente`, {
+      params: { idCliente: idCliente.toString() }
+    });
+  }
 }

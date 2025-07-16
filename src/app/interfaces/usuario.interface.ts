@@ -54,4 +54,5 @@ export interface ConsultaVisitaSupervisor {
   estado: string;
   enTiempo: string;
   tiempoRetraso: string | null;
+  leido: boolean | null;
 }

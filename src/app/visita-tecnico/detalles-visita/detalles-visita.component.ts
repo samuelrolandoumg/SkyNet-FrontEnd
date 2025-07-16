@@ -71,6 +71,7 @@ export class DetallesVisitaComponent implements OnInit {
               this.visitaSrv.iniciarServicio(data).subscribe({
                 next: () => {
                   this.loading = false;
+                  this.estado = 'SERVICIO INICIADO'; // 👈 esto actualiza la vista automáticamente
                   Swal.fire('Éxito', 'El servicio ha sido iniciado correctamente.', 'success');
                 },
                 error: () => {
