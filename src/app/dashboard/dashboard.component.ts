@@ -30,17 +30,15 @@ export class DashboardComponent implements OnInit {
     }
   };
 
-
   barChartData = {
     labels: [] as string[],
     datasets: [
       {
-        label: 'Visitas por técnico',
+        label: '',
         data: [] as number[]
       }
     ]
   };
-
 
   totalVisitas: number = 0;
 
@@ -52,12 +50,15 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.usuario = this.authService.obtenerUsuario();
+
     if (this.usuario?.rol === 'TECNICO') {
       this.alertasService.getAlertasTecnico(this.usuario.id).subscribe({
         next: (data) => this.alertas = data,
         error: (err) => console.error('Error al obtener alertas del técnico', err)
       });
-    } if (this.usuario?.rol === 'SUPERVISOR') {
+    }
+
+    if (this.usuario?.rol === 'SUPERVISOR') {
       this.visitaService.getVisitasPorTecnico(this.usuario.id).subscribe({
         next: (data) => {
           const labels = data.map(d => d.nombreTecnico);
@@ -65,16 +66,33 @@ export class DashboardComponent implements OnInit {
           this.totalVisitas = values.reduce((a, b) => a + b, 0);
 
           this.barChartData = {
-            labels: labels,
-            datasets: [
-              {
-                label: 'Visitas por técnico',
-                data: values
-              }
-            ]
+            labels,
+            datasets: [{
+              label: 'Visitas por técnico',
+              data: values
+            }]
           };
         },
         error: (err) => console.error('Error al obtener visitas por técnico', err)
+      });
+    }
+
+    if (this.usuario?.rol === 'ADMIN') {
+      this.visitaService.getVisitasPorSupervisor(this.usuario.id).subscribe({
+        next: (data) => {
+          const labels = data.map(d => d.nombreSupervisor);
+          const values = data.map(d => +d.cantidad);
+          this.totalVisitas = values.reduce((a, b) => a + b, 0);
+
+          this.barChartData = {
+            labels,
+            datasets: [{
+              label: 'Visitas por supervisor',
+              data: values
+            }]
+          };
+        },
+        error: (err) => console.error('Error al obtener visitas por supervisor', err)
       });
     }
   }

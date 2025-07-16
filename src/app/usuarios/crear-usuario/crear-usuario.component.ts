@@ -17,7 +17,9 @@ import { Supervisor } from '../../interfaces/cliente.interface';
 export class CrearUsuarioComponent implements OnInit {
   usuarioForm!: FormGroup;
   supervisores: Supervisor[] = [];
+  admins: Supervisor[] = [];
   mostrarSupervisores = false;
+  mostrarAdmins = false;
 
   roles = [
     { id: 1, nombre: 'ADMIN' },
@@ -29,7 +31,7 @@ export class CrearUsuarioComponent implements OnInit {
     private fb: FormBuilder,
     private usuarioService: UsuarioService,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.usuarioForm = this.fb.group({
@@ -42,28 +44,46 @@ export class CrearUsuarioComponent implements OnInit {
       dpi: ['', Validators.required],
       nit: ['', Validators.required],
       direccion: ['', Validators.required],
-      idSupervisor: [null, []]
+      idSupervisor: [null],
+      idAdmin: [null]
     });
 
     this.usuarioForm.get('idRol')?.valueChanges.subscribe(idRolSeleccionado => {
-      this.mostrarSupervisores = Number(idRolSeleccionado) === 3;
+      const rol = Number(idRolSeleccionado);
+
+      this.mostrarSupervisores = rol === 3; // TECNICO
+      this.mostrarAdmins = rol === 2;       // SUPERVISOR
 
       const idSupervisorControl = this.usuarioForm.get('idSupervisor');
+      const idAdminControl = this.usuarioForm.get('idAdmin');
 
+      // Supervisores
       if (this.mostrarSupervisores) {
         idSupervisorControl?.setValidators(Validators.required);
         this.usuarioService.obtenerSupervisores().subscribe({
-          next: (supervisores) => this.supervisores = supervisores,
-          error: (err) => console.error('Error al obtener supervisores:', err)
+          next: (res) => this.supervisores = res,
+          error: (err) => console.error('Error al obtener supervisores', err)
         });
       } else {
         idSupervisorControl?.clearValidators();
-        this.usuarioForm.patchValue({ idSupervisor: null });
+        idSupervisorControl?.setValue(null);
+      }
+
+      // Admins
+      if (this.mostrarAdmins) {
+        idAdminControl?.setValidators(Validators.required);
+        this.usuarioService.getAdmins().subscribe({
+          next: (res) => this.admins = res,
+          error: (err) => console.error('Error al obtener admins', err)
+        });
+      } else {
+        idAdminControl?.clearValidators();
+        idAdminControl?.setValue(null);
       }
 
       idSupervisorControl?.updateValueAndValidity();
+      idAdminControl?.updateValueAndValidity();
     });
-
   }
 
   crearUsuario(): void {
@@ -81,7 +101,7 @@ export class CrearUsuarioComponent implements OnInit {
           icon: 'success',
           title: 'Usuario creado correctamente',
           confirmButtonColor: '#28a745'
-        }).then(() => this.router.navigate(['/listar-usuarios']));
+        }).then(() => this.router.navigate(['/listar-usuario']));
       },
       error: (err) => {
         console.error('Error al crear usuario:', err);

@@ -24,6 +24,15 @@
             <option *ngFor="let rol of roles" [value]="rol.id">{{ rol.nombre }}</option>
         </select>
 
+        <div *ngIf="mostrarAdmins">
+            <label>Administrador Asignado</label>
+            <select formControlName="idAdmin">
+                <option [value]="null">Seleccione un administrador</option>
+                <option *ngFor="let admin of admins" [value]="admin.idUsuario">
+                    {{ admin.usuario }}
+                </option>
+            </select>
+        </div>
         <div *ngIf="mostrarSupervisores">
             <label>Supervisor Asignado</label>
             <select formControlName="idSupervisor">

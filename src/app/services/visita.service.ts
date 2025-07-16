@@ -38,4 +38,11 @@ export class VisitaService {
     return this.http.get<any[]>(`${this.visitaUrl}/count-visitas-tecnico?idSupervisor=${idSupervisor}`);
   }
 
+  getVisitasPorSupervisor(idAdmin: number): Observable<{ nombreSupervisor: string; cantidad: number }[]> {
+    return this.http.get<{ nombreSupervisor: string; cantidad: number }[]>(
+      `${this.visitaUrl}/count-visitas-supervisor?idAdmin=${idAdmin}`
+    );
+  }
+
+
 }

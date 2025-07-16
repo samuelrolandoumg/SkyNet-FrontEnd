@@ -39,4 +39,9 @@ export class UsuarioService {
     return this.http.get<{ idUsuario: number; usuario: string }>(`${this.usuarioUrl}/obtener-usuario/${id}`);
   }
 
+  getAdmins(): Observable<Supervisor[]> {
+    return this.http.get<Supervisor[]>(`${this.usuarioUrl}/lista-admin`);
+  }
+
+
 }
