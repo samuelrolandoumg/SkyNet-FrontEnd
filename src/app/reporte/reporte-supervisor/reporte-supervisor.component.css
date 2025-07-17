@@ -1,0 +1,59 @@
+.card {
+  background: white;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabla th, .tabla td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.badge {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: white;
+}
+
+.badge-creado {
+  background-color: #f87171;
+}
+
+.badge-finalizado {
+  background-color: #10b981;
+}
+
+.boton {
+  padding: 6px 14px;
+  margin-right: 6px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-size: 14px;
+}
+
+.boton-detalle {
+  background-color: #06b6d4;
+  color: white;
+}
+
+.boton-detalle:hover {
+  background-color: #0891b2;
+}
+
+.texto-leido {
+  font-size: 0.9em;
+  color: gray;
+  font-style: italic;
+}

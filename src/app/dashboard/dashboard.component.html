@@ -7,19 +7,32 @@
   <p class="subtitulo">Tu rol es:</p>
   <p class="rol">{{ usuario?.rol }}</p>
 
+  <div class="text-center total-visitas">
+    <p>Total de visitas registradas: <strong>{{ totalVisitas }}</strong></p>
+  </div>
+
   <!-- 🔔 ALERTAS SOLO PARA TECNICOS -->
   <div *ngIf="usuario?.rol === 'TECNICO' && alertas.length > 0" class="alertas-box">
     <h3 class="alertas-title">📢 Alertas recientes</h3>
     <ul class="alertas-list">
       <li *ngFor="let alerta of alertas">
         <i class="fa-solid fa-triangle-exclamation icono-alerta"></i>
-        {{ alerta.mensaje }}
-        <span class="fecha-alerta">({{ alerta.fechaAlerta | date:'short' }})</span>
+        <div class="contenido-alerta">
+          <span>{{ alerta.mensaje }}</span>
+          <span class="fecha-alerta">{{ alerta.fechaAlerta | date:'short' }}</span>
+        </div>
       </li>
     </ul>
   </div>
 
-  <div *ngIf="usuario?.rol === 'SUPERVISOR' || usuario?.rol === 'ADMIN'" class="supervisor-dashboard">
+  <div *ngIf="usuario?.rol === 'TECNICO'" class="tecnico-dashboard card">
+    <h2 class="section-title">📈 Visitas por estado</h2>
+    <div class="chart-container">
+      <canvas baseChart [data]="doughnutChartData" [type]="'doughnut'"></canvas>
+    </div>
+  </div>
+
+  <div *ngIf="usuario?.rol === 'SUPERVISOR' || usuario?.rol === 'ADMIN'" class="supervisor-dashboard card">
     <h2 class="section-title">📊 Resumen de visitas</h2>
 
     <div class="metric-box">
@@ -31,6 +44,4 @@
       <canvas baseChart [data]="barChartData" [type]="'bar'"></canvas>
     </div>
   </div>
-
-
 </div>

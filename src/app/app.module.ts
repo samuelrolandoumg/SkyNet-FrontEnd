@@ -17,6 +17,13 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EditarClienteComponent } from './clientes/editar-cliente/editar-cliente.component';
 import { NgChartsModule } from 'ng2-charts';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { ReporteTecnicoComponent } from './reporte/reporte-tecnico/reporte-tecnico.component';
+
 
 @NgModule({
   declarations: [
@@ -24,7 +31,8 @@ import { NgChartsModule } from 'ng2-charts';
     IniciarSesionComponent,
     CerrarSesionComponent,
     SidebarComponent,
-    EditarClienteComponent
+    EditarClienteComponent,
+    ReporteTecnicoComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +43,11 @@ import { NgChartsModule } from 'ng2-charts';
     FormsModule,
     ReactiveFormsModule,
     GoogleMapsModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatFormFieldModule,
+    MatInputModule,
     ToastrModule.forRoot(),
     RouterModule.forRoot([]),
   ],

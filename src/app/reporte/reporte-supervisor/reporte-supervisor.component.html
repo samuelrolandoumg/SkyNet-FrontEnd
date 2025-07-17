@@ -1,0 +1,43 @@
+<div class="card">
+  <h2><i class="fa-solid fa-calendar-check"></i> Reportes Generados </h2>
+
+  <table class="tabla" *ngIf="reportes.length > 0">
+    <thead>
+      <tr>
+        <th>Cliente</th>
+        <th>Técnico</th>
+        <th>Estado</th>
+        <th>Fecha programada</th>
+        <th>Fecha finalización</th>
+        <th>Próxima visita / Incidencia</th>
+        <th>Archivo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let reporte of reportes">
+        <td>{{ reporte.nombreCliente }}</td>
+        <td>{{ reporte.nombreTecnico }}</td>
+        <td>
+          <span class="badge" [ngClass]="{
+            'badge-creado': reporte.resultadoObtenido === 'FALLIDO',
+            'badge-finalizado': reporte.resultadoObtenido === 'EXITOSO'
+          }">
+            {{ reporte.resultadoObtenido }}
+          </span>
+        </td>
+        <td>{{ reporte.fechaProgramada }}</td>
+        <td>{{ reporte.fechaServicioFinalizada }}</td>
+        <td>{{ reporte.visitaProximaIncidencia || '---' }}</td>
+        <td>
+          <button class="boton boton-detalle" (click)="descargar(reporte.urlDocumento, reporte.nombreDocumento)">
+            <i class="fa-solid fa-download"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="reportes.length === 0" class="texto-leido">
+    No hay reportes disponibles.
+  </div>
+</div>

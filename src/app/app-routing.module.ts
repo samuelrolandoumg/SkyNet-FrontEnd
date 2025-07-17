@@ -18,6 +18,8 @@ import { ListarUsuariosComponent } from './usuarios/listar-usuarios/listar-usuar
 import { EditarUsuarioComponent } from './usuarios/editar-usuario/editar-usuario.component';
 import { DashboardTecnicoComponent } from './dashboard/dashboard-tecnico/dashboard-tecnico.component';
 import { ConsultarVisitasSupervisorComponent } from './visita/consultar-visitas-supervisor/consultar-visitas-supervisor.component';
+import { ReporteTecnicoComponent } from './reporte/reporte-tecnico/reporte-tecnico.component';
+import { ReporteSupervisorComponent } from './reporte/reporte-supervisor/reporte-supervisor.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -49,6 +51,10 @@ const routes: Routes = [
 
       { path: 'dashboard-tecnico', component: DashboardTecnicoComponent },
 
+      { path: 'reporte-tecnico', component: ReporteTecnicoComponent },
+      { path: 'reporte-supervisor', component: ReporteSupervisorComponent },
+
+      
 
     ]
   },

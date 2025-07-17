@@ -44,5 +44,9 @@ export class VisitaService {
     );
   }
 
-
+  getVisitasPorEstadoTecnico(idTecnico: number): Observable<{ estado: string; cantidad: number }[]> {
+    return this.http.get<{ estado: string; cantidad: number }[]>(
+      `${this.visitaUrl}/visitas-tecnico-estado?idTecnico=${idTecnico}`
+    );
+  }
 }

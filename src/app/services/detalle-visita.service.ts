@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ResumenEstado, VisitaPorEstado } from '../interfaces/dashboard.interface';
 import { ConsultaVisitaSupervisor } from '../interfaces/usuario.interface';
+import { ReporteSupervisorProjection } from '../interfaces/visita.interface';
 
 @Injectable({ providedIn: 'root' })
 export class DetalleVisitaService {
@@ -46,4 +47,11 @@ export class DetalleVisitaService {
         return this.http.get<ConsultaVisitaSupervisor[]>(`${this.baseUrl}/consulta-visitas-supervisor?idSupervisor=${idSupervisor}`);
     }
 
+    getReportesPorTecnico(idTecnico: number) {
+        return this.http.get<any[]>(`${this.baseUrl}/documentos-generados-tecnico?idTecnico=${idTecnico}`);
+    }
+
+    obtenerReportesSupervisor(idSupervisor: number): Observable<ReporteSupervisorProjection[]> {
+        return this.http.get<ReporteSupervisorProjection[]>(`${this.baseUrl}/reporte-generados-supervisor?idSupervisor=${idSupervisor}`);
+    }
 }

@@ -1,0 +1,40 @@
+<div class="contenedor-reporte">
+  <div class="titulo-reporte d-flex align-items-center mb-3">
+    <i class="fa-solid fa-file-lines me-2 text-primary"></i>
+    <strong>Reportes generados</strong>
+  </div>
+
+  <table class="tabla-reportes">
+    <thead>
+      <tr>
+        <th>Cliente</th>
+        <th>Estado</th>
+        <th>Fecha Programada</th>
+        <th>Fecha Finalizada</th>
+        <th>Archivo</th>
+        <th>Descargar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let reporte of reportes">
+        <td>{{ reporte.nombreCliente }}</td>
+        <td>
+          <span [ngClass]="{
+            'badge bg-success': reporte.resultadoObtenido === 'FINALIZADO CON EXITO',
+            'badge bg-danger': reporte.resultadoObtenido === 'FINALIZADO CON INCIDENCIA'
+          }">
+            {{ reporte.resultadoObtenido }}
+          </span>
+        </td>
+        <td>{{ reporte.fechaProgramada | date: 'short' }}</td>
+        <td>{{ reporte.fechaServicioFinalizada | date: 'short' }}</td>
+        <td>{{ reporte.nombreDocumento }}</td>
+        <td>
+          <button class="btn-pdf" (click)="descargarPDF(reporte.urlDocumento, reporte.nombreDocumento)">
+            <i class="fa-solid fa-file-pdf"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -21,3 +21,14 @@ export interface IniciarServicioDto {
   longitud: string;
   estado: string;
 }
+
+export interface ReporteSupervisorProjection {
+  nombreDocumento: string;
+  urlDocumento: string;
+  resultadoObtenido: string;
+  fechaProgramada: string;
+  fechaServicioFinalizada: string;
+  nombreCliente: string;
+  nombreTecnico: string;
+  visitaProximaIncidencia: string;
+}

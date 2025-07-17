@@ -1,122 +1,144 @@
 .contenedor-dashboard-final {
-  background-color: #f8fafc; /* celeste claro */
+  background-color: #f9fbfd;
   min-height: 100vh;
   padding: 40px 60px;
   font-family: 'Segoe UI', sans-serif;
-  color: #0f172a;
+  color: #1e293b;
 }
 
 .header-dashboard {
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 
 .btn-cerrar {
-  background-color: #dc2626;
-  color: white;
+  background-color: #ef4444;
+  color: #fff;
   border: none;
-  padding: 10px 24px;
+  padding: 10px 20px;
   font-weight: 600;
   border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: 0.2s ease-in-out;
 }
 
 .btn-cerrar:hover {
-  background-color: #b91c1c;
+  background-color: #dc2626;
 }
 
 .titulo-saludo {
-  font-size: 32px;
+  font-size: 2.2rem;
   font-weight: bold;
-  margin-bottom: 10px;
   text-align: center;
+  margin-bottom: 8px;
 }
 
 .subtitulo {
-  font-size: 16px;
-  color: #64748b;
   text-align: center;
+  font-size: 1rem;
+  color: #64748b;
 }
 
 .rol {
-  font-size: 20px;
-  font-weight: 600;
-  color: #2563eb;
   text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #2563eb;
+}
+
+.total-visitas {
+  text-align: center;
+  margin: 20px 0;
+  font-size: 1.1rem;
+  color: #0f172a;
 }
 
 .alertas-box {
-  background-color: #fff3cd;
-  border-left: 6px solid #ffc107;
-  padding: 15px;
+  background-color: #fff8e1;
+  border-left: 6px solid #facc15;
+  padding: 16px;
   margin-top: 30px;
-  border-radius: 8px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .alertas-title {
   font-weight: bold;
-  color: #856404;
+  color: #b45309;
   margin-bottom: 10px;
+  font-size: 1.1rem;
 }
 
 .alertas-list {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .alertas-list li {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   padding: 6px 0;
-  color: #856404;
   font-size: 14px;
+  color: #92400e;
 }
 
 .icono-alerta {
-  margin-right: 8px;
-  color: #d39e00;
+  margin-right: 10px;
+  color: #f59e0b;
+  margin-top: 2px;
+}
+
+.contenido-alerta {
+  display: flex;
+  flex-direction: column;
 }
 
 .fecha-alerta {
   font-size: 12px;
-  color: #6c757d;
+  color: #6b7280;
+  margin-top: 2px;
 }
 
-.supervisor-dashboard {
+.card {
   background-color: #ffffff;
-  padding: 20px;
+  padding: 25px;
   border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-  margin-top: 30px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  max-width: 800px;
+  margin: 40px auto;
 }
 
 .section-title {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 15px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+  text-align: center;
+  color: #0f172a;
 }
 
 .metric-box {
   display: flex;
+  justify-content: center;
   align-items: center;
+  gap: 10px;
   margin-bottom: 20px;
 }
 
 .metric-label {
-  font-weight: 600;
-  margin-right: 10px;
+  font-size: 1rem;
+  font-weight: 500;
 }
 
 .metric-value {
-  font-size: 24px;
-  color: #2563eb;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #3b82f6;
 }
 
 .chart-container {
   width: 100%;
   max-width: 600px;
+  margin: auto;
 }
