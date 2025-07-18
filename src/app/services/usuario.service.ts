@@ -9,7 +9,9 @@ import { UsuarioDto, UsuarioListarProjection, UsuarioUpdateDto } from '../interf
 })
 export class UsuarioService {
   private usuarioUrl = 'https://skynet-backend-production.up.railway.app/usuario';
+  //private usuarioUrl = 'http://localhost:8080/usuario';
 
+  
   constructor(private http: HttpClient) { }
 
   crearUsuario(usuario: UsuarioDto): Observable<any> {

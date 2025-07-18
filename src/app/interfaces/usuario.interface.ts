@@ -20,6 +20,7 @@ export interface UsuarioDto {
   nit: string;
   direccion: string;
   rol: string;
+  puestoTecnico: string | null;
 }
 
 export interface UsuarioUpdateDto {
@@ -35,6 +36,7 @@ export interface UsuarioUpdateDto {
   nit: string;
   direccion: string;
   rol: string;
+  puestoTecnico: string | null;
 }
 
 export interface UsuarioListarProjection {

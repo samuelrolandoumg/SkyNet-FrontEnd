@@ -23,24 +23,15 @@
         <label>NIT</label>
         <input formControlName="nit" type="text" />
 
-        <!-- <label>Estado</label>
-        <select formControlName="estado">
-            <option [value]="true">Activo</option>
-            <option [value]="false">Inactivo</option>
-        </select> -->
-
-        <!-- <label>ID Rol</label>
-        <input formControlName="idRol" type="number" /> -->
-
-        <label>Nombre Técnico</label>
-        <select formControlName="idTecnico" (change)="onTecnicoSeleccionado()">
-            <option *ngFor="let tecnico of tecnicos" [value]="tecnico.idUsuario">
-                {{ tecnico.nombreTecnico }}
+        <select formControlName="idSupervisor" (change)="onSupervisorSeleccionado()"
+            [disabled]="deshabilitarSupervisor">
+            <option *ngFor="let supervisor of supervisores" [value]="supervisor.idUsuario">
+                {{ supervisor.nombreSupervisor }}
             </option>
         </select>
 
-        <!-- Campo oculto para mantener nombreTecnico actualizado -->
-        <input type="hidden" formControlName="nombreTecnico" />
+
+        <!-- <input type="hidden" formControlName="nombreSupervisor" /> -->
 
         <label for="searchInput">Buscar dirección</label>
         <div class="search-container">

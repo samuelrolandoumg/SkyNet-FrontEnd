@@ -1,4 +1,4 @@
-<div class="container-form">
+<!-- <div class="container-form">
   <h2 class="title">REGISTRAR VISITA</h2>
 
   <form>
@@ -33,6 +33,61 @@
 
     <button class="submit-btn" (click)="registrarVisita()"
       [disabled]="!idTecnicoSeleccionado || !idClienteSeleccionado || !fechaVisita">
+      Registrar Visita
+    </button>
+  </form>
+</div> -->
+
+<div class="container-form">
+  <h2 class="title">REGISTRAR VISITA</h2>
+
+  <form>
+    <div class="form-grid">
+
+      <!-- Tipo de Visita -->
+      <div class="form-group mb-select">
+        <label for="tipoVisita">Tipo de Visita:</label>
+        <select id="tipoVisita" name="tipoVisita" [(ngModel)]="tipoVisitaSeleccionado" (change)="onTipoVisitaChange()">
+          <option [ngValue]="null" disabled>Seleccione un tipo</option>
+          <option *ngFor="let tipo of tiposVisita" [value]="tipo">
+            {{ tipo }}
+          </option>
+        </select>
+      </div>
+
+      <!-- Técnico -->
+      <div class="form-group mb-select">
+        <label for="tecnico">Seleccionar Técnico:</label>
+        <select id="tecnico" name="tecnico" [(ngModel)]="idTecnicoSeleccionado" (change)="cargarClientes()"
+          [disabled]="!tecnicos.length">
+          <option [ngValue]="null" disabled>Seleccione un técnico</option>
+          <option *ngFor="let tecnico of tecnicos" [value]="tecnico.idUsuario">
+            {{ tecnico.nombreTecnico }}
+          </option>
+        </select>
+      </div>
+
+      <!-- Cliente -->
+      <div class="form-group mb-select">
+        <label for="cliente">Seleccionar Cliente:</label>
+        <select id="cliente" name="cliente" [(ngModel)]="idClienteSeleccionado" [disabled]="!clientes.length">
+          <option [ngValue]="null" disabled>Seleccione un cliente</option>
+          <option *ngFor="let cliente of clientes" [value]="cliente.idUsuario">
+            {{ cliente.usuario }}
+          </option>
+        </select>
+      </div>
+
+      <!-- Fecha -->
+      <div class="form-group">
+        <label for="fecha">Fecha de la Visita:</label>
+        <input type="date" id="fecha" name="fecha" [(ngModel)]="fechaVisita" />
+      </div>
+    </div>
+
+    <!-- Botón de acción -->
+    <button class="submit-btn" (click)="registrarVisita()"
+      [disabled]="!tipoVisitaSeleccionado || !idTecnicoSeleccionado || !idClienteSeleccionado || !fechaVisita">
       Registrar Visita
     </button>
   </form>

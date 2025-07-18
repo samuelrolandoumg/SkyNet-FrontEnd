@@ -20,6 +20,7 @@ export class CrearUsuarioComponent implements OnInit {
   admins: Supervisor[] = [];
   mostrarSupervisores = false;
   mostrarAdmins = false;
+  mostrarPuestoTecnico = false;
 
   roles = [
     { id: 1, nombre: 'ADMIN' },
@@ -31,7 +32,7 @@ export class CrearUsuarioComponent implements OnInit {
     private fb: FormBuilder,
     private usuarioService: UsuarioService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.usuarioForm = this.fb.group({
@@ -45,7 +46,8 @@ export class CrearUsuarioComponent implements OnInit {
       nit: ['', Validators.required],
       direccion: ['', Validators.required],
       idSupervisor: [null],
-      idAdmin: [null]
+      idAdmin: [null],
+      puestoTecnico: [null] // ← nuevo campo
     });
 
     this.usuarioForm.get('idRol')?.valueChanges.subscribe(idRolSeleccionado => {
@@ -53,11 +55,13 @@ export class CrearUsuarioComponent implements OnInit {
 
       this.mostrarSupervisores = rol === 3; // TECNICO
       this.mostrarAdmins = rol === 2;       // SUPERVISOR
+      this.mostrarPuestoTecnico = rol === 3; // ✅ activa campo puesto
 
       const idSupervisorControl = this.usuarioForm.get('idSupervisor');
       const idAdminControl = this.usuarioForm.get('idAdmin');
+      const puestoTecnicoControl = this.usuarioForm.get('puestoTecnico');
 
-      // Supervisores
+      // 🔧 Supervisores
       if (this.mostrarSupervisores) {
         idSupervisorControl?.setValidators(Validators.required);
         this.usuarioService.obtenerSupervisores().subscribe({
@@ -69,7 +73,7 @@ export class CrearUsuarioComponent implements OnInit {
         idSupervisorControl?.setValue(null);
       }
 
-      // Admins
+      // 🔧 Admins
       if (this.mostrarAdmins) {
         idAdminControl?.setValidators(Validators.required);
         this.usuarioService.getAdmins().subscribe({
@@ -81,10 +85,20 @@ export class CrearUsuarioComponent implements OnInit {
         idAdminControl?.setValue(null);
       }
 
+      // 🔧 Puesto Técnico
+      if (this.mostrarPuestoTecnico) {
+        puestoTecnicoControl?.setValidators(Validators.required);
+      } else {
+        puestoTecnicoControl?.clearValidators();
+        puestoTecnicoControl?.setValue(null);
+      }
+
       idSupervisorControl?.updateValueAndValidity();
       idAdminControl?.updateValueAndValidity();
+      puestoTecnicoControl?.updateValueAndValidity();
     });
   }
+
 
   crearUsuario(): void {
     if (this.usuarioForm.invalid) return;

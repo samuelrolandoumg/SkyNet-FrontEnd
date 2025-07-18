@@ -33,6 +33,7 @@
                 </option>
             </select>
         </div>
+
         <div *ngIf="mostrarSupervisores">
             <label>Supervisor Asignado</label>
             <select formControlName="idSupervisor">
@@ -42,6 +43,18 @@
                 </option>
             </select>
         </div>
+
+        <div *ngIf="mostrarPuestoTecnico">
+            <label>Puesto Técnico</label>
+            <select formControlName="puestoTecnico">
+                <option [value]="null">Seleccione un puesto</option>
+                <option value="Soporte Técnico">Soporte Técnico</option>
+                <option value="Mantenimiento Preventivo">Mantenimiento Preventivo</option>
+                <option value="Instalación de Infraestructura">Instalación de Infraestructura</option>
+                <option value="Implementación de Sistemas">Implementación de Sistemas</option>
+            </select>
+        </div>
+
 
         <label>DPI</label>
         <input type="text" formControlName="dpi" />

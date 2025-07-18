@@ -32,23 +32,14 @@
 
       <div class="form-group mb-select">
         <label for="supervisor">Seleccionar Supervisor:</label>
-        <select id="supervisor" name="supervisor" [(ngModel)]="idSupervisorSeleccionado" (change)="obtenerTecnicos()">
+        <select id="supervisor" name="supervisor" [(ngModel)]="idSupervisorSeleccionado">
           <option *ngFor="let supervisor of supervisores" [value]="supervisor.idUsuario">
             {{ supervisor.usuario }}
           </option>
         </select>
       </div>
-
-      <div class="form-group mb-select">
-        <label for="tecnico">Seleccionar Técnico:</label>
-        <select id="tecnico" name="tecnico" [(ngModel)]="idTecnicoSeleccionado">
-          <option *ngFor="let tecnico of tecnicos" [value]="tecnico.idUsuario">
-            {{ tecnico.nombreTecnico }}
-          </option>
-        </select>
-      </div>
-      <br>
     </div>
+    <br>
 
     <div class="search-container">
       <input #searchInput id="searchInput" name="searchInput" type="text" placeholder="Buscar dirección" />
@@ -58,17 +49,15 @@
     <div id="map" class="map-box"></div>
 
     <button class="submit-btn" (click)="guardar()" [disabled]="
-    !nombreCliente || !nombreCliente.trim() ||
-    !nombreNegocio || !nombreNegocio.trim() ||
-    !nit || !nit.trim() ||
-    !telefono || !telefono.trim() ||
-    !correo || !correo.trim() ||
-    !latitud || !longitud ||
-    !idSupervisorSeleccionado
-  ">
+      !nombreCliente || !nombreCliente.trim() ||
+      !nombreNegocio || !nombreNegocio.trim() ||
+      !nit || !nit.trim() ||
+      !telefono || !telefono.trim() ||
+      !correo || !correo.trim() ||
+      !latitud || !longitud ||
+      !idSupervisorSeleccionado
+    ">
       Guardar cliente
     </button>
-
-
   </form>
 </div>

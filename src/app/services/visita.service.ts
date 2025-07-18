@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class VisitaService {
   private visitaUrl = 'https://skynet-backend-production.up.railway.app/visita';
+  //private visitaUrl = 'http://localhost:8080/visita';
 
   constructor(private http: HttpClient) { }
 
@@ -49,4 +50,11 @@ export class VisitaService {
       `${this.visitaUrl}/visitas-tecnico-estado?idTecnico=${idTecnico}`
     );
   }
+
+  getTecnicosPorTipoVisita(tipoVisita: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.visitaUrl}/tecnico-tipovisita`, {
+      params: { tipoVisita }
+    });
+  }
+  
 }

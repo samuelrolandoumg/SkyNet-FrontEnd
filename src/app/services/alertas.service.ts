@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 export class AlertasService {
 
   private baseUrl = 'https://skynet-backend-production.up.railway.app/Alertas';
+  //private baseUrl = 'http://localhost:8080/Alertas';
 
   constructor(private http: HttpClient) { }
 

@@ -40,7 +40,6 @@ export class EditarUsuarioComponent implements OnInit {
     const usuario = JSON.parse(localStorage.getItem('usuario')!);
     this.rolUsuarioLogueado = usuario?.rol || '';
 
-
     this.idUsuario = Number(this.route.snapshot.queryParams['id']);
     if (isNaN(this.idUsuario)) return;
 
@@ -58,8 +57,14 @@ export class EditarUsuarioComponent implements OnInit {
             dpi: [usuario.dpi, Validators.required],
             nit: [usuario.nit, Validators.required],
             direccion: [usuario.direccion, Validators.required],
-            idSupervisor: [usuario.idSupervisor ?? null]
+            idSupervisor: [usuario.idSupervisor ?? null],
+            puestoTecnico: [usuario.rol === 'TECNICO' ? usuario.puestoTecnico : null]
           });
+
+          // Agregar validación solo si es técnico
+          if (usuario.rol === 'TECNICO') {
+            this.usuarioForm.get('puestoTecnico')?.setValidators(Validators.required);
+          }
 
           this.usuarioForm.valueChanges.subscribe(() => {
             const actual = this.usuarioForm.getRawValue();
@@ -71,16 +76,17 @@ export class EditarUsuarioComponent implements OnInit {
               actual.dpi !== usuario.dpi ||
               actual.nit !== usuario.nit ||
               actual.direccion !== usuario.direccion ||
-              actual.idSupervisor !== usuario.idSupervisor;
+              actual.idSupervisor !== usuario.idSupervisor ||
+              actual.puestoTecnico !== usuario.puestoTecnico;
           });
         };
 
-        // Si es técnico, primero carga supervisores y luego crea el formulario
+        // Si es técnico, primero carga supervisores y luego el form
         if (usuario.rol === 'TECNICO') {
           this.usuarioService.obtenerSupervisores().subscribe({
             next: (data) => {
               this.listaSupervisores = data;
-              crearFormulario(); // crear hasta que ya estén los supervisores
+              crearFormulario();
             },
             error: (err) => console.error('Error al cargar supervisores:', err)
           });
@@ -110,6 +116,7 @@ export class EditarUsuarioComponent implements OnInit {
       idSupervisor: form.idSupervisor,
       estado: this.usuarioOriginal.estado,
       rol: this.usuarioOriginal.rol,
+      puestoTecnico: this.usuarioOriginal.rol === 'TECNICO' ? form.puestoTecnico : null
     };
 
     this.usuarioService.actualizarUsuario(datosActualizados).subscribe({
@@ -132,6 +139,7 @@ export class EditarUsuarioComponent implements OnInit {
       }
     });
   }
+
 
   onSupervisorSeleccionado(event: Event): void {
     const idSeleccionado = (event.target as HTMLSelectElement).value;

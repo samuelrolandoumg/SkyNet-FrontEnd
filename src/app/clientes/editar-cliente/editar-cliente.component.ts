@@ -1,10 +1,11 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, NgZone} from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ClienteService } from '../../services/cliente.service';
-import { ClienteDto, ClienteUpdateDto, TecnicoDto } from '../../interfaces/cliente.interface';
+import { ClienteDto, ClienteUpdateDto, SupervisorDto } from '../../interfaces/cliente.interface';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
+import { AuthService } from '../../services/auth.service';
 
 declare var google: any;
 
@@ -19,8 +20,11 @@ export class EditarClienteComponent implements OnInit, AfterViewInit {
   clienteId!: number;
   cargando = true;
   clienteOriginal!: ClienteDto;
-  tecnicos: TecnicoDto[] = [];
+  supervisores: SupervisorDto[] = [];
   formEditado = false;
+  usuario: any;
+  rolUsuario: string = '';
+  deshabilitarSupervisor: boolean = false;
 
   latitud!: number;
   longitud!: number;
@@ -35,10 +39,20 @@ export class EditarClienteComponent implements OnInit, AfterViewInit {
     private clienteService: ClienteService,
     private fb: FormBuilder,
     private router: Router,
-    private zone: NgZone
+    private zone: NgZone,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
+    this.usuario = this.authService.obtenerUsuario();
+
+    if (!this.usuario) return;
+
+    // 👇 Aquí marcamos si se debe deshabilitar el campo
+    if (this.usuario.rol === 'SUPERVISOR') {
+      this.deshabilitarSupervisor = true;
+    }
+
     this.route.queryParams.subscribe(params => {
       this.clienteId = +params['idCliente'];
       if (this.clienteId > 0) {
@@ -49,6 +63,7 @@ export class EditarClienteComponent implements OnInit, AfterViewInit {
 
     this.cargarTecnicos();
   }
+
 
   ngAfterViewInit(): void {
     // Mapa se inicializa después de cargar datos del cliente
@@ -63,8 +78,9 @@ export class EditarClienteComponent implements OnInit, AfterViewInit {
       nit: ['', Validators.required],
       estado: [true, Validators.required],
       idRol: [null, Validators.required],
-      idTecnico: [null, Validators.required],
-      nombreTecnico: ['']
+      idSupervisor: [{ value: null, disabled: this.deshabilitarSupervisor }, Validators.required],
+      nombreSupervisor: ['']
+
     });
 
     this.clienteForm.valueChanges.subscribe(() => {
@@ -80,7 +96,7 @@ export class EditarClienteComponent implements OnInit, AfterViewInit {
         actual.nit !== this.clienteOriginal.nit ||
         actual.estado !== this.clienteOriginal.estado ||
         actual.idRol !== this.clienteOriginal.idRol ||
-        actual.idTecnico !== this.clienteOriginal.idTecnico ||
+        actual.idSupervisor !== this.clienteOriginal.idSupervisor ||
         this.coordenadasCambiaron(); // 🔥 se evalúan también
     });
 
@@ -102,8 +118,8 @@ export class EditarClienteComponent implements OnInit, AfterViewInit {
           nit: cliente.nit,
           estado: cliente.estado,
           idRol: cliente.idRol,
-          idTecnico: cliente.idTecnico,
-          nombreTecnico: cliente.nombreTecnico
+          idSupervisor: cliente.idSupervisor,
+          nombreSupervisor: cliente.nombreSupervisor
         });
 
         this.cargando = false;
@@ -117,6 +133,7 @@ export class EditarClienteComponent implements OnInit, AfterViewInit {
       }
     });
   }
+
 
   initMap(): void {
     if (!this.latitud || !this.longitud) return;
@@ -183,7 +200,7 @@ export class EditarClienteComponent implements OnInit, AfterViewInit {
       idRol: form.idRol,
       latitud: this.latitud.toString(),
       longitud: this.longitud.toString(),
-      idTecnico: form.idTecnico || this.clienteOriginal.idTecnico
+      idSupervisor: form.idSupervisor || this.clienteOriginal.idSupervisor
     };
 
     this.clienteService.actualizarCliente(payload).subscribe({
@@ -213,9 +230,9 @@ export class EditarClienteComponent implements OnInit, AfterViewInit {
   }
 
   cargarTecnicos(): void {
-    this.clienteService.obtenerTecnicosPorRol().subscribe({
+    this.clienteService.obtenerSupervisoresExistentes().subscribe({
       next: data => {
-        this.tecnicos = data;
+        this.supervisores = data;
       },
       error: err => {
         console.error('Error al cargar técnicos:', err);
@@ -223,18 +240,19 @@ export class EditarClienteComponent implements OnInit, AfterViewInit {
     });
   }
 
-  onTecnicoSeleccionado(): void {
-    const idSeleccionado = this.clienteForm.get('idTecnico')?.value;
-    const tecnicoSeleccionado = this.tecnicos.find(
+  onSupervisorSeleccionado(): void {
+    const idSeleccionado = this.clienteForm.get('idSupervisor')?.value;
+    const supervisorSeleccionado = this.supervisores.find(
       t => t.idUsuario === idSeleccionado
     );
 
-    if (tecnicoSeleccionado) {
+    if (supervisorSeleccionado) {
       this.clienteForm.patchValue({
-        nombreTecnico: tecnicoSeleccionado.nombreTecnico
+        nombreSupervisor: supervisorSeleccionado.nombreSupervisor
       });
     }
   }
+
 
   private coordenadasCambiaron(): boolean {
     return (

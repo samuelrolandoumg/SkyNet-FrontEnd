@@ -8,6 +8,8 @@ import { ReporteSupervisorProjection } from '../interfaces/visita.interface';
 @Injectable({ providedIn: 'root' })
 export class DetalleVisitaService {
     private baseUrl = 'https://skynet-backend-production.up.railway.app/DetalleVisita';
+    //private baseUrl = 'http://localhost:8080/DetalleVisita';
+
 
     constructor(private http: HttpClient) { }
 

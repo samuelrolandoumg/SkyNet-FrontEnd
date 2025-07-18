@@ -1,7 +1,8 @@
 export interface CrearVisitaDto {
   idTecnico: number;
   idCliente: number;
-  idSupervisor: number;
+  tipoVisita: string;
+  fechaVisita: string;
 }
 
 export interface VisitaDto {
@@ -11,7 +12,7 @@ export interface VisitaDto {
   longitud: string;
   nombreCliente: string;
   idCliente: number;
-  idVisita:number;
+  idVisita: number;
   estado: string;
 }
 

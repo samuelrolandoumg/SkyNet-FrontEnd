@@ -3,6 +3,7 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { DetalleVisitaService } from '../../services/detalle-visita.service';
 import { ReporteSupervisorProjection } from '../../interfaces/visita.interface';
 import { MatIconModule } from '@angular/material/icon';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-reporte-supervisor',
@@ -13,12 +14,16 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class ReporteSupervisorComponent implements OnInit {
   reportes: ReporteSupervisorProjection[] = [];
+  usuario: any;
 
-  constructor(private detalleVisitaService: DetalleVisitaService) { }
+  constructor(private detalleVisitaService: DetalleVisitaService,
+    private authService: AuthService
+  ) { }
 
   ngOnInit(): void {
+    this.usuario = this.authService.obtenerUsuario();
     const idSupervisor = +(localStorage.getItem('idSupervisor') || '7');
-    this.detalleVisitaService.obtenerReportesSupervisor(idSupervisor).subscribe({
+    this.detalleVisitaService.obtenerReportesSupervisor(this.usuario.id).subscribe({
       next: (data: ReporteSupervisorProjection[]) => {
         this.reportes = data;
       },

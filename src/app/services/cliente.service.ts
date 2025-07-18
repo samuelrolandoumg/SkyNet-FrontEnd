@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ClienteDto, ClienteTecnico, ClienteUpdateDto, CrearClienteDto, Supervisor, TecnicoDto, UbicacionDto } from '../interfaces/cliente.interface';
+import { ClienteDto, ClienteTecnico, ClienteUpdateDto, CrearClienteDto, Supervisor, SupervisorDto, TecnicoDto, UbicacionDto } from '../interfaces/cliente.interface';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -42,6 +42,7 @@ export class ClienteService {
   obtenerClientesPorTecnico(idTecnico: number): Observable<ClienteTecnico[]> {
     return this.http.get<ClienteTecnico[]>(`${this.apiUrl}/clientes-tecnico?idTecnico=${idTecnico}`);
   }
+
   obtenerTecnicosPorSupervisor(idSupervisor: number): Observable<any[]> {
     return this.http.get<any[]>(`${this.usuarioUrl}/tecnicos-por-supervisor?idSupervisor=${idSupervisor}`);
   }
@@ -66,6 +67,10 @@ export class ClienteService {
     return this.http.get<TecnicoDto[]>(`${this.apiUrl}/tecnicos-by-rol`, { headers });
   }
 
+  obtenerSupervisoresExistentes(): Observable<SupervisorDto[]> {
+    return this.http.get<SupervisorDto[]>(`${this.apiUrl}/supervisores-existentes`);
+  }
+  
   actualizarCliente(cliente: ClienteUpdateDto): Observable<any> {
     return this.http.put(`${this.apiUrl}/actualizar`, cliente);
   }

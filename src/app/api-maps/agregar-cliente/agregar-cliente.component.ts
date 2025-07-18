@@ -28,17 +28,14 @@ export class AgregarClienteComponent implements OnInit, AfterViewInit {
   latitud: number | null = null;
   longitud: number | null = null;
   supervisores: any[] = [];
-  tecnicos: any[] = [];
 
   idSupervisorSeleccionado: number | null = null;
-  idSupervisor: number | null = null;
   nombreCliente: string = '';
   nombreNegocio: string = '';
   nit: string = '';
   telefono: string = '';
   correo: string = '';
   estado: boolean = true;
-  idTecnicoSeleccionado: number | null = null;
 
   @ViewChild('mapElement') mapElement!: ElementRef;
   @ViewChild('searchInput') searchInput!: ElementRef<HTMLInputElement>;
@@ -71,7 +68,7 @@ export class AgregarClienteComponent implements OnInit, AfterViewInit {
 
     const autocomplete = new google.maps.places.Autocomplete(input, {
       fields: ['geometry', 'name', 'formatted_address'],
-      types: ['establishment'], 
+      types: ['establishment'],
     });
     autocomplete.addListener('place_changed', () => {
       this.zone.run(() => {
@@ -116,20 +113,12 @@ export class AgregarClienteComponent implements OnInit, AfterViewInit {
     });
   }
 
-  obtenerTecnicos(): void {
-    if (this.idSupervisorSeleccionado !== null) {
-      this.clienteSrv.obtenerTecnicosPorSupervisor(this.idSupervisorSeleccionado).subscribe({
-        next: (data) => this.tecnicos = data,
-        error: () => console.error('Error cargando técnicos')
-      });
-    }
-  }
   guardar(): void {
     if (
       this.latitud && this.longitud &&
       this.nombreCliente.trim() && this.nombreNegocio.trim() &&
       this.nit.trim() && this.telefono.trim() && this.correo.trim() &&
-      this.idTecnicoSeleccionado !== null
+      this.idSupervisorSeleccionado !== null
     ) {
       const cliente: CrearClienteDto = {
         nombreCliente: this.nombreCliente,
@@ -141,7 +130,7 @@ export class AgregarClienteComponent implements OnInit, AfterViewInit {
         correo: this.correo,
         estado: this.estado,
         idRol: 4,
-        idTecnico: this.idTecnicoSeleccionado
+        idSupervisor: this.idSupervisorSeleccionado
       };
 
       this.clienteSrv.crearCliente(cliente).subscribe({
@@ -153,7 +142,6 @@ export class AgregarClienteComponent implements OnInit, AfterViewInit {
       });
     }
   }
-
 
   limpiarCampos(): void {
     this.nombreCliente = '';
@@ -167,5 +155,4 @@ export class AgregarClienteComponent implements OnInit, AfterViewInit {
     if (this.marker) this.marker.setMap(null);
     this.searchInput.nativeElement.value = '';
   }
-
 }
