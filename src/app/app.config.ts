@@ -27,6 +27,7 @@ import { DashboardTecnicoComponent } from './dashboard/dashboard-tecnico/dashboa
 import { ConsultarVisitasSupervisorComponent } from './visita/consultar-visitas-supervisor/consultar-visitas-supervisor.component';
 import { ReporteTecnicoComponent } from './reporte/reporte-tecnico/reporte-tecnico.component';
 import { ReporteSupervisorComponent } from './reporte/reporte-supervisor/reporte-supervisor.component';
+import { ReporteAdminComponent } from './reporte/reporte-admin/reporte-admin.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -60,6 +61,7 @@ const routes: Routes = [
 
       { path: 'reporte-tecnico', component: ReporteTecnicoComponent },
       { path: 'reporte-supervisor', component: ReporteSupervisorComponent },
+      { path: 'reporte-admin', component: ReporteAdminComponent },
 
     ]
   },

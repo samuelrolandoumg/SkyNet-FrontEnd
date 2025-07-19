@@ -7,11 +7,11 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ClienteService {
-  private apiUrl = 'https://skynet-backend-production.up.railway.app/cliente';
-  private usuarioUrl = 'https://skynet-backend-production.up.railway.app/usuario';
+  //private apiUrl = 'https://skynet-backend-production.up.railway.app/cliente';
+  //private usuarioUrl = 'https://skynet-backend-production.up.railway.app/usuario';
 
-  //private apiUrl = 'http://localhost:8080/cliente';
-  //private usuarioUrl = 'http://localhost:8080/usuario';
+  private apiUrl = 'http://localhost:8080/cliente';
+  private usuarioUrl = 'http://localhost:8080/usuario';
 
   constructor(private http: HttpClient) { }
 

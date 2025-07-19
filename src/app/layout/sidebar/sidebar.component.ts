@@ -59,11 +59,15 @@ export class SidebarComponent implements OnInit {
   rutaDashboard(): string {
     if (this.usuario?.rol === 'TECNICO') return '/reporte-tecnico';
     if (this.usuario?.rol === 'SUPERVISOR') return '/reporte-supervisor';
+    if (this.usuario?.rol === 'ADMIN') return '/reporte-admin';
     return '/dashboard-admin';
   }
 
   rutaConsultarVisitas(): string {
     if (this.usuario?.rol === 'SUPERVISOR') {
+      return '/consultar-visitas-supervisor';
+    };
+    if (this.usuario?.rol === 'ADMIN') {
       return '/consultar-visitas-supervisor';
     }
     return '/consultar-visitas';

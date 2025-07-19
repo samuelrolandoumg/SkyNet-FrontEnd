@@ -4,8 +4,8 @@ import { LoginRequest } from '../interfaces/login-request.interface';
 import { Observable } from 'rxjs';
 import { Usuario } from '../interfaces/usuario.interface';
 
-const API_URL = 'https://skynet-backend-production.up.railway.app';
-//const API_URL = 'http://localhost:8080';
+//const API_URL = 'https://skynet-backend-production.up.railway.app';
+const API_URL = 'http://localhost:8080';
 
 @Injectable({
   providedIn: 'root'

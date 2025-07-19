@@ -1,14 +1,14 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CrearVisitaDto, IniciarServicioDto, VisitaDto } from '../interfaces/visita.interface';
+import { CrearVisitaDto, IniciarServicioDto, SupervisorVisitaResumen, TecnicoVisitaResumen, VisitaDto } from '../interfaces/visita.interface';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VisitaService {
-  private visitaUrl = 'https://skynet-backend-production.up.railway.app/visita';
-  //private visitaUrl = 'http://localhost:8080/visita';
+  //private visitaUrl = 'https://skynet-backend-production.up.railway.app/visita';
+  private visitaUrl = 'http://localhost:8080/visita';
 
   constructor(private http: HttpClient) { }
 
@@ -51,10 +51,19 @@ export class VisitaService {
     );
   }
 
-  getTecnicosPorTipoVisita(tipoVisita: string): Observable<any[]> {
+  getTecnicosPorTipoVisita(tipoVisita: string, idUsuario: number): Observable<any[]> {
     return this.http.get<any[]>(`${this.visitaUrl}/tecnico-tipovisita`, {
-      params: { tipoVisita }
+      params: { tipoVisita, idUsuario }
     });
   }
-  
+
+  getResumenSupervisores(idAdmin: number) {
+    return this.http.get<SupervisorVisitaResumen[]>(`${this.visitaUrl}/resumen-supervisores?idAdmin=${idAdmin}`);
+  }
+
+  getResumenTecnicos(idSupervisor: number) {
+    return this.http.get<TecnicoVisitaResumen[]>(`${this.visitaUrl}/resumen-tecnicos?idSupervisor=${idSupervisor}`);
+  }
+
+
 }

@@ -3,6 +3,7 @@ export interface CrearVisitaDto {
   idCliente: number;
   tipoVisita: string;
   fechaVisita: string;
+  usuarioCreo: number;
 }
 
 export interface VisitaDto {
@@ -32,4 +33,22 @@ export interface ReporteSupervisorProjection {
   nombreCliente: string;
   nombreTecnico: string;
   visitaProximaIncidencia: string;
+}
+
+export interface SupervisorVisitaResumen {
+  idSupervisor: number;
+  nombreSupervisor: string;
+  totalVisitas: number;
+  creadas: number;
+  iniciadas: number;
+  finalizadas: number;
+}
+
+export interface TecnicoVisitaResumen {
+  idTecnico: number;
+  nombreTecnico: string;
+  totalVisitas: number;
+  creadas: number;
+  iniciadas: number;
+  finalizadas: number;
 }

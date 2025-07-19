@@ -1,55 +1,71 @@
-<div class="card">
-  <h2><i class="fa-solid fa-calendar-day"></i> Visitas </h2>
+<div class="contenedor-boton-derecha">
+  <button class="btn-descargar" (click)="descargarPDF()">📄 Descargar PDF</button>
+</div>
 
-  <div class="filtro-fecha">
-    <label for="fecha">Filtrar por fecha:</label>
-    <input type="date" id="fecha" [(ngModel)]="fechaFiltro" (change)="filtrarPorFecha()" />
-  </div>
+<!-- Contenido que se exportará -->
+<div class="contenedor-listado" #contenidoPDF>
 
-  <table class="tabla" *ngIf="visitasFiltradas.length > 0">
-    <thead>
-      <tr>
-        <th>Cliente</th>
-        <th>Tecnico Asignado</th>
-        <th>Estado</th>
-        <th>Fecha visita</th>
-        <th>¿En tiempo?</th>
-        <th>Tiempo retraso</th>
-        <th>Acción</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let visita of visitasFiltradas">
-        <td>{{ visita.nombreCliente }}</td>
-        <td>{{ visita.nombreTecnico }}</td>
-        <td>
-          <span class="badge" [ngClass]="{
+  <br>
+  <div class="card">
+    <h2><i class="fa-solid fa-calendar-day"></i> Visitas </h2>
+
+    <div class="filtro-fecha">
+      <label for="fecha">Filtrar por fecha:</label>
+      <input type="date" id="fecha" [(ngModel)]="fechaFiltro" (change)="filtrarPorFecha()" />
+    </div>
+
+    <table class="tabla" *ngIf="visitasFiltradas.length > 0">
+      <thead>
+        <tr>
+          <th>Cliente</th>
+          <th>Tecnico Asignado</th>
+          <th>Estado</th>
+          <th>Fecha visita</th>
+          <th>¿En tiempo?</th>
+          <th>Tiempo retraso</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let visita of visitasFiltradas">
+          <td>{{ visita.nombreCliente }}</td>
+          <td>{{ visita.nombreTecnico }}</td>
+          <td>
+            <span class="badge" [ngClass]="{
             'badge-creado': visita.estado === 'CREADO',
             'badge-iniciado': visita.estado === 'SERVICIO INICIADO',
             'badge-finalizado': visita.estado === 'FINALIZADO CON EXITO',
             'badge-incidencia': visita.estado === 'FINALIZADO CON INCIDENCIA'
           }">
-            {{ visita.estado }}
-          </span>
-        </td>
-        <td>{{ visita.fechaVisita }}</td>
-        <td>{{ visita.enTiempo }}</td>
-        <td>{{ visita.tiempoRetraso }}</td>
-        <td>
-          <ng-container *ngIf="visita.leido === null; else yaAlertado">
-            <button class="boton boton-ver" (click)="alertarRetraso(visita.idVisita)">
-              Alertar retraso a técnico
-            </button>
-          </ng-container>
-          <ng-template #yaAlertado>
-            <span class="texto-leido">Ya alertado</span>
-          </ng-template>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+              {{ visita.estado }}
+            </span>
+          </td>
+          <td>{{ visita.fechaVisita }}</td>
+          <td>{{ visita.enTiempo }}</td>
+          <td>{{ visita.tiempoRetraso }}</td>
+          <td>
+            <!-- ✅ Mostrar botón solo si está fuera de tiempo y no ha sido alertado -->
+            <ng-container *ngIf="visita.leido === null && esRetraso(visita); else yaAlertado">
+              <button class="boton boton-ver" (click)="alertarRetraso(visita.idVisita)">
+                Alertar retraso a técnico
+              </button>
+            </ng-container>
 
-  <div *ngIf="visitasFiltradas.length === 0" class="texto-leido">
-    No hay visitas para mostrar.
+            <ng-template #yaAlertado>
+              <!-- Mostrar texto "Ya alertado" o simplemente nada si está A tiempo -->
+              <span class="texto-leido" *ngIf="visita.leido !== null">
+                Ya alertado
+              </span>
+              <span class="texto-leido" *ngIf="visita.leido === null && !esRetraso(visita)">
+                ✔️ A tiempo
+              </span>
+            </ng-template>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div *ngIf="visitasFiltradas.length === 0" class="texto-leido">
+      No hay visitas para mostrar.
+    </div>
   </div>
-</div>

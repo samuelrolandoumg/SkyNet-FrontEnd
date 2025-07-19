@@ -49,7 +49,7 @@ export class RegistrarVisitaComponent implements OnInit {
     this.clientes = [];
 
     if (this.tipoVisitaSeleccionado) {
-      this.visitaService.getTecnicosPorTipoVisita(this.tipoVisitaSeleccionado).subscribe({
+      this.visitaService.getTecnicosPorTipoVisita(this.tipoVisitaSeleccionado, this.idSupervisor).subscribe({
         next: (data) => this.tecnicos = data,
         error: () => {
           Swal.fire('Error', 'No se pudo obtener técnicos para esa visita', 'error');
@@ -60,19 +60,20 @@ export class RegistrarVisitaComponent implements OnInit {
 
   cargarClientes(): void {
     if (this.idTecnicoSeleccionado !== null) {
-      this.clienteService.obtenerClientesPorTecnico(this.idSupervisor).subscribe(clientes => {
+      this.clienteService.obtenerClientesPorTecnico(this.idTecnicoSeleccionado).subscribe(clientes => {
         this.clientes = clientes;
       });
     }
   }
 
   registrarVisita(): void {
-    if (this.idTecnicoSeleccionado && this.idClienteSeleccionado && this.fechaVisita && this.tipoVisitaSeleccionado) {
+    if (this.idTecnicoSeleccionado && this.idClienteSeleccionado && this.fechaVisita && this.tipoVisitaSeleccionado && this.idSupervisor) {
       const visita = {
         idCliente: this.idClienteSeleccionado,
         idTecnico: this.idTecnicoSeleccionado,
         tipoVisita: this.tipoVisitaSeleccionado,
-        fechaVisita: this.fechaVisita
+        fechaVisita: this.fechaVisita,
+        usuarioCreo: this.idSupervisor
       };
 
       this.visitaService.crearVisita(visita).subscribe({

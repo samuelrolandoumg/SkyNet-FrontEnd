@@ -8,8 +8,8 @@ import { UsuarioDto, UsuarioListarProjection, UsuarioUpdateDto } from '../interf
   providedIn: 'root'
 })
 export class UsuarioService {
-  private usuarioUrl = 'https://skynet-backend-production.up.railway.app/usuario';
-  //private usuarioUrl = 'http://localhost:8080/usuario';
+  //private usuarioUrl = 'https://skynet-backend-production.up.railway.app/usuario';
+  private usuarioUrl = 'http://localhost:8080/usuario';
 
   
   constructor(private http: HttpClient) { }
