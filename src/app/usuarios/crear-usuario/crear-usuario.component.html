@@ -11,9 +11,13 @@
 
         <label>Correo</label>
         <input type="email" formControlName="correo" />
+        <!-- 
+        <label>Usuario</label>
+        <input type="text" formControlName="usuario" /> -->
 
         <label>Usuario</label>
-        <input type="text" formControlName="usuario" />
+        <input type="text" [attr.disabled]="true" formControlName="usuario" />
+
 
         <label>Contraseña</label>
         <input type="password" formControlName="contrasena" />

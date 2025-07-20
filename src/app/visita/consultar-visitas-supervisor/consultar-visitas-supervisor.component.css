@@ -96,3 +96,46 @@
 .btn-descargar:hover {
   background-color: #0056b3;
 }
+
+
+.boton-posponer {
+  background-color: #f0ad4e;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 6px;
+}
+.boton-posponer:disabled {
+  background-color: #e0e0e0;
+  color: #999;
+  cursor: not-allowed;
+}
+
+.accion-contenedor {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 260px; /* asegura un ancho uniforme */
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.boton-ver[hidden] {
+  visibility: hidden;
+}
+
+.espacio-alerta {
+  display: inline-block;
+  width: 160px;  /* Mismo ancho del botón de alerta */
+  height: 32px;  /* Igual que el botón */
+  line-height: 32px;
+  text-align: center;
+  background-color: #f5f5f5;
+  color: #888;
+  border-radius: 6px;
+  font-size: 13px;
+  font-style: italic;
+  font-weight: 500;
+}

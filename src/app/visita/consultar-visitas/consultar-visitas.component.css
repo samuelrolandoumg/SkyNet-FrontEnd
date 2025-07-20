@@ -1,10 +1,8 @@
 .contenedor-principal {
-  max-width: 1000px;
-  margin: 30px auto;
   background: white;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
 }
 
 .encabezado {
@@ -114,4 +112,26 @@
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 14px;
+}
+
+.contenedor-boton-derecha {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 20px 0 20px;
+}
+
+.btn-descargar {
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  font-weight: 500;
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-descargar:hover {
+  background-color: #0056b3;
 }

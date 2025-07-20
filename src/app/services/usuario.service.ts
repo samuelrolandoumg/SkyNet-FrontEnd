@@ -3,14 +3,14 @@ import { Supervisor } from '../interfaces/cliente.interface';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { UsuarioDto, UsuarioListarProjection, UsuarioUpdateDto } from '../interfaces/usuario.interface';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
-  //private usuarioUrl = 'https://skynet-backend-production.up.railway.app/usuario';
-  private usuarioUrl = 'http://localhost:8080/usuario';
 
+    private usuarioUrl = `${environment.apiUrl}/usuario`;
   
   constructor(private http: HttpClient) { }
 

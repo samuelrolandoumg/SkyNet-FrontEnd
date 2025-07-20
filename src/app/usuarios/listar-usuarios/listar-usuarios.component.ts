@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UsuarioService } from '../../services/usuario.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -8,6 +8,7 @@ import { UsuarioListarProjection } from '../../interfaces/usuario.interface';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import html2pdf from 'html2pdf.js';
 
 @Component({
   selector: 'app-listar-usuarios',
@@ -31,6 +32,7 @@ export class ListarUsuariosComponent implements OnInit {
   supervisores: (Supervisor & { mostrar?: boolean, tecnicos?: UsuarioListarProjection[] })[] = [];
   usuario: any;
   esAdmin = false;
+  @ViewChild('contenidoPDF', { static: false }) contenidoPDF!: ElementRef;
 
   constructor(
     private usuarioService: UsuarioService,
@@ -87,7 +89,25 @@ export class ListarUsuariosComponent implements OnInit {
   }
 
   editarUsuario(id: number, event: MouseEvent): void {
-    event.stopPropagation(); 
+    event.stopPropagation();
     this.router.navigate(['/editar-usuario'], { queryParams: { id } });
+  }
+
+  descargarPDF() {
+    const element = this.contenidoPDF?.nativeElement;
+    if (!element) {
+      console.error('Elemento no definido');
+      return;
+    }
+
+    const opt = {
+      margin: 0.3,
+      filename: 'reporte-usuarios.pdf',
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+    };
+
+    html2pdf().set(opt).from(element).save();
   }
 }

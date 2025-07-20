@@ -1,0 +1,110 @@
+.visitas-container {
+  background-color: #fff;
+  padding: 1.5rem;
+  margin: 1rem auto;
+  border-radius: 10px;
+  max-width: 95%;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.08);
+  font-family: 'Segoe UI', sans-serif;
+  border: 1px solid #eee;
+}
+
+.visitas-container h4 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  color: #2c3e50;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+}
+
+.tabla-scroll {
+  overflow-x: auto;
+}
+
+.tabla-visitas {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.95rem;
+  background-color: #fff;
+}
+
+.tabla-visitas thead {
+  background-color: #f5f7fa;
+  color: #333;
+  border-top: 1px solid #e0e0e0;
+}
+
+.tabla-visitas th {
+  padding: 12px;
+  font-weight: 600;
+  border-bottom: 1px solid #ddd;
+  background-color: #f5f7fa;
+}
+
+.tabla-visitas td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  color: #333;
+  text-align: center;
+}
+
+.tabla-visitas tr:hover {
+  background-color: #f9f9f9;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.35em 0.9em;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+/* ✅ Colores suaves con texto visible */
+.estado-exito {
+  background-color: rgba(76, 175, 80, 0.15);  /* Verde suave */
+  color: #2e7d32;
+}
+
+.estado-incidencia {
+  background-color: rgba(229, 57, 53, 0.15);  /* Rojo suave */
+  color: #c62828;
+}
+
+.estado-cancelada {
+  background-color: rgba(255, 193, 7, 0.2);   /* Amarillo suave */
+  color: #f57f17;
+}
+
+.estado-otro {
+  background-color: rgba(96, 125, 139, 0.15); /* Gris azulado suave */
+  color: #455a64;
+}
+
+.contenedor-boton-derecha {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 20px 0 20px;
+}
+
+.btn-descargar {
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  font-weight: 500;
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-descargar:hover {
+  background-color: #0056b3;
+}

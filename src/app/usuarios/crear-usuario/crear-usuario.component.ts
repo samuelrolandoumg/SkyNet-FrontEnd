@@ -39,7 +39,7 @@ export class CrearUsuarioComponent implements OnInit {
       nombre: ['', Validators.required],
       apellido: ['', Validators.required],
       correo: ['', [Validators.required, Validators.email]],
-      usuario: ['', Validators.required],
+      usuario: [{ value: '', disabled: true }, Validators.required],
       contrasena: ['', Validators.required],
       idRol: [null, Validators.required],
       dpi: ['', Validators.required],
@@ -47,21 +47,23 @@ export class CrearUsuarioComponent implements OnInit {
       direccion: ['', Validators.required],
       idSupervisor: [null],
       idAdmin: [null],
-      puestoTecnico: [null] // ← nuevo campo
+      puestoTecnico: [null]
     });
+
+    this.usuarioForm.get('nombre')?.valueChanges.subscribe(() => this.generarUsuario());
+    this.usuarioForm.get('apellido')?.valueChanges.subscribe(() => this.generarUsuario());
 
     this.usuarioForm.get('idRol')?.valueChanges.subscribe(idRolSeleccionado => {
       const rol = Number(idRolSeleccionado);
 
-      this.mostrarSupervisores = rol === 3; // TECNICO
-      this.mostrarAdmins = rol === 2;       // SUPERVISOR
-      this.mostrarPuestoTecnico = rol === 3; // ✅ activa campo puesto
+      this.mostrarSupervisores = rol === 3;
+      this.mostrarAdmins = rol === 2;
+      this.mostrarPuestoTecnico = rol === 3;
 
       const idSupervisorControl = this.usuarioForm.get('idSupervisor');
       const idAdminControl = this.usuarioForm.get('idAdmin');
       const puestoTecnicoControl = this.usuarioForm.get('puestoTecnico');
 
-      // 🔧 Supervisores
       if (this.mostrarSupervisores) {
         idSupervisorControl?.setValidators(Validators.required);
         this.usuarioService.obtenerSupervisores().subscribe({
@@ -104,10 +106,11 @@ export class CrearUsuarioComponent implements OnInit {
     if (this.usuarioForm.invalid) return;
 
     const usuario: UsuarioDto = {
-      ...this.usuarioForm.value,
+      ...this.usuarioForm.getRawValue(),
       estado: true,
       fechaCreacion: new Date().toISOString()
     };
+
 
     this.usuarioService.crearUsuario(usuario).subscribe({
       next: () => {
@@ -128,4 +131,19 @@ export class CrearUsuarioComponent implements OnInit {
       }
     });
   }
+
+  generarUsuario(): void {
+    const nombre: string = this.usuarioForm.get('nombre')?.value || '';
+    const apellido: string = this.usuarioForm.get('apellido')?.value || '';
+
+    if (!nombre || !apellido) return;
+
+    const inicialNombre = nombre.trim().charAt(0).toLowerCase();
+    const apellidoLimpio = apellido.replace(/\s/g, '').toLowerCase().substring(0, 5);
+
+    const usuarioGenerado = inicialNombre + apellidoLimpio;
+
+    this.usuarioForm.get('usuario')?.setValue(usuarioGenerado);
+  }
+
 }

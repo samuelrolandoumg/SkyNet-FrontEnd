@@ -1,4 +1,13 @@
-<div class="contenedor-principal">
+<div class="contenedor-boton-derecha">
+  <button class="btn-descargar" (click)="descargarPDF()">📄 Descargar PDF</button>
+</div>
+
+<br>
+
+<!-- Contenido que se exportará -->
+<div class="contenedor-principal" #contenidoPDF>
+
+<!-- <div class="contenedor-principal"> -->
   <div class="encabezado">
     <h2 class="titulo">🗓️ Visitas de Hoy</h2>
     <div class="filtro-fecha">

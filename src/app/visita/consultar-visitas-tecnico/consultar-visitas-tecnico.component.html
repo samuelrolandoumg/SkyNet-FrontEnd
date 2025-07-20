@@ -1,0 +1,51 @@
+<div class="contenedor-boton-derecha">
+  <button class="btn-descargar" (click)="descargarPDF()">📄 Descargar PDF</button>
+</div>
+
+<br>
+
+<!-- Contenido que se exportará -->
+<div class="contenedor-principal" #contenidoPDF>
+
+<div class="visitas-container">
+  <h2 class="titulo">🗓️ Visitas de Asignadas</h2>
+
+  <div class="tabla-scroll">
+    <table class="tabla-visitas">
+      <thead>
+        <tr>
+          <th>Cliente</th>
+          <th>Negocio</th>
+          <th>Fecha Visita</th>
+          <th>Estado</th>
+          <th>Tipo de Visita</th>
+          <th>Fecha Finalizada</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let visita of visitas">
+          <td>{{ visita.nombreCliente }}</td>
+          <td>{{ visita.nombreNegocio }}</td>
+          <td>{{ visita.fechaVisita | date: 'yyyy-MM-dd' }}</td>
+          <td>
+            <span class="badge"
+              [ngClass]="{
+                'estado-exito': visita.estadoVisita === 'FINALIZADO CON EXITO',
+                'estado-incidencia': visita.estadoVisita === 'FINALIZADO CON INCIDENCIA',
+                'estado-cancelada': visita.estadoVisita === 'CANCELADA',
+                'estado-otro': visita.estadoVisita !== 'FINALIZADO CON EXITO' &&
+                               visita.estadoVisita !== 'FINALIZADO CON INCIDENCIA' &&
+                               visita.estadoVisita !== 'CANCELADA'
+              }">
+              {{ visita.estadoVisita }}
+            </span>
+          </td>
+          <td>{{ visita.tipoVisita }}</td>
+          <td>
+            {{ visita.fechaFinalizada ? (visita.fechaFinalizada | date: 'yyyy-MM-dd HH:mm') : '–––' }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

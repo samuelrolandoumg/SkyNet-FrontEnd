@@ -7,6 +7,7 @@
     <p><strong>Estado:</strong> {{ estado || '---' }}</p>
     <p><strong>Cliente:</strong> {{ nombreCliente || '---' }}</p>
     <p><strong>Negocio:</strong> {{ nombreNegocio || '---' }}</p>
+    <p><strong>Tipo de visita:</strong> {{ tipoVisita || '---' }}</p>
 
     <div class="btns-container">
         <button class="boton-accion" [disabled]="loading || estado === 'SERVICIO INICIADO'" (click)="iniciarServicio()">

@@ -3,18 +3,17 @@ import { Injectable } from '@angular/core';
 import { LoginRequest } from '../interfaces/login-request.interface';
 import { Observable } from 'rxjs';
 import { Usuario } from '../interfaces/usuario.interface';
-
-//const API_URL = 'https://skynet-backend-production.up.railway.app';
-const API_URL = 'http://localhost:8080';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  
   constructor(private http: HttpClient) { }
 
   login(data: LoginRequest): Observable<any> {
-    return this.http.post(`${API_URL}/usuario/login`, data, {
+    return this.http.post(`${environment.apiUrl}/usuario/login`, data, {
       responseType: 'json'
     });
   }

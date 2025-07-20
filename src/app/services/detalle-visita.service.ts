@@ -4,12 +4,12 @@ import { Observable } from 'rxjs';
 import { ResumenEstado, VisitaPorEstado } from '../interfaces/dashboard.interface';
 import { ConsultaVisitaSupervisor } from '../interfaces/usuario.interface';
 import { ReporteSupervisorProjection } from '../interfaces/visita.interface';
+import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class DetalleVisitaService {
-    //private baseUrl = 'https://skynet-backend-production.up.railway.app/DetalleVisita';
-    private baseUrl = 'http://localhost:8080/DetalleVisita';
 
+    private baseUrl = `${environment.apiUrl}/DetalleVisita`;
 
     constructor(private http: HttpClient) { }
 

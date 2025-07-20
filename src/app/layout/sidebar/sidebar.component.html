@@ -52,12 +52,15 @@
       <li *ngIf="usuario?.rol !== 'TECNICO'" routerLink="/registrar-visita" routerLinkActive="active">Registrar Visita
       </li>
       <li [routerLink]="rutaConsultarVisitas()" routerLinkActive="active">Consultar Visitas</li>
+      <li *ngIf="usuario?.rol === 'SUPERVISOR' || usuario?.rol === 'TECNICO'" [routerLink]="rutaConsultarSupervisoresVisitas()"
+        routerLinkActive="active">
+        Consultar historial visitas
+      </li>
     </ul>
-
 
     <!-- FIN MENÚ VISITAS -->
 
-    <li [routerLink]="rutaDashboard()" routerLinkActive="active" routerLink = "/reporte-tecnico">
+    <li [routerLink]="rutaDashboard()" routerLinkActive="active" routerLink="/reporte-tecnico">
       <i class="fa-solid fa-file-lines"></i>
       <span *ngIf="!isCollapsed">Reportes</span>
     </li>

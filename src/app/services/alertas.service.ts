@@ -1,14 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AlertasService {
 
-  //private baseUrl = 'https://skynet-backend-production.up.railway.app/Alertas';
-  private baseUrl = 'http://localhost:8080/Alertas';
+  private baseUrl = `${environment.apiUrl}/Alertas`;
 
   constructor(private http: HttpClient) { }
 

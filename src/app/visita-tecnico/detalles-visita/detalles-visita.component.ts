@@ -18,6 +18,7 @@ export class DetallesVisitaComponent implements OnInit {
   estado: string = '';
   nombreCliente: string = '';
   nombreNegocio: string = '';
+  tipoVisita: string = '';
   idVisita!: number;
   mensaje: string = '';
   loading: boolean = false;
@@ -35,7 +36,7 @@ export class DetallesVisitaComponent implements OnInit {
     this.estado = nav?.estado;
     this.nombreCliente = nav?.nombreCliente;
     this.nombreNegocio = nav?.nombreNegocio;
-
+    this.tipoVisita = nav?.tipoVisita;
     if (!this.idVisita) {
       this.mensaje = 'ID de visita no proporcionado';
       return;

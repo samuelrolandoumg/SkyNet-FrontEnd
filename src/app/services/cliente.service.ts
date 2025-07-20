@@ -2,16 +2,16 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ClienteDto, ClienteTecnico, ClienteUpdateDto, CrearClienteDto, Supervisor, SupervisorDto, TecnicoDto, UbicacionDto } from '../interfaces/cliente.interface';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClienteService {
-  //private apiUrl = 'https://skynet-backend-production.up.railway.app/cliente';
-  //private usuarioUrl = 'https://skynet-backend-production.up.railway.app/usuario';
 
-  private apiUrl = 'http://localhost:8080/cliente';
-  private usuarioUrl = 'http://localhost:8080/usuario';
+    private apiUrl = `${environment.apiUrl}/cliente`;
+    private usuarioUrl = `${environment.apiUrl}/usuario`;
+  
 
   constructor(private http: HttpClient) { }
 

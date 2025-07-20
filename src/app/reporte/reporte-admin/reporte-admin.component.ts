@@ -49,10 +49,8 @@ export class ReporteAdminComponent implements OnInit {
     const index = this.supervisoresExpandido.indexOf(supervisor.idSupervisor);
 
     if (index !== -1) {
-      // Ya estaba expandido, lo contraemos
       this.supervisoresExpandido.splice(index, 1);
     } else {
-      // Lo expandimos
       this.supervisoresExpandido.push(supervisor.idSupervisor);
 
       if (!this.tecnicosMap[supervisor.idSupervisor]) {
@@ -81,4 +79,10 @@ export class ReporteAdminComponent implements OnInit {
 
     html2pdf().set(opt).from(element).save();
   }
+
+  getCanceladasTotales(idSupervisor: number): number {
+    const tecnicos = this.tecnicosMap[idSupervisor] || [];
+    return tecnicos.reduce((acc, tecnico) => acc + (tecnico.cancelada || 0), 0);
+  }
+
 }

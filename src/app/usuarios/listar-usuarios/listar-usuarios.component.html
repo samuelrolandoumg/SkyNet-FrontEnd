@@ -1,47 +1,31 @@
-<!-- <div class="contenedor-listado">
-    <h2 class="titulo"><span class="icono">📋</span> Lista de Usuarios</h2>
+<div class="contenedor-boton-derecha">
+  <button class="btn-descargar" (click)="descargarPDF()">📄 Descargar PDF</button>
+</div>
 
-    <div *ngFor="let supervisor of supervisores">
-        <div class="card-supervisor" (click)="toggleTecnicos(supervisor.idUsuario)">
-            <span class="icono-user">🧑‍💼</span> <strong>{{ supervisor.usuario }}</strong>
-        </div>
+<br>
 
-        <div class="contenedor-tecnicos" *ngIf="supervisor.mostrar" [@expandirContraer]>
-            <div *ngIf="supervisor.tecnicos && supervisor.tecnicos.length > 0; else sinTecnicos">
-                <div *ngFor="let tecnico of supervisor.tecnicos" class="tecnico">
-                    🔧 {{ tecnico.nombreTecnico }} <span class="rol">({{ tecnico.rol }})</span>
-                    <button class="btn-editar" (click)="irAEditar(tecnico.idUsuario)">✏️</button>
+<!-- Contenido que se exportará -->
+<div class="contenedor-listado" #contenidoPDF>
 
-                </div>
-            </div>
+  <h2><i class="fa-solid fa-users-viewfinder"></i> Lista de Usuarios</h2>
 
-            <ng-template #sinTecnicos>
-                <div class="sin-tecnicos">🚫 Sin técnicos asignados</div>
-            </ng-template>
-        </div>
+  <div *ngFor="let supervisor of supervisores">
+    <div class="card-supervisor" (click)="toggleTecnicos(supervisor.idUsuario)">
+      <span class="icono-user">🧑‍💼</span>
+      <strong>{{ supervisor.usuario }}</strong>
+      <button class="btn-editar" (click)="editarUsuario(supervisor.idUsuario, $event)">Editar</button>
     </div>
-</div> -->
 
-<div class="contenedor-listado">
-    <h2 class="titulo"><span class="icono">📋</span> Lista de Usuarios</h2>
-
-    <div *ngFor="let supervisor of supervisores">
-        <div class="card-supervisor" (click)="toggleTecnicos(supervisor.idUsuario)">
-            <span class="icono-user">🧑‍💼</span>
-            <strong>{{ supervisor.usuario }}</strong>
-            <button class="btn-editar" (click)="editarUsuario(supervisor.idUsuario, $event)">Editar</button>
+    <div class="contenedor-tecnicos" *ngIf="supervisor.mostrar" [@expandirContraer]>
+      <div *ngIf="supervisor.tecnicos && supervisor.tecnicos.length > 0; else sinTecnicos">
+        <div *ngFor="let tecnico of supervisor.tecnicos" class="tecnico">
+          🔧 {{ tecnico.nombreTecnico }} <span class="rol">({{ tecnico.rol }})</span>
+          <button class="btn-editar-chico" (click)="editarUsuario(tecnico.idUsuario, $event)">✏️</button>
         </div>
-
-        <div class="contenedor-tecnicos" *ngIf="supervisor.mostrar" [@expandirContraer]>
-            <div *ngIf="supervisor.tecnicos && supervisor.tecnicos.length > 0; else sinTecnicos">
-                <div *ngFor="let tecnico of supervisor.tecnicos" class="tecnico">
-                    🔧 {{ tecnico.nombreTecnico }} <span class="rol">({{ tecnico.rol }})</span>
-                    <button class="btn-editar-chico" (click)="editarUsuario(tecnico.idUsuario, $event)">✏️</button>
-                </div>
-            </div>
-            <ng-template #sinTecnicos>
-                <div class="sin-tecnicos">🚫 Sin técnicos asignados</div>
-            </ng-template>
-        </div>
+      </div>
+      <ng-template #sinTecnicos>
+        <div class="sin-tecnicos">🚫 Sin técnicos asignados</div>
+      </ng-template>
     </div>
+  </div>
 </div>

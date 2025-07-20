@@ -130,14 +130,18 @@ export class EditarUsuarioComponent implements OnInit {
       },
       error: (err) => {
         console.error('Error al actualizar usuario:', err);
+
+        const mensajeBackend = err?.error?.mensaje || 'Intente nuevamente.';
+
         Swal.fire({
           icon: 'error',
           title: 'Error al actualizar',
-          text: 'Intente nuevamente.',
+          text: mensajeBackend,
           confirmButtonColor: '#dc3545'
         });
       }
     });
+
   }
 
 

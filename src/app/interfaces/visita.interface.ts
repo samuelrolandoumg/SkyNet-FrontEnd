@@ -15,6 +15,7 @@ export interface VisitaDto {
   idCliente: number;
   idVisita: number;
   estado: string;
+  tipoVisita: string;
 }
 
 export interface IniciarServicioDto {
@@ -42,13 +43,28 @@ export interface SupervisorVisitaResumen {
   creadas: number;
   iniciadas: number;
   finalizadas: number;
+  canceladas: number;
 }
 
 export interface TecnicoVisitaResumen {
+  nombreSupervisor: string;
   idTecnico: number;
   nombreTecnico: string;
   totalVisitas: number;
   creadas: number;
   iniciadas: number;
-  finalizadas: number;
+  finalizadasExito: number;
+  finalizadasIncidencia: number;
+  cancelada: number;
+}
+
+export interface VisitaPorClienteProjection {
+  idCliente: number;
+  nombreCliente: string;
+  nombreNegocio: string;
+  idVisita: number;
+  fechaVisita: string;
+  estadoVisita: string;
+  tipoVisita: string;
+  fechaFinalizada: string;
 }

@@ -1,17 +1,17 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CrearVisitaDto, IniciarServicioDto, SupervisorVisitaResumen, TecnicoVisitaResumen, VisitaDto } from '../interfaces/visita.interface';
+import { CrearVisitaDto, IniciarServicioDto, SupervisorVisitaResumen, TecnicoVisitaResumen, VisitaDto, VisitaPorClienteProjection } from '../interfaces/visita.interface';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VisitaService {
-  //private visitaUrl = 'https://skynet-backend-production.up.railway.app/visita';
-  private visitaUrl = 'http://localhost:8080/visita';
+
+  private visitaUrl = `${environment.apiUrl}/visita`;
 
   constructor(private http: HttpClient) { }
-
 
   crearVisita(data: CrearVisitaDto): Observable<string> {
     return this.http.post(`${this.visitaUrl}/crear`, data, { responseType: 'text' });
@@ -65,5 +65,15 @@ export class VisitaService {
     return this.http.get<TecnicoVisitaResumen[]>(`${this.visitaUrl}/resumen-tecnicos?idSupervisor=${idSupervisor}`);
   }
 
+  cancelarVisita(data: { idVisita: number, motivoCancelacion: string, usuarioCancelo: number }) {
+    return this.http.put(`${this.visitaUrl}/cancelar`, data);
+  }
 
+  posponerVisita(data: { idVisita: number, nuevaFecha: string, motivoPosposicion: string }) {
+    return this.http.put(`${this.visitaUrl}/posponer`, data);
+  }
+
+  getVisitasTecnico(idTecnico: number) {
+    return this.http.get<VisitaPorClienteProjection[]>(`${this.visitaUrl}/listar-visitas-tecnico?idTecnico=${idTecnico}`);
+  }
 }

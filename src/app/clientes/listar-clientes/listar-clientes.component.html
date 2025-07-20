@@ -1,4 +1,12 @@
-<div class="contenedor-principal">
+<div class="contenedor-boton-derecha">
+  <button class="btn-descargar" (click)="descargarPDF()">📄 Descargar PDF</button>
+</div>
+
+<br>
+
+<!-- Contenido que se exportará -->
+<div class="contenedor-principal" #contenidoPDF>
+
   <div class="encabezado">
     <h2 class="titulo">📋 Clientes registrados</h2>
   </div>
@@ -31,15 +39,12 @@
           <td>{{ cliente.correo }}</td>
           <td>{{ cliente.telefono }}</td>
           <td>
-            <button class="btn btn-editar" (click)="editarCliente(cliente.idCliente)">
-              Editar
-            </button>
-
+            <button class="btn btn-editar" (click)="editarCliente(cliente.idCliente)">Editar</button>
             <button class="btn btn-danger" (click)="eliminarCliente(cliente.idCliente)">Eliminar</button>
-
           </td>
         </tr>
       </tbody>
     </table>
   </div>
+
 </div>

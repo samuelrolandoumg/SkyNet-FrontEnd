@@ -1,0 +1,32 @@
+<div class="contenedor-resumen">
+    <div *ngFor="let supervisor of resumenSupervisores">
+        <div class="card-supervisor-resumen">
+            <div class="encabezado-supervisor">
+                <span class="icono">👨‍💼</span>
+                <strong>{{ supervisor.nombreSupervisor }}</strong>
+                <span class="conteo-supervisor">
+                    Total: {{ getTotalVisitas(supervisor) }} |
+                    Creadas: {{ getEstadoCount(supervisor, 'CREADO') }} |
+                    Iniciadas: {{ getEstadoCount(supervisor, 'SERVICIO INICIADO') }} |
+                    Finalizadas: {{ getEstadoCount(supervisor, 'FINALIZADO') }}
+                    Canceladas: {{ getEstadoCount(supervisor, 'CANCELADA') }}
+                </span>
+            </div>
+
+            <div *ngFor="let tecnico of supervisor.tecnicos" class="card-tecnico">
+                <div class="tecnico-info">
+                    🔧 <strong>{{ tecnico.nombreTecnico }}</strong> <span class="rol">(TECNICO)</span>
+                </div>
+                <div class="badges">
+                    <span class="badge total">Total: {{ tecnico.totalVisitas }}</span>
+                    <span class="badge creadas">Creadas: {{ tecnico.creadas }}</span>
+                    <span class="badge iniciadas">Iniciadas: {{ tecnico.iniciadas }}</span>
+                    <span class="badge finalizadas">Finalizadas con exito: {{ tecnico.finalizadasExito }}</span>
+                    <span class="badge finalizadas">Finalizadas con Incidencia: {{ tecnico.finalizadasIncidencia }}</span>
+                    <span class="badge cancelada">Cancelada: {{ tecnico.cancelada }}</span>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

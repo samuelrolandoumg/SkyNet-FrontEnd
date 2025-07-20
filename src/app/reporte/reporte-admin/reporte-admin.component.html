@@ -1,6 +1,8 @@
-<!-- <div class="contenedor-listado">
+<div class="contenedor-boton-derecha">
+    <button class="btn-descargar" (click)="descargarPDF()">📄 Descargar PDF</button>
+</div>
 
-    <button class="btn-pdf" (click)="descargarPDF()">📄 Descargar PDF</button>
+<div class="contenedor-listado" #contenidoPDF>
 
     <h2 class="titulo"><span class="icono">📋</span> Supervisores bajo su cargo</h2>
 
@@ -12,7 +14,8 @@
                 Total: {{ supervisor.totalVisitas }} |
                 Creadas: {{ supervisor.creadas }} |
                 Iniciadas: {{ supervisor.iniciadas }} |
-                Finalizadas: {{ supervisor.finalizadas }}
+                Finalizadas: {{ (supervisor.finalizadas )}} |
+                Canceladas: {{ (supervisor.canceladas ) }}
             </span>
         </div>
 
@@ -27,53 +30,11 @@
                     <span class="badge">Total: {{ tecnico.totalVisitas }}</span>
                     <span class="badge cre">Creadas: {{ tecnico.creadas }}</span>
                     <span class="badge ini">Iniciadas: {{ tecnico.iniciadas }}</span>
-                    <span class="badge fin">Finalizadas: {{ tecnico.finalizadas }}</span>
+                    <span class="badge fin">Finalizada con exito: {{ tecnico.finalizadasExito }}</span>
+                    <span class="badge fin">Finalizada con incidencia: {{ tecnico.finalizadasIncidencia }}</span>
+                    <span class="badge can">Canceladas: {{ tecnico.cancelada }}</span>
                 </div>
             </div>
-
-            <ng-template #sinTecnicos>
-                <div class="sin-tecnicos">🚫 Sin técnicos registrados</div>
-            </ng-template>
         </div>
     </div>
-</div> -->
-
-<!-- Contenedor para alinear a la derecha -->
-<div class="contenedor-boton-derecha">
-  <button class="btn-descargar" (click)="descargarPDF()">📄 Descargar PDF</button>
-</div>
-
-<!-- Contenido que se exportará -->
-<div class="contenedor-listado" #contenidoPDF>
-
-  <h2 class="titulo"><span class="icono">📋</span> Supervisores bajo su cargo</h2>
-
-  <div *ngFor="let supervisor of resumenSupervisores">
-    <div class="card-supervisor" (click)="toggleSupervisor(supervisor)">
-      <span class="icono-user">🧑‍💼</span>
-      <strong>{{ supervisor.nombreSupervisor }}</strong>
-      <span class="estado-detalle">
-        Total: {{ supervisor.totalVisitas }} |
-        Creadas: {{ supervisor.creadas }} |
-        Iniciadas: {{ supervisor.iniciadas }} |
-        Finalizadas: {{ supervisor.finalizadas }}
-      </span>
-    </div>
-
-    <div class="contenedor-tecnicos"
-      *ngIf="supervisoresExpandido.includes(supervisor.idSupervisor) && tecnicosMap[supervisor.idSupervisor]"
-      [@expandirContraer]>
-      <div *ngFor="let tecnico of tecnicosMap[supervisor.idSupervisor]" class="tecnico-box">
-        <div class="tecnico-nombre">
-          🔧 {{ tecnico.nombreTecnico }} <span class="rol">(TECNICO)</span>
-        </div>
-        <div class="tecnico-resumen">
-          <span class="badge">Total: {{ tecnico.totalVisitas }}</span>
-          <span class="badge cre">Creadas: {{ tecnico.creadas }}</span>
-          <span class="badge ini">Iniciadas: {{ tecnico.iniciadas }}</span>
-          <span class="badge fin">Finalizadas: {{ tecnico.finalizadas }}</span>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>

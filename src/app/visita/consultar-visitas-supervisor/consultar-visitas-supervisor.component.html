@@ -43,24 +43,38 @@
           <td>{{ visita.fechaVisita }}</td>
           <td>{{ visita.enTiempo }}</td>
           <td>{{ visita.tiempoRetraso }}</td>
-          <td>
-            <!-- ✅ Mostrar botón solo si está fuera de tiempo y no ha sido alertado -->
-            <ng-container *ngIf="visita.leido === null && esRetraso(visita); else yaAlertado">
-              <button class="boton boton-ver" (click)="alertarRetraso(visita.idVisita)">
-                Alertar retraso a técnico
-              </button>
-            </ng-container>
 
-            <ng-template #yaAlertado>
-              <!-- Mostrar texto "Ya alertado" o simplemente nada si está A tiempo -->
-              <span class="texto-leido" *ngIf="visita.leido !== null">
-                Ya alertado
-              </span>
-              <span class="texto-leido" *ngIf="visita.leido === null && !esRetraso(visita)">
-                ✔️ A tiempo
-              </span>
-            </ng-template>
+          <td>
+            <div class="accion-contenedor">
+              <ng-container *ngIf="visita.leido === null && esRetraso(visita); else yaAlertado">
+                <!-- Siempre renderiza el botón, pero con [hidden] -->
+                <button class="boton boton-ver" (click)="alertarRetraso(visita.idVisita)"
+                  [hidden]="!(visita.leido === null && esRetraso(visita))">
+                  Alertar retraso a técnico
+                </button>
+
+              </ng-container>
+
+              <ng-template #yaAlertado>
+                <div class="espacio-alerta">
+                  <span *ngIf="visita.leido !== null">Ya alertado</span>
+                  <span *ngIf="visita.leido === null && !esRetraso(visita)">✔️ A tiempo</span>
+                </div>
+              </ng-template>
+
+
+              <button class="boton boton-cancelar" [disabled]="visita.estado !== 'CREADO'" (click)="confirmarCancelacion(visita.idVisita)">
+                ❌ Cancelar visita
+              </button>
+
+              <button class="boton boton-posponer" [disabled]="visita.estado !== 'CREADO'"
+                (click)="confirmarPosponer(visita.idVisita)">
+                ⏳ Posponer visita
+              </button>
+            </div>
           </td>
+
+
         </tr>
       </tbody>
     </table>

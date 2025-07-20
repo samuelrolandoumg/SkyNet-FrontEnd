@@ -73,4 +73,14 @@ export class SidebarComponent implements OnInit {
     return '/consultar-visitas';
   }
 
+  rutaConsultarSupervisoresVisitas(): string {
+    if (this.usuario?.rol === 'SUPERVISOR') {
+      return '/reporte-supervisor-visitas';
+    };
+        if (this.usuario?.rol === 'TECNICO') {
+      return '/reporte-tecnico-visitas';
+    };
+    return '/';
+  }
+
 }
