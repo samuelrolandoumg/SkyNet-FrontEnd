@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { CrearClienteDto } from '../../interfaces/cliente.interface';
 import Swal from 'sweetalert2';
+import { AuthService } from '../../services/auth.service';
 
 declare var google: any;
 
@@ -42,16 +43,25 @@ export class AgregarClienteComponent implements OnInit, AfterViewInit {
 
   map: any;
   marker: any;
+  usuario: any;
 
   constructor(
     private http: HttpClient,
     private zone: NgZone,
-    private clienteSrv: ClienteService
+    private clienteSrv: ClienteService,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
-    this.obtenerSupervisores();
+    this.usuario = this.authService.obtenerUsuario();
+
+    if (this.usuario.rol === 'ADMIN') {
+      this.obtenerSupervisores();
+    } else if (this.usuario.rol === 'SUPERVISOR') {
+      this.obtenerSoloSupervisor(this.usuario.id);
+    }
   }
+
 
   ngAfterViewInit(): void {
     const input = this.searchInput.nativeElement;
@@ -109,6 +119,18 @@ export class AgregarClienteComponent implements OnInit, AfterViewInit {
       },
       error: () => {
         console.error('No se pudieron cargar los supervisores');
+      }
+    });
+  }
+
+  obtenerSoloSupervisor(idSupervisor: number): void {
+    this.clienteSrv.obtenerSupervisorByid(idSupervisor).subscribe({
+      next: (data) => {
+        // Aseguramos que sea un array
+        this.supervisores = [data];
+      },
+      error: () => {
+        console.error('Error al obtener supervisor por ID');
       }
     });
   }

@@ -19,9 +19,10 @@
 
     <ul class="submenu"
       *ngIf="clienteExpanded && !isCollapsed && (usuario?.rol === 'ADMIN' || usuario?.rol === 'SUPERVISOR')">
-      <li *ngIf="puedeAgregarEditar" routerLink="/agregar-cliente" routerLinkActive="active">Agregar Cliente</li>
-      <li *ngIf="puedeConsultar" routerLink="/listar-clientes" routerLinkActive="active">Consultar Clientes</li>
+      <li *ngIf="puedeAgregarEditarCliente" routerLink="/agregar-cliente" routerLinkActive="active">Agregar Cliente</li>
+      <li *ngIf="puedeConsultarCliente" routerLink="/listar-clientes" routerLinkActive="active">Consultar Clientes</li>
     </ul>
+
 
 
     <!-- USUAIRO -->
@@ -34,10 +35,9 @@
 
     <ul class="submenu"
       *ngIf="usuarioExpanded && !isCollapsed && (usuario?.rol === 'ADMIN' || usuario?.rol === 'SUPERVISOR')">
-      <li *ngIf="puedeAgregarEditar" routerLink="/crear-usuario" routerLinkActive="active">Agregar Usuario</li>
-      <li *ngIf="puedeConsultar" routerLink="/listar-usuario" routerLinkActive="active">Consultar Usuarios</li>
+      <li *ngIf="puedeAgregarEditarUsuario" routerLink="/crear-usuario" routerLinkActive="active">Agregar Usuario</li>
+      <li *ngIf="puedeConsultarUsuario" routerLink="/listar-usuario" routerLinkActive="active">Consultar Usuarios</li>
     </ul>
-
 
     <!-- NUEVO MENÚ VISITAS -->
     <li (click)="toggleVisitas()">
@@ -52,8 +52,8 @@
       <li *ngIf="usuario?.rol !== 'TECNICO'" routerLink="/registrar-visita" routerLinkActive="active">Registrar Visita
       </li>
       <li [routerLink]="rutaConsultarVisitas()" routerLinkActive="active">Consultar Visitas</li>
-      <li *ngIf="usuario?.rol === 'SUPERVISOR' || usuario?.rol === 'TECNICO'" [routerLink]="rutaConsultarSupervisoresVisitas()"
-        routerLinkActive="active">
+      <li *ngIf="usuario?.rol === 'SUPERVISOR' || usuario?.rol === 'TECNICO'"
+        [routerLink]="rutaConsultarSupervisoresVisitas()" routerLinkActive="active">
         Consultar historial visitas
       </li>
     </ul>

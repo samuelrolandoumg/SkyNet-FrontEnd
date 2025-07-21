@@ -22,8 +22,11 @@ export class SidebarComponent implements OnInit {
   @Output() colapsado = new EventEmitter<boolean>();
 
   // Variables para controlar la visibilidad del submenu
-  puedeAgregarEditar = false;
-  puedeConsultar = false;
+  puedeAgregarEditarCliente = false;
+  puedeConsultarCliente = false;
+  puedeAgregarEditarUsuario = false;
+  puedeConsultarUsuario = false;
+
 
   constructor(private authService: AuthService) { }
 
@@ -31,13 +34,17 @@ export class SidebarComponent implements OnInit {
     this.usuario = this.authService.obtenerUsuario();
 
     if (this.usuario?.rol === 'ADMIN') {
-      this.puedeAgregarEditar = true;
-      this.puedeConsultar = true;
+      this.puedeAgregarEditarCliente = true;
+      this.puedeConsultarCliente = true;
+      this.puedeAgregarEditarUsuario = true;
+      this.puedeConsultarUsuario = true;
     } else if (this.usuario?.rol === 'SUPERVISOR') {
-      this.puedeAgregarEditar = false;
-      this.puedeConsultar = true;
+      this.puedeAgregarEditarCliente = true;
+      this.puedeConsultarCliente = true;
+      this.puedeConsultarUsuario = true; // Solo consulta usuarios
     }
   }
+
 
   toggleSidebar() {
     this.isCollapsed = !this.isCollapsed;
@@ -77,7 +84,7 @@ export class SidebarComponent implements OnInit {
     if (this.usuario?.rol === 'SUPERVISOR') {
       return '/reporte-supervisor-visitas';
     };
-        if (this.usuario?.rol === 'TECNICO') {
+    if (this.usuario?.rol === 'TECNICO') {
       return '/reporte-tecnico-visitas';
     };
     return '/';

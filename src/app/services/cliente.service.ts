@@ -9,9 +9,9 @@ import { environment } from '../../environments/environment';
 })
 export class ClienteService {
 
-    private apiUrl = `${environment.apiUrl}/cliente`;
-    private usuarioUrl = `${environment.apiUrl}/usuario`;
-  
+  private apiUrl = `${environment.apiUrl}/cliente`;
+  private usuarioUrl = `${environment.apiUrl}/usuario`;
+
 
   constructor(private http: HttpClient) { }
 
@@ -70,7 +70,7 @@ export class ClienteService {
   obtenerSupervisoresExistentes(): Observable<SupervisorDto[]> {
     return this.http.get<SupervisorDto[]>(`${this.apiUrl}/supervisores-existentes`);
   }
-  
+
   actualizarCliente(cliente: ClienteUpdateDto): Observable<any> {
     return this.http.put(`${this.apiUrl}/actualizar`, cliente);
   }
@@ -85,5 +85,10 @@ export class ClienteService {
     return this.http.get<number>(`${this.apiUrl}/visitas-cliente`, {
       params: { idCliente: idCliente.toString() }
     });
+  }
+
+  obtenerSupervisorByid(idSupervisor: number): Observable<Supervisor[]> {
+    return this.http.get<Supervisor[]>(
+      `${this.usuarioUrl}/usuarios-id?idSupervisor=${idSupervisor}`);
   }
 }
