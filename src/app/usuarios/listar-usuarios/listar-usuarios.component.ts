@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import html2pdf from 'html2pdf.js';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-listar-usuarios',
@@ -110,4 +111,45 @@ export class ListarUsuariosComponent implements OnInit {
 
     html2pdf().set(opt).from(element).save();
   }
+
+  eliminarUsuario(idUsuario: number, event: MouseEvent): void {
+    event.stopPropagation();
+
+    Swal.fire({
+      title: '¿Está seguro que desea eliminar este usuario?',
+      text: 'Esta acción no se puede deshacer.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.usuarioService.eliminarUsuario(idUsuario).subscribe({
+          next: (res) => {
+            Swal.fire({
+              icon: 'success',
+              title: 'Eliminado',
+              text: res.mensaje // ✅ en vez de text: res
+            });
+            this.ngOnInit();
+          },
+          error: (err) => {
+            let mensaje = 'Error al eliminar el usuario';
+            if (err.error && err.error.mensaje) {
+              mensaje = err.error.mensaje;
+            }
+            Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: mensaje
+            });
+          }
+        });
+
+      }
+    });
+  }
+
 }

@@ -10,8 +10,8 @@ import { environment } from '../../environments/environment';
 })
 export class UsuarioService {
 
-    private usuarioUrl = `${environment.apiUrl}/usuario`;
-  
+  private usuarioUrl = `${environment.apiUrl}/usuario`;
+
   constructor(private http: HttpClient) { }
 
   crearUsuario(usuario: UsuarioDto): Observable<any> {
@@ -44,6 +44,10 @@ export class UsuarioService {
   getAdmins(): Observable<Supervisor[]> {
     return this.http.get<Supervisor[]>(`${this.usuarioUrl}/lista-admin`);
   }
+  eliminarUsuario(idUsuario: number): Observable<any> {
+    return this.http.put(`${this.usuarioUrl}/eliminar?idUsuario=${idUsuario}`, null);
+  }
+
 
 
 }

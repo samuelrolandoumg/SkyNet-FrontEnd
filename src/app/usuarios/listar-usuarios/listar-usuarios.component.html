@@ -14,6 +14,9 @@
       <span class="icono-user">🧑‍💼</span>
       <strong>{{ supervisor.usuario }}</strong>
       <button class="btn-editar" (click)="editarUsuario(supervisor.idUsuario, $event)">Editar</button>
+      <button class="btn-icon" (click)="eliminarUsuario(supervisor.idUsuario, $event)">
+        <i class="fa-solid fa-trash-can"></i>
+      </button>
     </div>
 
     <div class="contenedor-tecnicos" *ngIf="supervisor.mostrar" [@expandirContraer]>
@@ -21,6 +24,9 @@
         <div *ngFor="let tecnico of supervisor.tecnicos" class="tecnico">
           🔧 {{ tecnico.nombreTecnico }} <span class="rol">({{ tecnico.rol }})</span>
           <button class="btn-editar-chico" (click)="editarUsuario(tecnico.idUsuario, $event)">✏️</button>
+          <button class="btn-icon-sm" (click)="eliminarUsuario(tecnico.idUsuario, $event)">
+            <i class="fa-solid fa-trash-can"></i>
+          </button>
         </div>
       </div>
       <ng-template #sinTecnicos>
