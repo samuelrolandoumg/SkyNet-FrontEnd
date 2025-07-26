@@ -23,6 +23,7 @@ import { ReporteSupervisorComponent } from './reporte/reporte-supervisor/reporte
 import { ReporteAdminComponent } from './reporte/reporte-admin/reporte-admin.component';
 import { ReporteSupervisorVisitasComponent } from './reporte/reporte-supervisor-visitas/reporte-supervisor-visitas.component';
 import { ConsultarVisitasTecnicoComponent } from './visita/consultar-visitas-tecnico/consultar-visitas-tecnico.component';
+import { CambiarPasswordComponent } from './configuracion/cambiar-password/cambiar-password.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -59,6 +60,8 @@ const routes: Routes = [
       { path: 'reporte-admin', component: ReporteAdminComponent },
       { path: 'reporte-supervisor-visitas', component: ReporteSupervisorVisitasComponent },
       { path: 'reporte-tecnico-visitas', component: ConsultarVisitasTecnicoComponent },
+      { path: 'cambiar-contraseña', component: CambiarPasswordComponent },
+
     ]
   },
 

@@ -49,5 +49,17 @@ export class UsuarioService {
   }
 
 
+  obtenerContrasena(idUsuario: number) {
+    return this.http.get(`${this.usuarioUrl}/contrasena`, { params: { idUsuario }, responseType: 'text' });
+  }
+
+  actualizarContrasena(idUsuario: number, nuevaContrasena: string) {
+    return this.http.put(`${this.usuarioUrl}/actualizar-contrasena`, null, {
+      params: {
+        idUsuario: idUsuario.toString(),
+        nuevaContrasena
+      }
+    });
+  }
 
 }
