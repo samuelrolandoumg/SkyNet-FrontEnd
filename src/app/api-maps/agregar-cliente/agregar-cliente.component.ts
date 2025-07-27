@@ -126,7 +126,6 @@ export class AgregarClienteComponent implements OnInit, AfterViewInit {
   obtenerSoloSupervisor(idSupervisor: number): void {
     this.clienteSrv.obtenerSupervisorByid(idSupervisor).subscribe({
       next: (data) => {
-        // Aseguramos que sea un array
         this.supervisores = [data];
       },
       error: () => {

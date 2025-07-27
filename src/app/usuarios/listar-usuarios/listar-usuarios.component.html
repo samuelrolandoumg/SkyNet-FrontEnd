@@ -10,25 +10,33 @@
   <h2><i class="fa-solid fa-users-viewfinder"></i> Lista de Usuarios</h2>
 
   <div *ngFor="let supervisor of supervisores">
+    <!-- Supervisor -->
     <div class="card-supervisor" (click)="toggleTecnicos(supervisor.idUsuario)">
       <span class="icono-user">🧑‍💼</span>
       <strong>{{ supervisor.usuario }}</strong>
+      
       <button class="btn-editar" (click)="editarUsuario(supervisor.idUsuario, $event)">Editar</button>
-      <button class="btn-icon" (click)="eliminarUsuario(supervisor.idUsuario, $event)">
+      
+      <button class="btn-icon" *ngIf="esAdmin" (click)="eliminarUsuario(supervisor.idUsuario, $event)">
         <i class="fa-solid fa-trash-can"></i>
       </button>
     </div>
 
+    <!-- Técnicos -->
     <div class="contenedor-tecnicos" *ngIf="supervisor.mostrar" [@expandirContraer]>
       <div *ngIf="supervisor.tecnicos && supervisor.tecnicos.length > 0; else sinTecnicos">
         <div *ngFor="let tecnico of supervisor.tecnicos" class="tecnico">
           🔧 {{ tecnico.nombreTecnico }} <span class="rol">({{ tecnico.rol }})</span>
+          
           <button class="btn-editar-chico" (click)="editarUsuario(tecnico.idUsuario, $event)">✏️</button>
-          <button class="btn-icon-sm" (click)="eliminarUsuario(tecnico.idUsuario, $event)">
+          
+          <button class="btn-icon-sm" *ngIf="esAdmin" (click)="eliminarUsuario(tecnico.idUsuario, $event)">
             <i class="fa-solid fa-trash-can"></i>
           </button>
         </div>
       </div>
+
+      <!-- Sin técnicos -->
       <ng-template #sinTecnicos>
         <div class="sin-tecnicos">🚫 Sin técnicos asignados</div>
       </ng-template>

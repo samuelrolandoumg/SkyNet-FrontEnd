@@ -18,6 +18,7 @@ export class RegistrarVisitaComponent implements OnInit {
   tipoVisitaSeleccionado: string = '';
   tecnicos: any[] = [];
   clientes: any[] = [];
+  minFecha: string = '';
 
   idTecnicoSeleccionado: number | null = null;
   idClienteSeleccionado: number | null = null;
@@ -40,6 +41,12 @@ export class RegistrarVisitaComponent implements OnInit {
     this.clienteService.obtenerUsuarioDesdeToken().subscribe(usuario => {
       this.idSupervisor = usuario.id;
     });
+
+    const hoy = new Date();
+    const anio = hoy.getFullYear();
+    const mes = (hoy.getMonth() + 1).toString().padStart(2, '0');
+    const dia = hoy.getDate().toString().padStart(2, '0');
+    this.minFecha = `${anio}-${mes}-${dia}`;
   }
 
   onTipoVisitaChange(): void {

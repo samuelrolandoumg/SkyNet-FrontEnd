@@ -288,7 +288,7 @@ body {
 /* Contenedor del formulario con padding interno */
 .login-form-section .form-wrapper {
   width: 100%;
-  max-width: 85%;
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -446,3 +446,21 @@ body {
 .extra-options a:hover {
   text-decoration: underline;
 }
+
+.form-group {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.error-msg {
+  min-height: 18px;
+  font-size: 13px;
+  color: red;
+  margin-top: -5px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.input-error {
+  border: 1px solid red !important;
+} 
