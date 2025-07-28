@@ -19,14 +19,14 @@
       <tr *ngFor="let reporte of reportes">
         <td>{{ reporte.nombreCliente }}</td>
         <td>
-          {{ reporte.resultadoObtenido }}
+            {{ reporte.resultadoObtenido }}
         </td>
         <td>{{ reporte.fechaProgramada | date: 'short' }}</td>
         <td>{{ reporte.fechaServicioFinalizada | date: 'short' }}</td>
         <td>{{ reporte.nombreDocumento }}</td>
         <td>
-          <button class="btn-pdf" (click)="descargarPDF(reporte.urlDocumento, reporte.nombreDocumento)">
-            <i class="fa-solid fa-file-pdf"></i>
+          <button class="boton boton-detalle" (click)="descargarPDF(reporte.urlDocumento, reporte.nombreDocumento)">
+            <i class="fa-solid fa-download"></i>
           </button>
         </td>
       </tr>

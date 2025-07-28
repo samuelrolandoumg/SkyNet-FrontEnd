@@ -17,13 +17,8 @@
       <tr *ngFor="let reporte of reportes">
         <td>{{ reporte.nombreCliente }}</td>
         <td>{{ reporte.nombreTecnico }}</td>
-        <td>
-          <span class="badge" [ngClass]="{
-            'badge-creado': reporte.resultadoObtenido === 'FALLIDO',
-            'badge-finalizado': reporte.resultadoObtenido === 'EXITOSO'
-          }">
+        <td> 
             {{ reporte.resultadoObtenido }}
-          </span>
         </td>
         <td>{{ reporte.fechaProgramada }}</td>
         <td>{{ reporte.fechaServicioFinalizada }}</td>

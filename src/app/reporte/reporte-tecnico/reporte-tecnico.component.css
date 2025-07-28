@@ -22,13 +22,26 @@
   border-bottom: 1px solid #ccc;
 }
 
-.btn-pdf {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  color: red;
-  font-size: 18px;
+.boton-detalle {
+  background-color: #06b6d4;
+  color: white;
 }
+
+.boton-detalle:hover {
+  background-color: #0891b2;
+}
+
+.boton {
+  padding: 6px 14px;
+  margin-right: 6px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-size: 14px;
+}
+
 
 .badge {
   padding: 5px 10px;
