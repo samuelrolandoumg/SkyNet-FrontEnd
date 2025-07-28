@@ -142,7 +142,7 @@ export class ListarUsuariosComponent implements OnInit {
             }
             Swal.fire({
               icon: 'error',
-              title: 'Error',
+              title: 'No se puede al eliminar el usuario',
               text: mensaje
             });
           }
