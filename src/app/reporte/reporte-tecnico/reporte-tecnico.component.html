@@ -19,12 +19,7 @@
       <tr *ngFor="let reporte of reportes">
         <td>{{ reporte.nombreCliente }}</td>
         <td>
-          <span [ngClass]="{
-            'badge bg-success': reporte.resultadoObtenido === 'FINALIZADO CON EXITO',
-            'badge bg-danger': reporte.resultadoObtenido === 'FINALIZADO CON INCIDENCIA'
-          }">
-            {{ reporte.resultadoObtenido }}
-          </span>
+          {{ reporte.resultadoObtenido }}
         </td>
         <td>{{ reporte.fechaProgramada | date: 'short' }}</td>
         <td>{{ reporte.fechaServicioFinalizada | date: 'short' }}</td>
