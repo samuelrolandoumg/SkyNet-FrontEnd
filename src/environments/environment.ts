@@ -1,4 +1,3 @@
-// src/environments/environment.ts
 export const environment = {
     production: false,
     apiUrl: 'https://skynet-backend-production.up.railway.app'
